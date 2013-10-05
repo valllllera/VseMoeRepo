@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12B2080" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Account" representedClassName="Account" syncable="YES">
+        <attribute name="bank" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="card" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="creditLimit" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="dateOpen" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="group" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="idAccount" optional="YES" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="modifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="paymentSystem" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="removed" optional="YES" attributeType="Boolean" indexed="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <relationship name="currency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="accounts" inverseEntity="Currency" syncable="YES"/>
+        <relationship name="payments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="account" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="paymentsAsCategory" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="accountAsCategory" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="templates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Template" inverseName="account" inverseEntity="Template" syncable="YES"/>
+        <relationship name="templatesAsCategory" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Template" inverseName="accountAsCategory" inverseEntity="Template" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="accounts" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Category" representedClassName="Category" syncable="YES">
+        <attribute name="idCategory" optional="YES" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="modifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="removed" optional="YES" attributeType="Boolean" indexed="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <relationship name="payments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="category" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="subcats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="supercat" inverseEntity="Category" syncable="YES"/>
+        <relationship name="supercat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="subcats" inverseEntity="Category" syncable="YES"/>
+        <relationship name="templates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Template" inverseName="category" inverseEntity="Template" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="categories" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Currency" representedClassName="Currency" syncable="YES">
+        <attribute name="code" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idCurrency" optional="YES" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="modifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="removed" optional="YES" attributeType="Boolean" indexed="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="accounts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Account" inverseName="currency" inverseEntity="Account" syncable="YES"/>
+        <relationship name="payments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="currency" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="rates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Rate" inverseName="currency" inverseEntity="Rate" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="currencies" inverseEntity="User" syncable="YES"/>
+        <relationship name="usersAdditional" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="currenciesAdditional" inverseEntity="User" syncable="YES"/>
+        <relationship name="usersMain" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="currencyMain" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Payment" representedClassName="Payment" syncable="YES">
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="finished" optional="YES" attributeType="Boolean" indexed="YES" syncable="YES"/>
+        <attribute name="hidden" optional="YES" attributeType="Boolean" indexed="YES" syncable="YES"/>
+        <attribute name="idPayment" optional="YES" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="modifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="rateValue" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="removed" optional="YES" attributeType="Boolean" indexed="YES" syncable="YES"/>
+        <attribute name="sum" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="sumMain" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="payments" inverseEntity="Account" syncable="YES"/>
+        <relationship name="accountAsCategory" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="paymentsAsCategory" inverseEntity="Account" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="payments" inverseEntity="Category" syncable="YES"/>
+        <relationship name="currency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="payments" inverseEntity="Currency" syncable="YES"/>
+        <relationship name="subpayments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="superpayment" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="superpayment" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Payment" inverseName="subpayments" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="template" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Template" inverseName="payments" inverseEntity="Template" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="payments" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Rate" representedClassName="Rate" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="currency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="rates" inverseEntity="Currency" syncable="YES"/>
+    </entity>
+    <entity name="Template" representedClassName="Template" syncable="YES">
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idTemplate" optional="YES" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="modifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="removed" optional="YES" attributeType="Boolean" indexed="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="templates" inverseEntity="Account" syncable="YES"/>
+        <relationship name="accountAsCategory" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="templatesAsCategory" inverseEntity="Account" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="templates" inverseEntity="Category" syncable="YES"/>
+        <relationship name="payments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="template" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="templates" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="dateIn" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="hidden" optional="YES" attributeType="Boolean" indexed="YES" syncable="YES"/>
+        <attribute name="login" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="syncAuto" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="syncViaWiFiOnly" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="accounts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Account" inverseName="user" inverseEntity="Account" syncable="YES"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="user" inverseEntity="Category" syncable="YES"/>
+        <relationship name="currencies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Currency" inverseName="user" inverseEntity="Currency" syncable="YES"/>
+        <relationship name="currenciesAdditional" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Currency" inverseName="usersAdditional" inverseEntity="Currency" syncable="YES"/>
+        <relationship name="currencyMain" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="usersMain" inverseEntity="Currency" syncable="YES"/>
+        <relationship name="payments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="user" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="templates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Template" inverseName="user" inverseEntity="Template" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Account" positionX="232" positionY="-63" width="128" height="330"/>
+        <element name="Category" positionX="-45" positionY="63" width="128" height="195"/>
+        <element name="Currency" positionX="90" positionY="-102" width="126" height="225"/>
+        <element name="Payment" positionX="-56" positionY="237" width="128" height="315"/>
+        <element name="Rate" positionX="-92" positionY="-99" width="128" height="90"/>
+        <element name="Template" positionX="351" positionY="243" width="128" height="195"/>
+        <element name="User" positionX="385" positionY="12" width="128" height="240"/>
+    </elements>
+</model>

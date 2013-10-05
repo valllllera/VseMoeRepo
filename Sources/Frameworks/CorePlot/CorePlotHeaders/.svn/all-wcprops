@@ -1,0 +1,449 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders
+END
+CPTShadow.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTShadow.h
+END
+CPTDataSourceTestCase.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTDataSourceTestCase.h
+END
+CPTFill.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTFill.h
+END
+CPTGradient.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTGradient.h
+END
+CPTGraph.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTGraph.h
+END
+CPTBarPlot.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTBarPlot.h
+END
+CPTLimitBand.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTLimitBand.h
+END
+CPTPlotSymbol.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTPlotSymbol.h
+END
+CPTAxis.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTAxis.h
+END
+CPTMutablePlotRange.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTMutablePlotRange.h
+END
+CPTAnnotation.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTAnnotation.h
+END
+CPTGridLineGroup.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTGridLineGroup.h
+END
+CPTXYPlotSpace.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTXYPlotSpace.h
+END
+CPTLayer.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTLayer.h
+END
+CPTAxisSet.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTAxisSet.h
+END
+CPTMutableLineStyle.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTMutableLineStyle.h
+END
+CPTBorderedLayer.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTBorderedLayer.h
+END
+CPTPlatformSpecificDefines.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTPlatformSpecificDefines.h
+END
+CPTGraphHostingView.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTGraphHostingView.h
+END
+CPTMutableNumericData+TypeConversion.h
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTMutableNumericData+TypeConversion.h
+END
+CPTColorSpace.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTColorSpace.h
+END
+CPTPlotRange.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTPlotRange.h
+END
+CPTPlotGroup.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTPlotGroup.h
+END
+CPTNumericDataType.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTNumericDataType.h
+END
+CPTLegend.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTLegend.h
+END
+CPTPieChart.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTPieChart.h
+END
+CPTMutableShadow.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTMutableShadow.h
+END
+CPTPlatformSpecificCategories.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTPlatformSpecificCategories.h
+END
+CPTXYAxisSet.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTXYAxisSet.h
+END
+CPTTheme.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTTheme.h
+END
+CPTScatterPlot.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTScatterPlot.h
+END
+CorePlot-CocoaTouch.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CorePlot-CocoaTouch.h
+END
+CPTMutableNumericData.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTMutableNumericData.h
+END
+NSCoderExtensions.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/NSCoderExtensions.h
+END
+CPTPlotArea.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTPlotArea.h
+END
+CPTLayerAnnotation.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTLayerAnnotation.h
+END
+CPTLineStyle.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTLineStyle.h
+END
+CPTTestCase.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTTestCase.h
+END
+CPTTextStylePlatformSpecific.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTTextStylePlatformSpecific.h
+END
+CPTTimeFormatter.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTTimeFormatter.h
+END
+CPTImage.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTImage.h
+END
+CPTDerivedXYGraph.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTDerivedXYGraph.h
+END
+CPTXYAxis.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTXYAxis.h
+END
+CPTPlotSpace.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTPlotSpace.h
+END
+CPTRangePlot.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTRangePlot.h
+END
+CPTNumericData.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTNumericData.h
+END
+CPTCalendarFormatter.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTCalendarFormatter.h
+END
+CPTResponder.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTResponder.h
+END
+NSNumberExtensions.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/NSNumberExtensions.h
+END
+CPTTradingRangePlot.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTTradingRangePlot.h
+END
+CPTAnnotationHostLayer.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTAnnotationHostLayer.h
+END
+CPTConstraints.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTConstraints.h
+END
+CPTDefinitions.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTDefinitions.h
+END
+CPTLineCap.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTLineCap.h
+END
+CPTColor.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTColor.h
+END
+CPTMutableTextStyle.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTMutableTextStyle.h
+END
+CPTGridLines.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTGridLines.h
+END
+CPTTextLayer.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTTextLayer.h
+END
+CPTAxisLabelGroup.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTAxisLabelGroup.h
+END
+CPTPlotAreaFrame.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTPlotAreaFrame.h
+END
+CPTXYGraph.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTXYGraph.h
+END
+CPTPlatformSpecificFunctions.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTPlatformSpecificFunctions.h
+END
+CPTPlotSpaceAnnotation.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTPlotSpaceAnnotation.h
+END
+CPTAxisLabel.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTAxisLabel.h
+END
+CPTTextStyle.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTTextStyle.h
+END
+CPTAxisTitle.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTAxisTitle.h
+END
+mainpage.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/mainpage.h
+END
+CPTUtilities.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTUtilities.h
+END
+CPTPathExtensions.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTPathExtensions.h
+END
+CPTPlot.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTPlot.h
+END
+CPTNumericData+TypeConversion.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTNumericData+TypeConversion.h
+END
+CPTLegendEntry.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTLegendEntry.h
+END
+CPTExceptions.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/CPTExceptions.h
+END
+NSDecimalNumberExtensions.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/all/!svn/ver/613/iPhone/AllMine/Frameworks/CorePlot/CorePlotHeaders/NSDecimalNumberExtensions.h
+END

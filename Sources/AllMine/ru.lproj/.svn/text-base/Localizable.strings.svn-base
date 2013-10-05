@@ -1,0 +1,229 @@
+/* 
+  Localizable.strings
+  AllMine
+
+  Created by Allgoritm LLC on 01.11.12.
+  Copyright (c) 2012 Allgoritm LLC. All rights reserved.
+*/
+
+//  LoginView
+"LoginRegistration" = "Регистрация";
+"LoginSubmit" = "Войти";
+"LoginLogout" = "Выйти";
+"Loading" = "Загрузка...";
+
+//  --
+"Email" = "Почта";
+"Password" = "Пароль";
+"PasswordNew" = "Новый Пароль";
+"PasswordConfirm" = "Подтвердите пароль";
+
+//  --
+"OK" = "ОК";
+"Cancel" = "Отмена";
+"Save" = "Сохранить";
+"Edit" = "Изменить";
+"Remove" = "Удалить";
+"Edit2" = "Редактировать";
+"Total" = "Всего";
+"YES" = "Да";
+"NO" = "Нет";
+
+//  alerts
+"Error" = "Ошибка";
+"NoConnection" = "Отсутствует соединение с Интернетом. Пожалуйста, проверьте подключение.";
+"UserExist" = "Указанный адрес уже занят.";
+"UserRegisterFailed" = "Не удалось зарегистрировать пользователя в системе.";
+"UserNotFoundLocally" = "Пользователь с таким адресом не зарегистрирован.";
+"UserPasswordRecoveryError" = "Не удалось отправить запрос на восставноление пароля.";
+"UserPasswordChangeError" = "Не удалось сменить пароль";
+"SyncFailed" = "Не удалось осуществить полную синхронизацию с сервером";
+"UserPasswordWrong" = "Неверный пароль";
+"SyncSettingsFailed" = "Не удалось осуществить синхронизацию настроек с сервером";
+"UserPasswordRecoverySent" = "На почту отправлена инструкция по восстановлению пароля. Проверьте почту.";
+
+//  --
+"January" = "Января";
+"February" = "Февраля";
+"March" = "Марта";
+"April" = "Апреля";
+"May" = "Мая";
+"June" = "Июня";
+"July" = "Июля";
+"August" = "Августа";
+"September" = "Сентября";
+"October" = "Октября";
+"November" = "Ноября";
+"December" = "Декабря";
+//  --
+"Jan" = "Янв";
+"Feb" = "Фев";
+"Mar" = "Мар";
+"Apr" = "Апр";
+"May" = "Мая";
+"Jun" = "Июн";
+"Jul" = "Июл";
+"Aug" = "Авг";
+"Sep" = "Сен";
+"Oct" = "Окт";
+"Nov" = "Ноя";
+"Dec" = "Дек";
+//  --
+"Sun" = "Вос";
+"Mon" = "Пон";
+"Tue" = "Вто";
+"Wed" = "Сре";
+"Thu" = "Чет";
+"Fri" = "Пят";
+"Sat" = "Суб";
+//  --
+"Today" = "Сегодня";
+"Yesterday" = "Вчера";
+"DayBeforeYesterday" = "Позавчера";
+
+//  menu
+"MenuReview" = "Обзор";
+"MenuRemainder" = "Остаток";
+"MenuIncome" = "Доходы";
+"MenuExpense" = "Расходы";
+"MenuFavourites" = "Фавориты";
+"MenuPayments" = "Платежи";
+"MenuTotal" = "Итог";
+
+//  settings menu
+"Settings" = "Настройки";
+"SettingsMain" = "Основные";
+"SettingsMail" = "Почта и Пароль";
+"SettingsCurrency" = "Валюты";
+"SettingsSync" = "Синхронизация";
+"SettingsCategories" = "Список Категорий";
+"SettingsFavourites" = "Фаворитные Платежи";
+"SettingsAbout" = "О программе";
+
+//  settings currency
+"SettingsCurrencyTitle" = "Валюта";
+"SettingsCurrencyMain" = "Основная";
+"SettingsCurrencyAddCurrency" = "Добавить Валюту";
+"SettingsCurrencyAdditional" = "Дополнительно";
+"SettingsCurrencyFooter" = "Курс Центробанка России";
+
+//  currency list
+"CurrencyList" = "Список Валют";
+
+//  settings main
+//"SettingsMainReview" = "Обзор";
+//"SettingsMainItem1" = "Рассчитывать доходы и расходы от начала рабочего месяца (от выплаты зарплаты)";
+//"SettingsMainItem2" = "Рассчитывать доходы и расходы от начала календарного месяца";
+"SettingsMainRestart" = "Начать все сначала";
+
+//  settings mail
+"SettingsMailHeader" = "Ваши данные";
+"SettingsMailFooter" = "Пожалуйста, запомните Ваш почтовый адрес и пароль для легкой работы с нами";
+
+//  settings sync
+"SettingsSyncAuto" = "Автоматически";
+"SettingsSyncManual" = "Вручную";
+"SettingsSyncNever" = "Никогда";
+"SettingsSyncWiFiOnly" = "Только через WIFI";
+"SettingsSyncHeader" = "Синхронизовать:";
+
+//  category edit
+"CategoryEditTitle" = "Название Категории";
+"CategoryEditNew" = "Новая Категория";
+"CategoryEditParent" = "В родительскую категорию";
+
+//  settings categories
+"SettingsCategoriesRemoveDialog" = "Вы действительно хотите удалить";
+"SettingsCategoriesCategories" = "Категории";
+"SettingsCategoriesTransfer" = "Переместить";
+
+//  account edit
+"AccountEdit" = "Редактировать";
+"AccountEditNew" = "Добавить счет";
+"AccountEditBalanceInit" = "Начальная Сумма";
+"AccountEditTitle" = "Название";
+"AccountEditComment" = "Комментарий";
+"AccountEditDateOpened" = "Открыт";
+"AccountEditAccGroup" = "Группа Счетов";
+"AccountEditBank" = "Название Банка";
+"AccountEditBankCompany" = "Название Компании";
+"AccountEditNumber" = "№ Счета";
+"AccountEditCard" = "№ Карты";
+"AccountEditLast4" = "последние 4 цифры";
+"AccountEditPaymentSystem" = "Название Платежной Системы";
+"AccountEditBalanceLoan" = "Сумма Займа";
+"AccountEditCreditLimit" = "Доступный лимит";
+"AccountEditRemoveButton" = "Удалить Счет";
+"AccountEditCreditBalance" = "Установленный кредитный лимит";
+"AccountEditPayTo" = "Оплатить до:";
+
+//  account
+"AccountGroup1" = "Всё Моё";
+"AccountGroup2" = "Долги";
+"AccountGroup0" = "-";
+
+//  accountlist
+"AccountListAccounts" = "Счета";
+"AccountListCash" = "Наличность";
+"AccountListBank" = "Банк";
+"AccountListElectron" = "Электронные деньги";
+"AccountListOther" = "Другое";
+
+//  payment list
+"PaymentListPayments" = "Все Платежи";
+"PaymentListUndefined" = "Неопределен";
+
+//  payment edit
+"PaymentEditPayment" = "Платеж";
+"PaymentEditFrom" = "Откуда?";
+"PaymentEditTo" = "Куда?";
+"PaymentEditDate" = "Дата";
+"PaymentEditComment" = "Комментарий";
+"PaymentEditSplit" = "Разделение";
+"PaymentEditRemove" = "Удалить Платеж";
+"PaymentEditSumIncorrect" = "Некорректная сумма";
+
+//  payment split
+"PaymentSplitCategory" = "Категория";
+"PaymentSplitError" = "Введенная сумма\nпревышает остаток";
+"PaymentSplitFooter" = "Разделите платеж, введите название и сумму.";
+
+//  payment favourite
+//"PaymentAddFavourite" = "Фаворитный платеж";
+"PaymentAddFavourite" = "Фаворитный Платеж";
+"PaymentAddFavouriteNew" = "Новый";
+"PaymentAddFavouriteNewTitle" = "Новый Фаворитный Платеж";
+"PaymentAddFavouriteCreate" = "Создание Фаворитного Платежа";
+"PaymentAddFavouriteNewFooter" = "В названии платежа лучше использовать одно, понятное слово.";
+"PaymentTemplateRemove" = "Удалить Фаворит";
+"PaymentTemplateSelectedAlertIncome" = "Получили";
+"PaymentTemplateSelectedAlertExpense" = "Потратили на";
+"PaymentTemplateSelectedAlertTransfer" = "Переместили в";
+"PaymentTemplateToPaymentAddCommon" = "Обычный";
+
+//  payment edit currency
+"PaymentEidtCurrencyRate" = "Ваш курс обмена";
+"PaymentEditCurrencySelect" = "Выберите валюту обмена";
+
+//  login
+"LoginPasswordRecover1" = "Забыли пароль, \nукажите ваш адрес \nэлектронной почты.";
+"LoginPasswordRecover2" = "Мы вышлем ссылку \nдля установления нового пароля.";
+
+// plot
+"PlotTopSegmentIn" = "Доходы";
+"PlotTopSegmentOut" = "Расходы";
+"PlotTopSegmentCap" = "Капитал";
+"PlotBottomSegmentTime" = "по Времени";
+"PlotBottomSegmentCategory" = "по Категории";
+"PlotBottomSegmentAccount" = "по Счетам";
+
+// account select
+"Cash" = "Бумажник";
+"Cash2" = "Другая наличность";
+"Loan" = "Займы";
+"Card" = "Зарплатная карта";
+"Credit" = "Кредитная карта";
+"Bank" = "Банковский счет";
+"Electron" = "Электронные деньги";
+"Other" = "Другое";
+
