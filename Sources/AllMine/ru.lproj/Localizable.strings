@@ -30,6 +30,7 @@
 "Total" = "Всего";
 "YES" = "Да";
 "NO" = "Нет";
+"Once" = "Сразу";
 
 //  alerts
 "Error" = "Ошибка";
@@ -136,7 +137,11 @@
 "SettingsSyncWiFiOnly" = "Только через WIFI";
 "SettingsSyncHeader" = "Синхронизовать";
 "SettingsAuthorization" = " АВТОРИЗИРОВАТЬСЯ";
-"SettingsRemoveAutoauth" = "Убрать ввод пароля";
+"SettingsProtectionPin" = "Зищита пин-кодом";
+"SettingsProtectionPinRequest" = "Запрос пин-кода";
+"SettingsProtectionPinEnable" = "Включить пин-код";
+"SettingsProtectionPinEdit" = "Изменить пин-код";
+"SettingsProtectionHeader" = "Комбинация - 5 цифр";
 
 //  category edit
 "CategoryEditTitle" = "Название Категории";

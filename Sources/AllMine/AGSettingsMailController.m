@@ -16,6 +16,7 @@
 #import "UIView+AGExtensions.h"
 #import "AGServerAccess.h"
 #import "DCRoundSwitch.h"
+#import "AGSettingsPinController.h"
 
 @interface AGSettingsMailController ()
 @property(nonatomic, retain) IBOutlet UITableView* tvItems;
@@ -25,7 +26,7 @@
 @property(nonatomic, strong) NSString* password;
 @property(nonatomic, strong) NSString* passwordConfirm;
 
-@property (nonatomic, strong) DCRoundSwitch* swAutoAuth;
+@property (nonatomic, strong) DCRoundSwitch* swProtPin;
 
 @end
 
@@ -49,7 +50,7 @@
     self.navigationItem.leftBarButtonItem = [AGTools navigationBarButtonItemWithImageNamed:@"button-back" target:self action:@selector(back)];
     self.navigationItem.rightBarButtonItem = [AGTools navigationBarButtonItemWithTitle:NSLocalizedString(@"Save", @"") imageNamed:@"button-save" target:self action:@selector(save)];
     
-    _tvItems.scrollEnabled = NO;
+    //_tvItems.scrollEnabled = NO;
     _tvItems.delegate = self;
     _tvItems.dataSource = self;
     
@@ -77,20 +78,15 @@
     [_tfPassword setValue:[UIColor colorWithHex:kColorHexBlack]
                     forKeyPath:@"_placeholderLabel.textColor"];
     
-    self.swAutoAuth = [[DCRoundSwitch alloc] initWithFrame:CGRectMake(217, 16, 70, 25)];
+    self.swProtPin = [[DCRoundSwitch alloc] initWithFrame:CGRectMake(217, 16, 70, 25)];
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"autoAuth"])
-    {
-        [self.swAutoAuth setOn:NO];
-    }else{
-        [self.swAutoAuth setOn:YES];
-    }
-    [self.swAutoAuth addTarget:self
-                        action:@selector(swAutoAuthChangedState:)
+    [self.swProtPin setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"protPin"]];
+    [self.swProtPin addTarget:self
+                        action:@selector(swProtPinChangedState:)
               forControlEvents:UIControlEventValueChanged];
-    self.swAutoAuth.onText = NSLocalizedString(@"YES", @"");
-    self.swAutoAuth.offText = NSLocalizedString(@"NO", @"");
-    self.swAutoAuth.onTintColor = [UIColor colorWithHex:kColorHexSwitchOn];
+    self.swProtPin.onText = NSLocalizedString(@"YES", @"");
+    self.swProtPin.offText = NSLocalizedString(@"NO", @"");
+    self.swProtPin.onTintColor = [UIColor colorWithHex:kColorHexSwitchOn];
     
 }
 
@@ -132,14 +128,32 @@
 
 #pragma mark - UITableViewDatasource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"protPin"])
+    {
+        return 3;
+    }
     return 2;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
         return 2;
-    }else
+    }else if(section == 1)
+    {
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"protPin"])
+        {
+            return 2;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+    else if(section == 2)
+    {
         return 1;
+    }
+    return 0;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -166,17 +180,42 @@
     cellLabel.textColor = [UIColor colorWithHex:kColorHexBlack];
     switch (indexPath.row) {
         case 0:
-            if(indexPath.section ==0)
+            if(indexPath.section == 0)
                 cellLabel.text = (kUser).login;
-            else{
-                cellLabel.text = NSLocalizedString(@"SettingsRemoveAutoauth", nil);
-                [cell.contentView addSubview:self.swAutoAuth];
+            else if(indexPath.section == 1){
+                cellLabel.text = NSLocalizedString(@"SettingsProtectionPin", nil);
+                [cell.contentView addSubview:self.swProtPin];
+            }
+            else if(indexPath.section == 2){
+                if([[NSUserDefaults standardUserDefaults] objectForKey:@"pin"])
+                {
+                    cellLabel.text = NSLocalizedString(@"SettingsProtectionPinEdit", nil);
+                }
+                else
+                {
+                    cellLabel.text = NSLocalizedString(@"SettingsProtectionPinEnable", nil);
+                }
+                cell.selectionStyle = UITableViewCellSelectionStyleGray;
             }
             break;
 
         case 1:
-            _tfPassword.text = _password;
-            [cell.contentView addSubview:_tfPassword];
+            if(indexPath.section == 0)
+                {
+                _tfPassword.text = _password;
+                [cell.contentView addSubview:_tfPassword];
+            }
+            else if(indexPath.section == 1)
+            {
+                cellLabel.text = NSLocalizedString(@"SettingsProtectionPinRequest", nil);
+                
+                UILabel *cellContentLabel = [[UILabel alloc] initWithFrame:CGRectMake(220, 0, 70, [AGTools cellStandardHeight])];
+                cellContentLabel.font = [UIFont fontWithName:kFont1 size:18.0f];
+                cellContentLabel.backgroundColor = [UIColor clearColor];
+                cellContentLabel.textColor = [UIColor grayColor];
+                cellContentLabel.text = NSLocalizedString(@"Once", nil);
+                [cell.contentView addSubview:cellContentLabel];
+            }
             break;
     }
     [cell.contentView addSubview:cellLabel];
@@ -192,12 +231,19 @@
     if(section==0)
         return [AGTools tableViewGroupedHeaderViewWithTitle:[NSLocalizedString(@"SettingsMailHeader", @"") uppercaseString]
                                            height:[self tableView:tableView heightForHeaderInSection:section]];
-    else
+    else if(section == 1)
         return [AGTools tableViewGroupedHeaderViewWithTitle:[NSLocalizedString(@"SettingsAuthorization", @"") uppercaseString]
+                                                     height:[self tableView:tableView heightForHeaderInSection:section]];
+    else
+        return [AGTools tableViewGroupedHeaderViewWithTitle:[NSLocalizedString(@"SettingsProtectionHeader", @"") uppercaseString]
                                                      height:[self tableView:tableView heightForHeaderInSection:section]];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return /*kTableHeaderStandardHeight*/ 50.0f;
+    if(section != 1)
+    {
+        return /*kTableHeaderStandardHeight*/ 50.0f;
+    }
+    return 0;
 }
 
 //footer
@@ -209,12 +255,30 @@
     return nil;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 70.0f;
+    if(section == 0)
+    {
+        return 70.0f;
+    }
+    return 0;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [AGTools cellStandardHeight];
 }
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.section == 2 && indexPath.row == 0)
+    {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        AGSettingsPinController *pinController = [[AGSettingsPinController alloc] init];
+        [self presentViewController:pinController animated:YES completion:nil];
+    }
+}
+
 
 #pragma mark - UITextFieldDelegate
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -246,17 +310,18 @@
 
 
 #pragma mark - Switch
-- (void) swAutoAuthChangedState:(id)sender{
+- (void) swProtPinChangedState:(id)sender{
     if (((DCRoundSwitch*)sender).isOn) {
         [((DCRoundSwitch*)sender) setOn:YES];
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"autoAuth"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"protPin"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     if (!((DCRoundSwitch*)sender).isOn) {
         [((DCRoundSwitch*)sender) setOn:NO];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"autoAuth"];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"protPin"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
+    [_tvItems reloadData];
 }
 
 

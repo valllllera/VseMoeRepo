@@ -91,8 +91,6 @@
     if(![[NSUserDefaults standardUserDefaults] objectForKey:@"autoAuth"]){
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"autoAuth"];
     }
-
-    NSLog(@"%d", [[NSUserDefaults standardUserDefaults] boolForKey:@"autoAuth"]);
     
     if (_state != LoginStateRegistration){
         if ([[NSUserDefaults standardUserDefaults] objectForKey:kUDLastLogin]) {
@@ -715,6 +713,8 @@
 - (IBAction)logout:(id)sender{
     [_bnLogout hideAnimated];
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"password"];
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"pin"];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"protPin"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     _tfLogin.text = @"";
     _tfPassword.text = @"";

@@ -65,5 +65,14 @@
     return formattedNumber;
 }
 
+-(BOOL)isNumeric
+{
+    BOOL isValid = NO;
+    NSCharacterSet *alphaNumbersSet = [NSCharacterSet decimalDigitCharacterSet];
+    NSCharacterSet *stringSet = [NSCharacterSet characterSetWithCharactersInString:self];
+    isValid = [alphaNumbersSet isSupersetOfSet:stringSet];
+    return isValid;
+}
+
 
 @end

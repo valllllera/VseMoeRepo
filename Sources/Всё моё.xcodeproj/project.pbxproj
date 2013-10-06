@@ -455,6 +455,8 @@
 		BAEDE8171679CF9D00F5842A /* background-plot.png in Resources */ = {isa = PBXBuildFile; fileRef = BAEDE8161679CF9D00F5842A /* background-plot.png */; };
 		BAF5B13C167097190045E6AC /* AGLoginPasswordRecoveryController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF5B13A167097190045E6AC /* AGLoginPasswordRecoveryController.m */; };
 		BAF5B13D167097190045E6AC /* AGLoginPasswordRecoveryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAF5B13B167097190045E6AC /* AGLoginPasswordRecoveryView.xib */; };
+		D56795071801E04100B10D52 /* AGSettingsPinController.m in Sources */ = {isa = PBXBuildFile; fileRef = D56795051801E03F00B10D52 /* AGSettingsPinController.m */; };
+		D56795081801E04100B10D52 /* AGSettingsPinController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D56795061801E04000B10D52 /* AGSettingsPinController.xib */; };
 		F6009AB71786A9C00072BA42 /* MainMenuCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6009AB61786A9C00072BA42 /* MainMenuCellView.xib */; };
 		F6009ABE1786C8680072BA42 /* cell-split-pressed-end.png in Resources */ = {isa = PBXBuildFile; fileRef = F6009AB81786C8670072BA42 /* cell-split-pressed-end.png */; };
 		F6009ABF1786C8680072BA42 /* cell-split-pressed-end@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F6009AB91786C8670072BA42 /* cell-split-pressed-end@2x.png */; };
@@ -1164,6 +1166,9 @@
 		BAF5B139167097190045E6AC /* AGLoginPasswordRecoveryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGLoginPasswordRecoveryController.h; sourceTree = "<group>"; };
 		BAF5B13A167097190045E6AC /* AGLoginPasswordRecoveryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGLoginPasswordRecoveryController.m; sourceTree = "<group>"; };
 		BAF5B13B167097190045E6AC /* AGLoginPasswordRecoveryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGLoginPasswordRecoveryView.xib; sourceTree = "<group>"; };
+		D56795041801E03F00B10D52 /* AGSettingsPinController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGSettingsPinController.h; sourceTree = "<group>"; };
+		D56795051801E03F00B10D52 /* AGSettingsPinController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGSettingsPinController.m; sourceTree = "<group>"; };
+		D56795061801E04000B10D52 /* AGSettingsPinController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGSettingsPinController.xib; sourceTree = "<group>"; };
 		F6009AB61786A9C00072BA42 /* MainMenuCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenuCellView.xib; sourceTree = "<group>"; };
 		F6009AB81786C8670072BA42 /* cell-split-pressed-end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-split-pressed-end.png"; sourceTree = "<group>"; };
 		F6009AB91786C8670072BA42 /* cell-split-pressed-end@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-split-pressed-end@2x.png"; sourceTree = "<group>"; };
@@ -1510,6 +1515,8 @@
 				BA829B6E164BC63300CA763A /* AGSettingsCategoryEditController.m */,
 				BA5DDB0216DDFBAF00178616 /* AGSettingsCategoryParentSelectController.h */,
 				BA5DDB0316DDFBAF00178616 /* AGSettingsCategoryParentSelectController.m */,
+				D56795041801E03F00B10D52 /* AGSettingsPinController.h */,
+				D56795051801E03F00B10D52 /* AGSettingsPinController.m */,
 			);
 			name = settings;
 			sourceTree = "<group>";
@@ -2232,6 +2239,7 @@
 				BA00FFA6164B844600CD3966 /* AGSettingsAboutView.xib */,
 				BA00FFAC164B90F000CD3966 /* AGSettingsCategoriesView.xib */,
 				BA829B6F164BC63300CA763A /* AGSettingsCategoryEditView.xib */,
+				D56795061801E04000B10D52 /* AGSettingsPinController.xib */,
 			);
 			name = settings;
 			sourceTree = "<group>";
@@ -2847,6 +2855,7 @@
 				F6D3983D178EBFCD00ADE137 /* Mod-window.png in Resources */,
 				F6D3983E178EBFCD00ADE137 /* Mod-window@2x.png in Resources */,
 				F6D39840178FE85000ADE137 /* icon-sync-automat@2x.png in Resources */,
+				D56795081801E04100B10D52 /* AGSettingsPinController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2943,6 +2952,7 @@
 				F6A0816717817A7B00400FEF /* CurrencyCellController.m in Sources */,
 				08FCC0C217859D600000A5A2 /* NSArray+Additions.m in Sources */,
 				F684FF781786A21200AB89A6 /* MainMenuCellController.m in Sources */,
+				D56795071801E04100B10D52 /* AGSettingsPinController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

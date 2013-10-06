@@ -20,4 +20,6 @@
 + (NSString*) formattedStringFromNumber:(NSNumber*)number
                                  string:(NSString*)numStr;
 
+-(BOOL)isNumeric;
+
 @end
