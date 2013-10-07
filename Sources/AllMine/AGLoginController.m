@@ -168,25 +168,13 @@
             _rememberMeButton.hidden = YES;
             _bnLoginHelp.hidden = YES;
             self.shouldLogin = YES;
-            _bnPasswordHelp.hidden = NO;
-            _bnPasswordHelp.frame = CGRectMake(_bnPasswordHelp.frame.origin.x+8, _bnPasswordHelp.frame.origin.y+12 , 32.0f, 32.0f);
-            [_bnPasswordHelp setImage:nil forState:UIControlStateNormal];
-            [_bnPasswordHelp setImage:nil forState:UIControlStateHighlighted];
-            
-            [_bnPasswordHelp setBackgroundImage:[UIImage imageNamed:@"button-arrow"] forState:UIControlStateNormal];
-            
-            [_bnPasswordHelp setBackgroundImage:[UIImage imageNamed:@"button-arrow-pressed"] forState:UIControlStateHighlighted];
+            _bnPasswordHelp.hidden = YES;
+            _vPassword.hidden = YES;
             
             _imgBackground.image = [UIImage imageNamed:@"background-login"];
             
+            [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(submit:) userInfo:nil repeats:NO];
             
-            
-//            CGRect frame = _bnSubmit.frame;
-//            frame.origin.y = 184;
-//            _bnSubmit.frame = frame;
-            CGRect frame = _vPassword.frame;
-            frame.origin.y = _vLogin.frame.origin.y;
-            _vPassword.frame = frame;
             break;
         }
         case LoginStateRegistration:{
