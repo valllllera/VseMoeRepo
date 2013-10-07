@@ -142,6 +142,7 @@
 "SettingsProtectionPinEnable" = "Включить пин-код";
 "SettingsProtectionPinEdit" = "Изменить пин-код";
 "SettingsProtectionHeader" = "Комбинация - 5 цифр";
+"SettingsProtectionEnterPin" = "Введите пин";
 
 //  category edit
 "CategoryEditTitle" = "Название Категории";

@@ -319,6 +319,7 @@
     if (!((DCRoundSwitch*)sender).isOn) {
         [((DCRoundSwitch*)sender) setOn:NO];
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"protPin"];
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"pin"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     [_tvItems reloadData];

@@ -17,6 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
@@ -39,6 +40,9 @@
     _navItem.rightBarButtonItem = [AGTools navigationBarButtonItemWithTitle:NSLocalizedString(@"Save", @"") imageNamed:@"button-save" target:self action:@selector(save)];
     
     [self setPin:[[NSUserDefaults standardUserDefaults] objectForKey:@"pin"]];
+    
+    _titleLabel.font = [UIFont fontWithName:kFont1 size:18.0f];
+    _titleLabel.text = NSLocalizedString(@"SettingsProtectionEnterPin", nil);
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,6 +75,7 @@
     else
     {
         [[NSUserDefaults standardUserDefaults] setObject:pin forKey:@"pin"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     }
 }
@@ -81,8 +86,6 @@
     {
         return NO;
     }
-    
-    NSLog(@"pin: %@", [self currentPin]);
     
     if(range.length == 0)
     {

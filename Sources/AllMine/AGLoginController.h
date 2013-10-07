@@ -10,7 +10,8 @@ typedef enum {
     LoginStateLogin = 0,
     LoginStateLogged = 1,
     LoginStateRegistration = 2,
-    LoginStateBadToken = 3
+    LoginStateBadToken = 3,
+    LoginStatePinProtection = 4
 }LoginState;
 
 #import <UIKit/UIKit.h>

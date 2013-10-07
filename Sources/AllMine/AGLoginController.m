@@ -19,6 +19,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import "AGExceptionServerResponseBadStatus.h"
 #import "RequestManager.h"
+#import "NSString+AGExtensions.h"
+
+#define kCountNumbersInPin 5
 
 @interface AGLoginController ()
 @property(nonatomic, retain) IBOutlet UIView* vLogin;
@@ -38,6 +41,8 @@
 
 @property(nonatomic, strong) UIActivityIndicatorView* activityIndicator;
 @property(nonatomic, strong) UIView* vScreenBlock;
+
+@property (weak, nonatomic) IBOutlet UIView *vPin;
 
 - (IBAction) submit:(id) sender;
 - (IBAction) toRegistration:(id)sender;
@@ -102,6 +107,10 @@
             }
             else
                     _state= LoginStateLogin;
+        }
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"protPin"] && [[NSUserDefaults standardUserDefaults] objectForKey:@"pin"])
+        {
+            _state = LoginStatePinProtection;
         }
     }
     _vLogin.layer.cornerRadius = 4.0f;
@@ -211,6 +220,21 @@
             
             break;
         }
+        case LoginStatePinProtection:
+        {
+            _bnLogout.hidden = NO;
+            _bnLogout.frame = CGRectMake(230, 20, _bnLogout.frame.size.width, _bnLogout.frame.size.height);
+            _passwordRememberLabel.hidden = YES;
+            _rememberMeButton.hidden = YES;
+            _bnLoginHelp.hidden = YES;
+            self.shouldLogin = YES;
+            _bnPasswordHelp.hidden = YES;
+            _bnRegistration.hidden = YES;
+            _vLogin.hidden = YES;
+            _vPassword.hidden = YES;
+            _vPin.hidden = NO;
+            break;
+        }
         default:
             break;
     }
@@ -308,6 +332,10 @@
             [self.navigationController setNavigationBarHidden:NO animated:YES];
             break;
             
+        case LoginStatePinProtection:
+            [self.navigationController setNavigationBarHidden:YES animated:YES];
+            break;
+            
         default:
             break;
     }
@@ -400,11 +428,51 @@
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if(textField.superview == _vPin)
+    {
+        if(textField.tag < kCountNumbersInPin - 1)
+        {
+            textField = (UITextField *)[_vPin viewWithTag:textField.tag + 1];
+            [textField becomeFirstResponder];
+        }
+        else
+        {
+            [self submit:nil];
+            [textField resignFirstResponder];
+        }
+        return YES;
+    }
     if (textField == _tfLogin) {
         [_tfPassword becomeFirstResponder];
     }else{
         [textField resignFirstResponder];
         [self submit:nil];
+    }
+    return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if(textField.superview == _vPin)
+    {
+        if(![string isNumeric])
+        {
+            return NO;
+        }
+        
+        if(range.length == 0)
+        {
+            if(range.location > 0)
+            {
+                if(textField.tag < kCountNumbersInPin)
+                {
+                    textField = (UITextField *)[_vPin viewWithTag:textField.tag + 1];
+                    textField.text = [string substringToIndex:1];
+                    [textField becomeFirstResponder];
+                }
+                return NO;
+            }
+        }
     }
     return YES;
 }
@@ -447,7 +515,30 @@
 
 - (IBAction) submit:(id)sender{
   
-    
+    if(_state == LoginStatePinProtection)
+    {
+        if([[self currentPin] isEqualToNumber:[[NSUserDefaults standardUserDefaults] objectForKey:@"pin"]])
+        {
+            User* user = [User userWithLogin:[[NSUserDefaults standardUserDefaults] objectForKey:kUDLastLogin]];
+            
+            if(user)
+            {
+                [self userLogin:user];
+                [self dismissModalViewControllerAnimated:YES];
+            }
+        }
+        else
+        {
+            for(UITextField *textField in _vPin.subviews)
+            {
+                if([textField isKindOfClass:[UITextField class]])
+                {
+                    [textField shake];
+                }
+            }
+        }
+        return;
+    }
 
     
     if(_state != LoginStateRegistration){
@@ -722,10 +813,12 @@
     _passwordRememberLabel.hidden = NO;
     _shouldLogin = NO;
     _rememberMeButton.hidden = noErr;
+    _vLogin.hidden = NO;
+    _vPassword.hidden = NO;
     
-    [_bnPasswordHelp setBackgroundImage:[UIImage imageNamed:@"button-help"] forState:UIControlStateNormal];
+    [_bnPasswordHelp setImage:[UIImage imageNamed:@"button-help"] forState:UIControlStateNormal];
     
-    [_bnPasswordHelp setBackgroundImage:[UIImage imageNamed:@"button-help-pressed"] forState:UIControlStateHighlighted];
+    [_bnPasswordHelp setImage:[UIImage imageNamed:@"button-help-pressed"] forState:UIControlStateHighlighted];
     
     CGPoint point = _vPassword.frame.origin;
     point.y = 159;
@@ -736,6 +829,40 @@
     [_bnSubmit slideToPoint:point];
     
 }
+
+- (NSNumber *)currentPin
+{
+    NSUInteger pin = 0;
+    for(int i = 0; i < kCountNumbersInPin; i++)
+    {
+        for(UITextField *textField in _vPin.subviews)
+        {
+            if([textField isKindOfClass:[UITextField class]])
+            {
+                if(textField.tag == i)
+                {
+                    NSString *text = textField.text;
+                    if(text.length == 1)
+                    {
+                        pin += pow(10, kCountNumbersInPin - i - 1) * [text integerValue];
+                        break;
+                    }
+                    else
+                    {
+                        return nil;
+                    }
+                }
+            }
+        }
+    }
+    
+    if(pin > 0)
+    {
+        return @(pin);
+    }
+    return nil;
+}
+
 
 #pragma mark - AGLoginListControllerProtocol
 -(void)loginListController:(AGLoginListController *)controller didFinishedSelectingLogin:(NSString *)login{
