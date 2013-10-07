@@ -688,6 +688,7 @@ Category* reportCategoriesSupercat;
         from = to;
         flag = YES;
     }
+    NSLog(@"%@", result);
     return result;
 }
 

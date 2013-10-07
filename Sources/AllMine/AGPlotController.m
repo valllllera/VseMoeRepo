@@ -363,6 +363,11 @@ int varTemp = 0;
     }
 }
 -(int)incomeTotal{
+    if([_dtFrom compare:[NSDate today]] == NSOrderedDescending)
+    {
+        return 0;
+    }
+    
     int money = 0;
     User* usr = kUser;
     
@@ -373,7 +378,25 @@ int varTemp = 0;
             money+=[acc balance];
         }
     }
-    return money;
+    
+    double debt = 0.0;
+    
+    NSArray* accounts = [usr accountsByType: AccTypeCardCredit];
+            
+    for(Account* acc in accounts){
+        debt += [acc balanceWithCurrency:acc.currency]-[acc creditLimitWithCurrency:acc.currency];
+    }
+    NSSet* debts = usr.accounts;
+    for(Account* acc in debts){
+        if (acc.group == [NSNumber numberWithInt:AccGroupDebts] && acc.type != [NSNumber numberWithInt:AccTypeCardCredit]){
+            debt+=[acc balance];
+        }
+    }
+    
+    if(debt<0)
+        debt*=-1;
+    
+    return money - debt;
 }
 
 
@@ -925,6 +948,10 @@ int varTemp = 0;
     
     int n = _dataSource.count;
     _barDistance = 100.0f / (n * 3 + n+1);
+    if(_typeY == ReportTypeYCapital)
+    {
+        _barDistance *= 2;
+    }
     _barWidth = _barDistance * 3;
     
     // Setup axis
