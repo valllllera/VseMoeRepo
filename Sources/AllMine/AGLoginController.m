@@ -181,8 +181,9 @@
             _vLogin.hidden = NO;
 //            _tfConfirm.hidden = NO;
             _bnRegistration.hidden = YES;
-            _passwordRememberLabel.hidden = YES;
-            _rememberMeButton.hidden = YES;
+            _passwordRememberLabel.hidden = NO;
+            _rememberMeButton.hidden = NO;
+            _rememberMeButton.selected = YES;
             _bnLogout.hidden = YES;
             _bnLoginHelp.hidden = YES;
             _bnPasswordHelp.hidden = YES;
@@ -609,6 +610,14 @@
                 [[AGServerAccess sharedAccess] userRegisterLogin:_tfLogin.text
                                                         password:_tfPassword.text];
                 [self blockWindowWithActivityIndicator:YES];
+                if (_rememberMeButton.selected == YES)
+                {
+                    [[NSUserDefaults standardUserDefaults] setObject:_tfPassword.text forKey:@"password"];
+                    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"autoAuth"];
+                    
+                    
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                }
                 [self userCreateWithStandardData:YES];
                 [self dismissModalViewControllerAnimated:YES];
             }
