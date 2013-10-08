@@ -948,10 +948,6 @@ int varTemp = 0;
     
     int n = _dataSource.count;
     _barDistance = 100.0f / (n * 3 + n+1);
-    if(_typeY == ReportTypeYCapital)
-    {
-        _barDistance *= 2;
-    }
     _barWidth = _barDistance * 3;
     
     // Setup axis
@@ -1008,6 +1004,12 @@ int varTemp = 0;
 	x.labelingPolicy = CPTAxisLabelingPolicyNone;
     x.labelTextStyle = lbTxtStyle;
     
+    CGFloat diff = 0;
+    if(yMin != 0)
+    {
+        diff = (_graphHostingView.frame.size.height - 45) * (ABS(yMin) / (ABS(yMin) + ABS(yMax)));
+    }
+    
     NSMutableArray* labels = [NSMutableArray arrayWithCapacity:[_dataSource count]];
     int counter = 1;
     for (int i = 0; i < [_dataSource count]; i++) {
@@ -1035,25 +1037,15 @@ int varTemp = 0;
             }
         }
         l.tickLocation = [[NSNumber numberWithFloat:(i+0.5) * _barWidth + (i+1)*_barDistance] decimalValue];
-        if(yMin<0){
-            NSLog(@"%d", _type);
-            if(_reportItem == ReportItemDay){
-                if(isIphoneRetina4)
-                    l.offset = _graphHostingView.frame.origin.y + 282;
-                else
-                    l.offset = _graphHostingView.frame.origin.y+141;
-            }else{
-                if(isIphoneRetina4)
-                    l.offset = _graphHostingView.frame.origin.y+52;
-                else
-                    l.offset = _graphHostingView.frame.origin.y+26;
-            }
-
-        }else
-            l.offset = x.labelOffset;
+        l.offset = x.labelOffset + diff;
         [labels addObject:l];
     }
 	x.axisLabels = [NSSet setWithArray:labels];
+    
+    if(_typeY == ReportTypeYCapital)
+    {
+        _barWidth *= 2;
+    }
     
     // bar plot
 	AGCPTBarPlot* plot = [[AGCPTBarPlot alloc] init];
@@ -1078,10 +1070,10 @@ int varTemp = 0;
                 plotNegative.barOffset = CPTDecimalFromFloat(-8.0f);
                 break;
             case ReportItemWeek:
-                plotNegative.barOffset = CPTDecimalFromFloat(-8.0f);
+                plotNegative.barOffset = CPTDecimalFromFloat(-19.5f);
                 break;
             case ReportItemDay:
-                plotNegative.barOffset = CPTDecimalFromFloat(-7.0f);
+                plotNegative.barOffset = CPTDecimalFromFloat(-14.0f);
                 break;
             default:
                 plotNegative.barOffset  = CPTDecimalFromFloat(0.0f);
@@ -1112,6 +1104,10 @@ int varTemp = 0;
     switch (field) {
         case CPTBarPlotFieldBarLocation:
             num = [NSNumber numberWithDouble: (index+0.5)*_barWidth + (index+1)*_barDistance];
+            if(_typeY == ReportTypeYCapital)
+            {
+                num = [NSNumber numberWithDouble:num.doubleValue / 1.75];
+            }
             break;
         case CPTBarPlotFieldBarTip:
             if ([plot.identifier isEqual:kPlotPos]) {

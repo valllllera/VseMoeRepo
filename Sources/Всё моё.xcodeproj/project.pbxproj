@@ -3028,8 +3028,8 @@
 		3178448716402D4A00B62593 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: garry zyrgen (TU28AS33G2)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: garry zyrgen (TU28AS33G2)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AllMine/Всё Моё-Prefix.pch";
 				INFOPLIST_FILE = "AllMine/Всё Моё-Info.plist";
@@ -3043,8 +3043,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Всё Моё";
-				PROVISIONING_PROFILE = "02669E89-7547-417E-8904-EE2099F3688B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "02669E89-7547-417E-8904-EE2099F3688B";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3053,8 +3053,8 @@
 		3178448816402D4A00B62593 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: garry zyrgen (TU28AS33G2)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: garry zyrgen (TU28AS33G2)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AllMine/Всё Моё-Prefix.pch";
 				INFOPLIST_FILE = "AllMine/Всё Моё-Info.plist";
@@ -3068,8 +3068,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Всё Моё";
-				PROVISIONING_PROFILE = "02669E89-7547-417E-8904-EE2099F3688B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "02669E89-7547-417E-8904-EE2099F3688B";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
