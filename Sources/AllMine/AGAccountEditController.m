@@ -156,7 +156,7 @@
     _lbBalance = [[UILabel alloc] initWithFrame:frameTxt];
     _lbBalance.adjustsFontSizeToFitWidth = YES;
     _lbBalance.textColor = [UIColor colorWithHex:kColorHexGray];
-    _lbBalance.font = [UIFont fontWithName:kFont1 size:20.0f];
+    _lbBalance.font = [UIFont fontWithName:kFont2 size:20.0f];
     _lbBalance.backgroundColor = [UIColor clearColor];
     
     _lbCreditLimit = [[UILabel alloc] initWithFrame:frameTxt];
