@@ -19,6 +19,7 @@
 #define kUser (User*)((kRoot).currentUser)
 
 #define kFont1 @"LucidaGrande-Bold"
+#define kFont1NonBold @"LucidaGrande"
 #define kFont2 @"HeliosCondBlack"
 #define kFont3 @"Helvetica Neue-Bold"
 

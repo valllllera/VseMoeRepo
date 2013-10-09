@@ -239,6 +239,7 @@
 "PlotAverageTitle" = "Сред. значение";
 "PlotCategoriesAverage" = "Всего с ";
 "PlotCategoriesAll" = "Всего на ";
+"PlotTitleOut" = "Сколько ушло";
 
 // account select
 "Cash" = "Бумажник";

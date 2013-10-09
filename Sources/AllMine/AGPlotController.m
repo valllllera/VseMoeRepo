@@ -76,6 +76,7 @@
 @property(nonatomic, strong) IBOutlet UIImageView* ivPlotDoorRight;
 @property(nonatomic, strong) IBOutlet UISegmentedControl* sgTop;
 @property(nonatomic, strong) IBOutlet UIImageView* ivBackground;
+@property (weak, nonatomic) IBOutlet UILabel *lbTitle;
 @property(nonatomic, strong) IBOutlet UILabel* lbPlotTitle;
 @property(nonatomic, strong) IBOutlet UILabel* lbPercent;
 @property(strong, nonatomic) IBOutlet UILabel *lbInfoSum;
@@ -153,7 +154,7 @@ int varTemp = 0;
     NSDictionary* dictTxtColorNormal = [NSDictionary dictionaryWithObjectsAndKeys:
                                                                                [UIColor colorWithHex:kColorHexPlotSegmentText],UITextAttributeTextColor,
                                                                                [UIColor whiteColor], UITextAttributeTextShadowColor,
-                                                                               [NSValue valueWithUIOffset:UIOffsetMake(0, 1.0f)],UITextAttributeTextShadowOffset,
+                                                                               [NSValue valueWithUIOffset:UIOffsetMake(0, 1.0f)],UITextAttributeTextShadowOffset, [UIFont fontWithName:kFont1 size:17.0f], UITextAttributeFont,
                                                                                nil];
     NSDictionary* dictTxtColorSelected = [NSDictionary dictionaryWithObjectsAndKeys:
                                           [UIColor colorWithHex:kColorHexWhite],UITextAttributeTextColor,
@@ -212,6 +213,9 @@ int varTemp = 0;
     _ptvcData.delegate = self;
     _ptvcData.tableView.hidden = YES;
     [self.view addSubview:_ptvcData.tableView];
+    
+    _lbTitle.font = [UIFont fontWithName:kFont1NonBold size:16.0f];
+    _lbTitle.textColor = [UIColor colorWithHex:kColorHexPlotDarkGrey];
     
     _lbPlotTitle.font = [UIFont fontWithName:kFont1 size:14.0f];
     _lbPlotTitle.textColor = [UIColor colorWithHex:kColorHexGray];
@@ -784,7 +788,7 @@ int varTemp = 0;
             [string addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont1 size:17.0f] range:NSMakeRange(0, [[NSString stringWithFormat:@"%d ",[self averageSum] ]length ])];
             [string addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont1 size:11.0f] range:NSMakeRange([[NSString stringWithFormat:@"%d ",[self averageSum] ]length ], [mainCurrency.title length])];
             
-            _lbPlotTitle.textAlignment = NSTextAlignmentCenter;
+            _lbPlotTitle.textAlignment = NSTextAlignmentLeft;
             //_lbAverage.textAlignment = NSTextAlignmentRight;
         }
         self.lbAverageSum.attributedText = string;
@@ -798,6 +802,15 @@ int varTemp = 0;
             self.lbInfoSum.textColor = [UIColor colorWithHex:kColorHexOrange2];
         else
             self.lbInfoSum.textColor = [UIColor colorWithHex:kColorHexGreen];
+        
+        if(_typeY == ReportTypeYOut)
+        {
+            _lbTitle.text = NSLocalizedString(@"PlotTitleOut", nil);
+        }
+        else
+        {
+            _lbTitle.text = @"";
+        }
     }
 }
 
