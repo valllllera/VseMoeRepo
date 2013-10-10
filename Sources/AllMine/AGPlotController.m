@@ -70,6 +70,8 @@
 @property(nonatomic, strong) NSDate* dtFrom;
 @property(nonatomic, strong) NSDate* dtTo;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
 @property(nonatomic, strong) IBOutlet CPTGraphHostingView* graphHostingView;
 @property(nonatomic, strong) IBOutlet UIImageView* ivPlot;
 @property(nonatomic, strong) IBOutlet UIImageView* ivPlotDoorLeft;
@@ -80,8 +82,18 @@
 @property(nonatomic, strong) IBOutlet UILabel* lbPlotTitle;
 @property(nonatomic, strong) IBOutlet UILabel* lbPercent;
 @property(strong, nonatomic) IBOutlet UILabel *lbInfoSum;
-@property (weak, nonatomic) IBOutlet UILabel *lbAverageSum;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbMaxVal;
+@property (weak, nonatomic) IBOutlet UILabel *lbMaxValSum;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbMinVal;
+@property (weak, nonatomic) IBOutlet UILabel *lbMinValSum;
+
 @property (weak, nonatomic) IBOutlet UILabel *lbAverage;
+@property (weak, nonatomic) IBOutlet UILabel *lbAverageSum;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbMaxDiff;
+@property (weak, nonatomic) IBOutlet UILabel *lbMaxDiffSum;
 
 @property (weak, nonatomic) IBOutlet UIButton *timeButton;
 @property (weak, nonatomic) IBOutlet UIButton *categoryButton;
@@ -183,6 +195,8 @@ int varTemp = 0;
             break;
     }
     
+    _scrollView.contentSize = CGSizeMake(320.0f, 600);
+    
     //gestures
     _graphHostingView.userInteractionEnabled = YES;
     
@@ -279,13 +293,37 @@ int varTemp = 0;
     self.lbInfoSum.text = @"0";
     self.lbInfoSum.font = [UIFont fontWithName:kFont1 size:18.0f];
     
+    self.lbMaxVal.font = [UIFont fontWithName:kFont1 size:12.0f];
+    self.lbMaxVal.textColor = [UIColor colorWithHex:kColorHexDarkGray];
+    self.lbMaxVal.text = NSLocalizedString(@"PlotAverageTitle", nil);
+    
+    self.lbMinVal.font = [UIFont fontWithName:kFont1 size:12.0f];
+    self.lbMinVal.textColor = [UIColor colorWithHex:kColorHexDarkGray];
+    self.lbMinVal.text = NSLocalizedString(@"PlotAverageTitle", nil);
+    
     self.lbAverage.font = [UIFont fontWithName:kFont1 size:12.0f];
     self.lbAverage.textColor = [UIColor colorWithHex:kColorHexDarkGray];
     self.lbAverage.text = NSLocalizedString(@"PlotAverageTitle", nil);
     
+    self.lbMaxDiff.font = [UIFont fontWithName:kFont1 size:12.0f];
+    self.lbMaxDiff.textColor = [UIColor colorWithHex:kColorHexDarkGray];
+    self.lbMaxDiff.text = NSLocalizedString(@"PlotAverageTitle", nil);
+    
+    self.lbMaxValSum.font = [UIFont fontWithName:kFont1 size:18.0f];
+    self.lbMaxValSum.textColor = [UIColor colorWithHex:kColorHexPlotBrown];
+    self.lbMaxValSum.text = @"0";
+    
+    self.lbMinValSum.font = [UIFont fontWithName:kFont1 size:18.0f];
+    self.lbMinValSum.textColor = [UIColor colorWithHex:kColorHexPlotBrown];
+    self.lbMinValSum.text = @"0";
+    
     self.lbAverageSum.font = [UIFont fontWithName:kFont1 size:18.0f];
     self.lbAverageSum.textColor = [UIColor colorWithHex:kColorHexPlotBrown];
     self.lbAverageSum.text = @"0";
+    
+    self.lbMaxDiffSum.font = [UIFont fontWithName:kFont1 size:18.0f];
+    self.lbMaxDiffSum.textColor = [UIColor colorWithHex:kColorHexPlotBrown];
+    self.lbMaxDiffSum.text = @"0";
     
     [self sgTopSelectionChanged];
     if (isIphoneRetina4) {
