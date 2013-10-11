@@ -92,10 +92,11 @@
 
     UIColor* clr = [UIColor colorWithHex:kColorHexPlotGreen];
     if (_sign > 0) {
-        plotBarImage = [UIImage imageNamed:@"Column-plot-profit@2x.png"];
+        plotBarImage = [UIImage imageNamed:@"Column-plot-profit.png"];
     }else{
-        plotBarImage = [UIImage imageNamed:@"Column-plot-Less@2x.png"];
+        plotBarImage = [UIImage imageNamed:@"Column-plot-Less.png"];
     }
+    plotBarImage = [plotBarImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10) resizingMode:UIImageResizingModeStretch];
     /*const CGFloat* comp = CGColorGetComponents(clr.CGColor);
     CGContextSetRGBFillColor(context, comp[0], comp[1], comp[2], 1);
     CGContextFillRect(context, _barRect);*/
@@ -103,7 +104,14 @@
     clr = [UIColor colorWithHex:kColorHexPlotDarkGrey];
     //comp = CGColorGetComponents(clr.CGColor);
     //CGContextSetRGBFillColor(context, comp[0], comp[1], comp[2], 1);
-    [plotBarImage drawInRect:_barRect];
+    CGRect imageRect = _barRect;
+    if(imageRect.origin.x < 5)
+    {
+        imageRect.origin.x = 5;
+    }
+    imageRect.origin.y += 2;
+    imageRect.size.height -= 7;
+    [plotBarImage drawInRect:imageRect];
     double fontSize = 14.0f;
     UIFont* font = [UIFont fontWithName:kFont1 size:fontSize];
     
@@ -112,6 +120,7 @@
     double y = (_barRect.size.height-titleNameSize.height)/2 + _barRect.origin.y;
     
     double distance = 10.0f;
+    [clr set];
     if (_style == AGPlotSigned) {
 
         double rightX = 0;   
@@ -140,7 +149,6 @@
     //            leftX -= dl;
     //        }
     //    }
-        
         if (_sign > 0) {
             [_titleSum drawInRect:CGRectMake(leftX,
                                               y,

@@ -44,6 +44,8 @@
 
 @property (weak, nonatomic) IBOutlet UIView *vPin;
 
+@property (weak, nonatomic) NSTimer *timer;
+
 - (IBAction) submit:(id) sender;
 - (IBAction) toRegistration:(id)sender;
 - (IBAction) loginHelp:(id)sender;
@@ -173,7 +175,7 @@
             
             _imgBackground.image = [UIImage imageNamed:@"background-login"];
             
-            [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(submit:) userInfo:nil repeats:NO];
+            _timer = [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(submit:) userInfo:nil repeats:NO];
             
             break;
         }
@@ -799,6 +801,7 @@
 }
 
 - (IBAction)logout:(id)sender{
+    [_timer invalidate];
     [_bnLogout hideAnimated];
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"password"];
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"pin"];

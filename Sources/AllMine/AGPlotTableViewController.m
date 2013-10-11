@@ -60,7 +60,7 @@
 
 #pragma mark - reload
 - (void) reloadData:(NSArray*)data{
-    _data = [NSArray arrayWithArray:data];
+    _data = [NSArray arrayWithArray:[self sortData:data]];
     _sumMax = 0;
     _sumMin = 0;
     _sumTotal = 0;
@@ -104,6 +104,19 @@
     
     [self.tableView reloadData];
     [self drawBackground];
+}
+
+- (NSArray *)sortData:(NSArray *)data
+{
+    return [data sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *obj1, NSDictionary *obj2) {
+        
+        if(ABS([[obj1 objectForKey:kReportFieldSum] doubleValue]) > ABS([[obj2 objectForKey:kReportFieldSum] doubleValue]))
+        {
+            return NSOrderedAscending;
+        }
+        return NSOrderedDescending;
+        
+    }];
 }
 
 - (void) drawBackground{
@@ -231,7 +244,7 @@
     }
     int percent = (self.sumTotal == 0) ? 0 : (int)round((fabs(sum)/self.sumTotal*100));
     NSString* left = [dict objectForKey:kReportFieldTitle];
-    NSString* right = [[NSString numberFormatterInteger:YES] stringFromNumber:[NSNumber numberWithDouble:abs(sum)]];
+    NSString* right = [[NSString numberFormatterInteger:YES] stringFromNumber:[NSNumber numberWithDouble:sum]];
     [cell changeStateWithBarRect:CGRectMake(x,
                                             y,
                                             width,

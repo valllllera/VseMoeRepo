@@ -35,7 +35,7 @@
 #define kColorHexDarkBlue 0x4d576d
 #define kColorHexGreen  0x6b7e00
 #define kColorHexOrange 0xff7700
-#define kColorHexOrange2 0xff6900
+#define kColorHexOrange2 0xff9940
 #define kColorHexMarine 0x7fc2c5
 #define kColorHexMarineDark 0x09c2c5
 #define kColorHexMenuGray 0xbbbdbf
