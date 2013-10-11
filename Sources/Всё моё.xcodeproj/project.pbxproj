@@ -464,6 +464,10 @@
 		F6009AC11786C8680072BA42 /* cell-split-pressed-middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F6009ABB1786C8670072BA42 /* cell-split-pressed-middle@2x.png */; };
 		F6009AC21786C8680072BA42 /* cell-split-top.png in Resources */ = {isa = PBXBuildFile; fileRef = F6009ABC1786C8680072BA42 /* cell-split-top.png */; };
 		F6009AC31786C8680072BA42 /* cell-split-top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F6009ABD1786C8680072BA42 /* cell-split-top@2x.png */; };
+		F60959E218083CF100B71BE2 /* wallet.png in Resources */ = {isa = PBXBuildFile; fileRef = F60959E018083CF100B71BE2 /* wallet.png */; };
+		F60959E318083CF100B71BE2 /* wallet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F60959E118083CF100B71BE2 /* wallet@2x.png */; };
+		F60959E618083DB400B71BE2 /* from_where.png in Resources */ = {isa = PBXBuildFile; fileRef = F60959E418083DB400B71BE2 /* from_where.png */; };
+		F60959E718083DB400B71BE2 /* from_where@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F60959E518083DB400B71BE2 /* from_where@2x.png */; };
 		F679579B1786F66100B4CA61 /* Switch-no.png in Resources */ = {isa = PBXBuildFile; fileRef = F67957971786F66100B4CA61 /* Switch-no.png */; };
 		F679579C1786F66100B4CA61 /* Switch-no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F67957981786F66100B4CA61 /* Switch-no@2x.png */; };
 		F679579D1786F66100B4CA61 /* Switch-yes.png in Resources */ = {isa = PBXBuildFile; fileRef = F67957991786F66100B4CA61 /* Switch-yes.png */; };
@@ -1176,6 +1180,10 @@
 		F6009ABB1786C8670072BA42 /* cell-split-pressed-middle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-split-pressed-middle@2x.png"; sourceTree = "<group>"; };
 		F6009ABC1786C8680072BA42 /* cell-split-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-split-top.png"; sourceTree = "<group>"; };
 		F6009ABD1786C8680072BA42 /* cell-split-top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-split-top@2x.png"; sourceTree = "<group>"; };
+		F60959E018083CF100B71BE2 /* wallet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wallet.png; sourceTree = "<group>"; };
+		F60959E118083CF100B71BE2 /* wallet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wallet@2x.png"; sourceTree = "<group>"; };
+		F60959E418083DB400B71BE2 /* from_where.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = from_where.png; sourceTree = "<group>"; };
+		F60959E518083DB400B71BE2 /* from_where@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "from_where@2x.png"; sourceTree = "<group>"; };
 		F67957971786F66100B4CA61 /* Switch-no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Switch-no.png"; sourceTree = "<group>"; };
 		F67957981786F66100B4CA61 /* Switch-no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Switch-no@2x.png"; sourceTree = "<group>"; };
 		F67957991786F66100B4CA61 /* Switch-yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Switch-yes.png"; sourceTree = "<group>"; };
@@ -1890,6 +1898,10 @@
 		BAA2D953165B51AA00FC2786 /* payment */ = {
 			isa = PBXGroup;
 			children = (
+				F60959E418083DB400B71BE2 /* from_where.png */,
+				F60959E518083DB400B71BE2 /* from_where@2x.png */,
+				F60959E018083CF100B71BE2 /* wallet.png */,
+				F60959E118083CF100B71BE2 /* wallet@2x.png */,
 				1AAF14EF176F4122000510EC /* button-info-pressed.png */,
 				1AAF14F0176F4122000510EC /* button-info-pressed@2x.png */,
 				1AAF14F1176F4122000510EC /* button-info.png */,
@@ -2856,6 +2868,10 @@
 				F6D3983E178EBFCD00ADE137 /* Mod-window@2x.png in Resources */,
 				F6D39840178FE85000ADE137 /* icon-sync-automat@2x.png in Resources */,
 				D56795081801E04100B10D52 /* AGSettingsPinController.xib in Resources */,
+				F60959E218083CF100B71BE2 /* wallet.png in Resources */,
+				F60959E318083CF100B71BE2 /* wallet@2x.png in Resources */,
+				F60959E618083DB400B71BE2 /* from_where.png in Resources */,
+				F60959E718083DB400B71BE2 /* from_where@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

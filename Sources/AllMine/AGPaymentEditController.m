@@ -129,7 +129,7 @@
     }
     
     
-    float fontSize = 14.0f;
+    float fontSize = 13.0f;
     if (_account == nil) {
         [_bnAccount setTitle:NSLocalizedString(@"PaymentEditFrom", @"") forState:UIControlStateNormal];
     }else{

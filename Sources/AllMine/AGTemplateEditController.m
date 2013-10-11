@@ -332,12 +332,14 @@
 }
 
 //footer
+
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     UIView* footer = nil;
     if((_vSum.hidden) && (section == 0)){
         footer = [AGTools tableViewGroupedFooterViewWithTitle:NSLocalizedString(@"PaymentAddFavouriteNewFooter", @"")
                                                      height:[self tableView:tableView heightForFooterInSection:section]
-                                                 numOfLines:3];
+                                                 numOfLines:3
+                  ];
     }
     return footer;
 }
@@ -346,7 +348,7 @@
     switch (section) {
         case 0:
             if (_vSum.hidden) {
-                height = 30.0f;
+                height = 35.0f;
             }
             break;
             
@@ -357,12 +359,15 @@
     return height;
 }
 
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.section!=2)
         return [AGTools cellStandardHeight];
+
     else{
         return [AGTools cellStandardHeight] +_tfComment.contentSize.height-30;
     }
+    
 }
 
 #pragma mark - UITableViewDelegate

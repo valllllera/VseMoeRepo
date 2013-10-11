@@ -195,8 +195,8 @@
 
 //  payment edit
 "PaymentEditPayment" = "Транзакция";
-"PaymentEditFrom" = "Откуда?";
-"PaymentEditTo" = "Куда?";
+"PaymentEditFrom" = "Средства";
+"PaymentEditTo" = "Откуда/Куда";
 "PaymentEditDate" = "Дата";
 "PaymentEditComment" = "Комментарий";
 "PaymentEditSplit" = "Разделить";
