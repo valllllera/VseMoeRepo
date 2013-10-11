@@ -236,7 +236,10 @@
 "PlotBottomSegmentTime" = "по Времени";
 "PlotBottomSegmentCategory" = "по Категории";
 "PlotBottomSegmentAccount" = "по Счетам";
+"PlotMaxVal" = "Max. расходы";
+"PlotMinVal" = "Min. расходы";
 "PlotAverageTitle" = "Сред. значение";
+"PlotMaxDiff" = "Max. разница";
 "PlotCategoriesAverage" = "Всего с ";
 "PlotCategoriesAll" = "Всего на ";
 "PlotTitleOut" = "Сколько ушло";

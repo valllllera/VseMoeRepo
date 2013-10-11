@@ -226,7 +226,7 @@ int varTemp = 0;
     [_ptvcData.tableView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchGestureHandler:)]];
     _ptvcData.delegate = self;
     _ptvcData.tableView.hidden = YES;
-    [self.view addSubview:_ptvcData.tableView];
+    [_scrollView addSubview:_ptvcData.tableView];
     
     _lbTitle.font = [UIFont fontWithName:kFont1NonBold size:16.0f];
     _lbTitle.textColor = [UIColor colorWithHex:kColorHexPlotDarkGrey];
@@ -295,11 +295,11 @@ int varTemp = 0;
     
     self.lbMaxVal.font = [UIFont fontWithName:kFont1 size:12.0f];
     self.lbMaxVal.textColor = [UIColor colorWithHex:kColorHexDarkGray];
-    self.lbMaxVal.text = NSLocalizedString(@"PlotAverageTitle", nil);
+    self.lbMaxVal.text = NSLocalizedString(@"PlotMaxVal", nil);
     
     self.lbMinVal.font = [UIFont fontWithName:kFont1 size:12.0f];
     self.lbMinVal.textColor = [UIColor colorWithHex:kColorHexDarkGray];
-    self.lbMinVal.text = NSLocalizedString(@"PlotAverageTitle", nil);
+    self.lbMinVal.text = NSLocalizedString(@"PlotMinVal", nil);
     
     self.lbAverage.font = [UIFont fontWithName:kFont1 size:12.0f];
     self.lbAverage.textColor = [UIColor colorWithHex:kColorHexDarkGray];
@@ -307,7 +307,7 @@ int varTemp = 0;
     
     self.lbMaxDiff.font = [UIFont fontWithName:kFont1 size:12.0f];
     self.lbMaxDiff.textColor = [UIColor colorWithHex:kColorHexDarkGray];
-    self.lbMaxDiff.text = NSLocalizedString(@"PlotAverageTitle", nil);
+    self.lbMaxDiff.text = NSLocalizedString(@"PlotMaxDiff", nil);
     
     self.lbMaxValSum.font = [UIFont fontWithName:kFont1 size:18.0f];
     self.lbMaxValSum.textColor = [UIColor colorWithHex:kColorHexPlotBrown];
@@ -520,6 +520,64 @@ int varTemp = 0;
         return sum/count;
     else
         return sum;
+}
+
+- (int) maxVal{
+    int maxVal = 0, buff;
+    
+    for (int i=0; i<[_dataSource count]; i++) {
+        if([[[_dataSource objectAtIndex:i] objectForKey:kReportFieldSum] intValue]!=0){
+            buff=[[[_dataSource objectAtIndex:i] objectForKey:kReportFieldSum] intValue];
+            if(buff > maxVal)
+            {
+                maxVal = buff;
+            }
+        }
+    }
+    
+    return maxVal;
+}
+
+- (int) minVal{
+    int minVal = INT_MAX, buff;
+    
+    for (int i=0; i<[_dataSource count]; i++) {
+        if([[[_dataSource objectAtIndex:i] objectForKey:kReportFieldSum] intValue]!=0){
+            buff=[[[_dataSource objectAtIndex:i] objectForKey:kReportFieldSum] intValue];
+            if(buff < minVal)
+            {
+                minVal = buff;
+            }
+        }
+    }
+    
+    if(minVal == INT_MAX)
+    {
+        return 0;
+    }
+    return minVal;
+}
+
+- (int) maxDiff{
+    int maxDiff = 0, buff, lastVal = 0;
+    
+    for (int i=0; i<[_dataSource count]; i++) {
+        if([[[_dataSource objectAtIndex:i] objectForKey:kReportFieldSum] intValue]!=0)
+        {
+            buff=[[[_dataSource objectAtIndex:i] objectForKey:kReportFieldSum] intValue];
+            if(lastVal == 0)
+            {
+                lastVal = buff;
+            }
+            if(ABS(buff - lastVal) > maxDiff)
+            {
+                maxDiff = buff;
+            }
+            lastVal = buff;
+        }
+    }
+    
+    return maxDiff;
 }
 
 - (int) totalSum{
@@ -917,6 +975,14 @@ int varTemp = 0;
             }
             break;
     }
+}
+
+- (NSAttributedString *)attributedCurrencyStringWithVal:(NSString *)val currency:(NSString *)currency
+{
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", val, currency]];
+    [string addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont1 size:17.0f] range:NSMakeRange(0, [val length])];
+    [string addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont1 size:11.0f] range:NSMakeRange([ val length], [currency length])];
+    return string;
 }
 
 
