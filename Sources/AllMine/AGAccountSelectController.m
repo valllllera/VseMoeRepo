@@ -48,9 +48,11 @@
     
     UIFont* font = [UIFont fontWithName:kFont1
                                    size:12.0f];
+    UIFont *font2 = [UIFont fontWithName:kFont2 size:12.0f];
+    
     UIColor* clr = [UIColor colorWithHex:kColorHexBrown];
 
-    self.lb1.font = font;
+    self.lb1.font = font2;
     self.lb1.textColor = clr;
     self.lb2.font = font;
     self.lb2.textColor = clr;
