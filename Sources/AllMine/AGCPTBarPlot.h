@@ -28,8 +28,6 @@
 @property (nonatomic,assign) NSTimeInterval startTimeEvent;
 @property (nonatomic,assign) CGPoint bufPoint;
 
-@property (nonatomic,assign) BOOL isCapital;
-
 
 - (void) barPlot:(AGCPTBarPlot *)plot barLongPressedAtRecordIndex:(NSUInteger)index;
 - (void) barPlot:(AGCPTBarPlot *)plot barShortPressedAtRecordIndex:(NSUInteger)index;
