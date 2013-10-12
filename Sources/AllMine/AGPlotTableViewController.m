@@ -145,10 +145,10 @@
 //        double yBottom = rect.size.height - 10;
         double yTop = 0;
         double yBottom = rect.size.height;
-        double xLeft = 10;
+        double xLeft = 0;
         double xRight=0;
         if (_cellStyle==AGPlotSigned) {
-             xRight= rect.size.width - 10;
+             xRight= rect.size.width;
         }
         else
         {

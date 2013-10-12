@@ -50,11 +50,11 @@
         return [NSString stringWithFormat:@"%d", day1];
     }else{
         if ([dt1 compareMonth:dt3]!=NSOrderedSame) {
-            return [NSString stringWithFormat:@"%d %@ -%d %@", day1, self.monthTitleShort, day2, dt2.dayPrevious.dateTitleMonthYear];
+            return [NSString stringWithFormat:@"%d %@ - %d %@", day1, self.monthTitleShort, day2, dt2.dayPrevious.dateTitleMonthYear];
         }
         else
         {
-        return [NSString stringWithFormat:@"%d -%d %@", day1, day2, dt3.dateTitleMonthYear];
+        return [NSString stringWithFormat:@"%d - %d %@", day1, day2, dt3.dateTitleMonthYear];
         }
     }
 }

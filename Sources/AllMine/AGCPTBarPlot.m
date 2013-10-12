@@ -33,8 +33,7 @@
 {
     NSUInteger idx      = NSNotFound;
     NSUInteger barCount = self.cachedDataCount;
-    NSUInteger ii       = 0;
-    
+    NSUInteger ii       = 0;    
  
     while ( (ii < barCount) && (idx == NSNotFound) ) {
         CGPathRef path = [self newBarPathWithContext:NULL recordIndex:ii];
@@ -66,7 +65,7 @@
     
     
     eventTime=event.timestamp-startTimeEvent;
-    if (eventTime>0.3) {
+    if (eventTime>0.2) {
         if ([self.delegate respondsToSelector:@selector(barPlot:barLongPressedAtRecordIndex:)])
         {
          

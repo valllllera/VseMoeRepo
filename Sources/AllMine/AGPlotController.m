@@ -151,7 +151,7 @@ int varTemp = 0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     // Do any additional setup after loading the view from its nib.
     [_sgTop setTitle:NSLocalizedString(@"PlotTopSegmentOut", @"") forSegmentAtIndex:0];
     [_sgTop setTitle:NSLocalizedString(@"PlotTopSegmentIn", @"") forSegmentAtIndex:1];
@@ -168,10 +168,10 @@ int varTemp = 0;
      forControlEvents:UIControlEventValueChanged];
     
     NSDictionary* dictTxtColorNormal = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                                               [UIColor colorWithHex:kColorHexPlotSegmentText],UITextAttributeTextColor,
-                                                                               [UIColor whiteColor], UITextAttributeTextShadowColor,
-                                                                               [NSValue valueWithUIOffset:UIOffsetMake(0, 1.0f)],UITextAttributeTextShadowOffset, [UIFont fontWithName:kFont1 size:17.0f], UITextAttributeFont,
-                                                                               nil];
+                                        [UIColor colorWithHex:kColorHexPlotSegmentText],UITextAttributeTextColor,
+                                        [UIColor whiteColor], UITextAttributeTextShadowColor,
+                                        [NSValue valueWithUIOffset:UIOffsetMake(0, 1.0f)],UITextAttributeTextShadowOffset, [UIFont fontWithName:kFont1 size:17.0f], UITextAttributeFont,
+                                        nil];
     NSDictionary* dictTxtColorSelected = [NSDictionary dictionaryWithObjectsAndKeys:
                                           [UIColor colorWithHex:kColorHexWhite],UITextAttributeTextColor,
                                           [UIColor colorWithHex:kColorHexPlotSegmentSelected], UITextAttributeTextShadowColor,
@@ -226,7 +226,7 @@ int varTemp = 0;
     
     _supercat = nil;
     
-    _ptvcData = [[AGPlotTableViewController alloc] initWithFrame:CGRectMake(20, 100, 280, 260)];
+    _ptvcData = [[AGPlotTableViewController alloc] initWithFrame:CGRectMake(20, 100, 285, 260)];
     _ptvcData.parent = self;
     [_ptvcData.tableView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchGestureHandler:)]];
     _ptvcData.delegate = self;
@@ -241,7 +241,7 @@ int varTemp = 0;
     
     _lbCurrentPeriodInfo.font = [UIFont fontWithName:kFont1 size:14.0f];
     _lbCurrentPeriodInfo.textColor = [UIColor colorWithHex:kColorHexGray];
-        
+    
     if (_account) {
         _timeButton.hidden = YES;
         _categoryButton.hidden = YES;
@@ -285,7 +285,7 @@ int varTemp = 0;
     _tableLastZoomedIn = [[AGStack alloc] init];
     
     _lbPercent.hidden=YES;
-
+    
     _lbPercent.font=[UIFont fontWithName:kFont1 size:13.0f];
     _lbPercent.textColor=[UIColor colorWithHex:0xCFCFCE];
     CGRect rect=CGRectMake(150, 40, 150, 100);
@@ -299,19 +299,15 @@ int varTemp = 0;
     
     self.lbMaxVal.font = [UIFont fontWithName:kFont1 size:12.0f];
     self.lbMaxVal.textColor = [UIColor colorWithHex:kColorHexDarkGray];
-    self.lbMaxVal.text = NSLocalizedString(@"PlotMaxVal", nil);
     
     self.lbMinVal.font = [UIFont fontWithName:kFont1 size:12.0f];
     self.lbMinVal.textColor = [UIColor colorWithHex:kColorHexDarkGray];
-    self.lbMinVal.text = NSLocalizedString(@"PlotMinVal", nil);
     
     self.lbAverage.font = [UIFont fontWithName:kFont1 size:12.0f];
     self.lbAverage.textColor = [UIColor colorWithHex:kColorHexDarkGray];
-    self.lbAverage.text = NSLocalizedString(@"PlotAverageTitle", nil);
     
     self.lbMaxDiff.font = [UIFont fontWithName:kFont1 size:12.0f];
     self.lbMaxDiff.textColor = [UIColor colorWithHex:kColorHexDarkGray];
-    self.lbMaxDiff.text = NSLocalizedString(@"PlotMaxDiff", nil);
     
     self.lbMaxValSum.font = [UIFont fontWithName:kFont1 size:18.0f];
     self.lbMaxValSum.textColor = [UIColor colorWithHex:kColorHexPlotBrown];
@@ -408,7 +404,7 @@ int varTemp = 0;
     double debt = 0.0;
     
     NSArray* accounts = [usr accountsByType: AccTypeCardCredit];
-            
+    
     for(Account* acc in accounts){
         debt += [acc balanceWithCurrency:acc.currency]-[acc creditLimitWithCurrency:acc.currency];
     }
@@ -505,6 +501,7 @@ int varTemp = 0;
         CGRect newLbInfoSumFrame = _startLbInfoSumFrame;
         newLbInfoSumFrame.origin.y = _lbTitle.frame.origin.y + 3;
         _lbInfoSum.frame = newLbInfoSumFrame;
+        
     }else{
         _graphHostingView.hidden = NO;
         _ptvcData.tableView.hidden = YES;
@@ -654,7 +651,7 @@ int varTemp = 0;
     if(maxDiff == INT_MIN)
     {
         return 0;
-    }    
+    }
     return maxDiff;
 }
 
@@ -794,6 +791,10 @@ int varTemp = 0;
     frame.size.width = 0;
     _ivPlotDoorRight.frame = frame;
     
+    _ivPlot.hidden = NO;
+    _ivPlotDoorLeft.hidden = NO;
+    _ivPlotDoorRight.hidden = NO;
+    
     [UIView animateWithDuration:kDoorAnimationTime
                      animations:^{
                          CGRect frame = _ivPlot.frame;
@@ -828,6 +829,8 @@ int varTemp = 0;
                          _ivPlotDoorRight.frame = frame;
                          
                          _activityIndicator.alpha = 0.0f;
+                         
+                         _ivPlot.hidden = YES;
                      }];
 }
 
@@ -871,6 +874,11 @@ int varTemp = 0;
         frame.size.height = 0;
         _ivPlotDoorRight.frame = frame;
         
+        _ivPlot.hidden = NO;
+        _ivPlotDoorLeft.hidden = NO;
+        _ivPlotDoorRight.hidden = NO;
+        _ivPlotDoorLeft.hidden = NO;
+        _ivPlotDoorRight.hidden = NO;
         _ptvcData.tableView.hidden = YES;
         
         [UIView animateWithDuration:kDoorAnimationTime
@@ -903,6 +911,10 @@ int varTemp = 0;
                              _ivPlotDoorRight.frame = frame;
                              
                              _ptvcData.tableView.hidden = NO;
+                             
+                             _ivPlot.hidden = YES;
+                             _ivPlotDoorLeft.hidden = YES;
+                             _ivPlotDoorRight.hidden = YES;
                              
                              _ptvcData.type = [self segmentIndex];
                              
@@ -940,12 +952,14 @@ int varTemp = 0;
 - (void) reloadInfoTitles{
     if(_index_BarSelected==-1)
     {
+        _lbTitle.text = @"";
+        
         Currency* mainCurrency = (kUser).currencyMain;
         NSString* averageLabel = [[NSString alloc] init];
         NSMutableAttributedString* string = [[NSMutableAttributedString alloc] init];
         if (ReportTypeXCategories == _typeX || _typeX == ReportTypeXAccounts){
             averageLabel = NSLocalizedString(@"PlotCategoriesAverage", nil);
-                if(_typeX == ReportTypeXAccounts){
+            if(_typeX == ReportTypeXAccounts){
                 averageLabel = [NSString stringWithFormat:@"%@ %d %@",  NSLocalizedString(@"PlotCategoriesAll", nil), [NSDate today].dateComponents.day, _dtFrom.monthTitleShort];
             }else
                 averageLabel = [NSString stringWithFormat:@"%@ %d-%d %@", averageLabel, _dtFrom.dateComponents.day,[NSDate today].dateComponents.day, _dtFrom.monthTitleShort];
@@ -956,6 +970,12 @@ int varTemp = 0;
             
             _lbPlotTitle.textAlignment = NSTextAlignmentLeft;
             //_lbAverage.textAlignment = NSTextAlignmentCenter;
+            
+            if(_supercat)
+            {
+                _lbTitle.text = _supercat.title;
+            }
+            
         }else{
             _lbAverage.text = NSLocalizedString(@"PlotAverageTitle", nil);
             [string setAttributedString:[self attributedCurrencyStringWithVal:[NSString stringWithFormat:@"%d ",[self averageSum]] currency:mainCurrency.title]];
@@ -971,22 +991,52 @@ int varTemp = 0;
         self.lbMaxDiffSum.attributedText = [self attributedCurrencyStringWithVal:[NSString stringWithFormat:@"%d", [self maxDiff]] currency:mainCurrency.title];
         
         if(_typeY == ReportTypeYCapital){
-            self.lbInfoSum.text = [NSString stringWithFormat:@"%d", [self incomeTotal]];
+            self.lbInfoSum.text = [[NSString numberFormatterInteger:YES] stringFromNumber:[NSNumber numberWithInt:[self incomeTotal]]];
         }else{
-            self.lbInfoSum.text = [NSString stringWithFormat:@"%d",[self totalSum]];
+            self.lbInfoSum.text = [[NSString numberFormatterInteger:YES] stringFromNumber:[NSNumber numberWithInt:[self totalSum]]];
         }
         if(_sgTop.selectedSegmentIndex==0)
             self.lbInfoSum.textColor = [UIColor colorWithHex:kColorHexOrange2];
         else
             self.lbInfoSum.textColor = [UIColor colorWithHex:kColorHexGreen];
         
+        if(_lbTitle.text.length == 0)
+        {
+            if(_typeY == ReportTypeYOut)
+            {
+                _lbTitle.text = NSLocalizedString(@"PlotTitleOut", nil);
+            }
+            else if(_typeY == ReportTypeYIn)
+            {
+                _lbTitle.text = NSLocalizedString(@"PlotTitleIn", nil);
+            }
+            else if(_typeY == ReportTypeYCapital)
+            {
+                _lbTitle.text = NSLocalizedString(@"PlotTitleCapital", nil);
+            }
+            else
+            {
+                _lbTitle.text = @"";
+            }
+        }
+        
+        self.lbAverage.text = NSLocalizedString(@"PlotAverageTitle", nil);
+        self.lbMaxDiff.text = NSLocalizedString(@"PlotMaxDiff", nil);
+        
         if(_typeY == ReportTypeYOut)
         {
-            _lbTitle.text = NSLocalizedString(@"PlotTitleOut", nil);
+            self.lbMaxVal.text = NSLocalizedString(@"PlotMaxValOut", nil);
+            self.lbMinVal.text = NSLocalizedString(@"PlotMinValOut", nil);            
         }
-        else
+        else if(_typeY == ReportTypeYIn)
         {
-            _lbTitle.text = @"";
+            self.lbMaxVal.text = NSLocalizedString(@"PlotMaxValIn", nil);
+            self.lbMinVal.text = NSLocalizedString(@"PlotMinValIn", nil);
+        }
+        else if(_typeY == ReportTypeYCapital)
+        {
+            self.lbMaxVal.text = NSLocalizedString(@"PlotMaxValCapital", nil);
+            self.lbMinVal.text = NSLocalizedString(@"PlotMinValCapital", nil);
         }
     }
 }
@@ -998,7 +1048,7 @@ int varTemp = 0;
         _lbPercent.text = @"%";
         _lbPercent.textColor = [UIColor colorWithHex:0xCFCFCE];
     }else
-        _lbPercent.text = @"СУММА     %";
+        _lbPercent.text = @"СУММА      %";
     varTemp = 0;
     switch ([self segmentIndex]) {
         case ReportTypeYIn:
@@ -1049,6 +1099,7 @@ int varTemp = 0;
 
 - (NSAttributedString *)attributedCurrencyStringWithVal:(NSString *)val currency:(NSString *)currency
 {
+    val = [[NSString numberFormatterInteger:YES] stringFromNumber:[NSNumber numberWithInt:[val intValue]]];
     NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", val, currency]];
     [string addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont1 size:17.0f] range:NSMakeRange(0, [val length])];
     [string addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont1 size:11.0f] range:NSMakeRange([ val length] + 1, [currency length])];
@@ -1204,13 +1255,13 @@ int varTemp = 0;
         if (_reportItem == ReportItemWeek) {
             if (_typeY == ReportTypeYCapital) {
                 if(!(i%2)){
-                l = [[CPTAxisLabel alloc] initWithText:[NSString stringWithFormat:@"%dН",counter]
-                                             textStyle:x.labelTextStyle];
-                counter++;
+                    l = [[CPTAxisLabel alloc] initWithText:[NSString stringWithFormat:@"%dН",counter]
+                                                 textStyle:x.labelTextStyle];
+                    counter++;
                 }
             }else{
-            l = [[CPTAxisLabel alloc] initWithText:[NSString stringWithFormat:@"%dН",i+1]
-                                         textStyle:x.labelTextStyle];
+                l = [[CPTAxisLabel alloc] initWithText:[NSString stringWithFormat:@"%dН",i+1]
+                                             textStyle:x.labelTextStyle];
             }
         }else{
             if (_typeY == ReportTypeYCapital) {
@@ -1219,8 +1270,8 @@ int varTemp = 0;
                                                  textStyle:x.labelTextStyle];
                 }
             }else{
-            l = [[CPTAxisLabel alloc] initWithText:[[_dataSource objectAtIndex:i] objectForKey:kReportFieldTitle]
-                                                       textStyle:x.labelTextStyle];
+                l = [[CPTAxisLabel alloc] initWithText:[[_dataSource objectAtIndex:i] objectForKey:kReportFieldTitle]
+                                             textStyle:x.labelTextStyle];
             }
         }
         l.tickLocation = [[NSNumber numberWithFloat:(i+0.5) * _barWidth + (i+1)*_barDistance] decimalValue];
@@ -1271,7 +1322,7 @@ int varTemp = 0;
     plotNegative.fill = [CPTFill fillWithColor:[CPTColor colorWithCGColor:[UIColor colorWithHex:kColorHexPlotOrange].CGColor]];
     plotNegative.lineStyle = nil;
 	[chart addPlot:plotNegative toPlotSpace:space];
-
+    
     return chart;
 }
 
@@ -1370,6 +1421,10 @@ int varTemp = 0;
     frame.origin.x -= frame.size.width;
     _graphHostingView.frame = frame;
     
+    _ivPlot.hidden = NO;
+    _ivPlotDoorLeft.hidden = NO;
+    _ivPlotDoorRight.hidden = NO;
+    
     [UIView animateWithDuration:kDoorAnimationTime
                      animations:^{
                          CGRect frame = _ivPlot.frame;
@@ -1396,6 +1451,8 @@ int varTemp = 0;
                          _ivPlot.frame = frame;
                          
                          _activityIndicator.alpha = 0.0f;
+                         
+                         _ivPlot.hidden = YES;
                      }];
 }
 
@@ -1480,11 +1537,11 @@ int varTemp = 0;
             [string addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHex:kColorHexPlotDarkGrey] range:NSMakeRange(0, [dt.dateTitleMonthYear length]-3)];
             
             _lbCurrentPeriodInfo.attributedText = string;
-
+            
             break;
         }
     }
-
+    
     _lbInfoSum.text = [NSString stringWithFormat:@"%i",i_sum ];
     
     Currency* mainCurrency = (kUser).currencyMain;
@@ -1551,6 +1608,9 @@ int varTemp = 0;
             UIGraphicsEndImageContext();
             
             _ivPlot.image = img;
+            _ivPlot.hidden = NO;
+            _ivPlotDoorLeft.hidden = NO;
+            _ivPlotDoorRight.hidden = NO;
             _ptvcData.tableView.hidden = YES;
             
             [UIView animateWithDuration:kDoorAnimationTime
@@ -1571,6 +1631,7 @@ int varTemp = 0;
                                  CGRect frame = _ivPlot.frame;
                                  frame.origin.x -= frame.size.width;
                                  _ivPlot.frame = frame;
+                                 _ivPlot.hidden = YES;
                                  
                                  _ptvcData.tableView.hidden = NO;
                                  

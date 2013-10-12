@@ -149,7 +149,7 @@
     //            leftX -= dl;
     //        }
     //    }
-        if (_sign > 0) {
+        if (_sign > 0) {            
             [_titleSum drawInRect:CGRectMake(leftX,
                                               y,
                                               leftWidth,
@@ -166,7 +166,7 @@
                       lineBreakMode:NSLineBreakByTruncatingTail
                           alignment:NSTextAlignmentRight];
             [[UIColor colorWithHex:0xA4A6A9] set];
-            [_titlePercent drawInRect:CGRectMake(leftX-15,
+            [_titlePercent drawInRect:CGRectMake(leftX-1,
                                                  y,
                                                  rightWidth,
                                                  titleSumSize.height)
@@ -190,7 +190,7 @@
                       lineBreakMode:NSLineBreakByTruncatingTail
                           alignment:NSTextAlignmentRight];
             [[UIColor colorWithHex:0xA4A6A9] set];
-            [_titlePercent drawInRect:CGRectMake(rightX-15,
+            [_titlePercent drawInRect:CGRectMake(rightX-1,
                                               y,
                                               rightWidth,
                                               titleSumSize.height)
@@ -201,16 +201,16 @@
         }
     }else if (_style == AGPlotUnSigned) {
                 distance = 15;
-        [_titleName drawInRect:CGRectMake(distance+7,
+        [_titleName drawInRect:CGRectMake(distance,
                                           y,
-                                          self.frame.size.width/2-distance*2,
+                                          self.frame.size.width/1.5-distance*2,
                                           titleSumSize.height)
                       withFont:font
                  lineBreakMode:NSLineBreakByTruncatingTail
                      alignment:NSTextAlignmentLeft];
 
  
-        [_titleSum drawInRect:CGRectMake(self.frame.size.width/2+distance-30,
+        [_titleSum drawInRect:CGRectMake(self.frame.size.width/2+distance-23,
                                           y,
                                           self.frame.size.width/2-distance*2,
                                           titleNameSize.height)
@@ -218,7 +218,7 @@
                  lineBreakMode:NSLineBreakByTruncatingTail
                      alignment:NSTextAlignmentRight];
                [[UIColor colorWithHex:0xA4A6A9] set];
-        [_titlePercent drawInRect:CGRectMake(self.frame.size.width/2+distance+5,
+        [_titlePercent drawInRect:CGRectMake(self.frame.size.width/2+distance+15,
                                              y,
                                              self.frame.size.width/2-distance*2,
                                              titleNameSize.height)

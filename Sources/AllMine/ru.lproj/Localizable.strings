@@ -236,13 +236,19 @@
 "PlotBottomSegmentTime" = "по Времени";
 "PlotBottomSegmentCategory" = "по Категории";
 "PlotBottomSegmentAccount" = "по Счетам";
-"PlotMaxVal" = "Max. расходы";
-"PlotMinVal" = "Min. расходы";
+"PlotMaxValOut" = "Max. расходы";
+"PlotMinValOut" = "Min. расходы";
+"PlotMaxValIn" = "Max. доходы";
+"PlotMinValIn" = "Min. доходы";
+"PlotMaxValCapital" = "Max. капитал";
+"PlotMinValCapital" = "Min. капитал";
 "PlotAverageTitle" = "Сред. значение";
 "PlotMaxDiff" = "Max. разница";
 "PlotCategoriesAverage" = "Всего с ";
 "PlotCategoriesAll" = "Всего на ";
 "PlotTitleOut" = "Сколько ушло";
+"PlotTitleIn" = "Сколько пришло";
+"PlotTitleCapital" = "Сколько отложилось";
 
 // account select
 "Cash" = "Бумажник";
