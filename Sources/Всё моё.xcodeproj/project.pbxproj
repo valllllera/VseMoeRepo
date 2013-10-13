@@ -457,6 +457,11 @@
 		BAF5B13D167097190045E6AC /* AGLoginPasswordRecoveryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAF5B13B167097190045E6AC /* AGLoginPasswordRecoveryView.xib */; };
 		D56795071801E04100B10D52 /* AGSettingsPinController.m in Sources */ = {isa = PBXBuildFile; fileRef = D56795051801E03F00B10D52 /* AGSettingsPinController.m */; };
 		D56795081801E04100B10D52 /* AGSettingsPinController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D56795061801E04000B10D52 /* AGSettingsPinController.xib */; };
+		D5F641FF180A983F000DBCE0 /* kapital_graf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5F641FB180A983F000DBCE0 /* kapital_graf@2x.png */; };
+		D5F64200180A983F000DBCE0 /* kapital_graf.png in Resources */ = {isa = PBXBuildFile; fileRef = D5F641FC180A983F000DBCE0 /* kapital_graf.png */; };
+		D5F64201180A983F000DBCE0 /* income_expenses_graf.png in Resources */ = {isa = PBXBuildFile; fileRef = D5F641FD180A983F000DBCE0 /* income_expenses_graf.png */; };
+		D5F64202180A983F000DBCE0 /* income_expenses_graf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5F641FE180A983F000DBCE0 /* income_expenses_graf@2x.png */; };
+		D5F64205180AAA34000DBCE0 /* AGPlotPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = D5F64204180AAA33000DBCE0 /* AGPlotPopover.m */; };
 		F6009AB71786A9C00072BA42 /* MainMenuCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6009AB61786A9C00072BA42 /* MainMenuCellView.xib */; };
 		F6009ABE1786C8680072BA42 /* cell-split-pressed-end.png in Resources */ = {isa = PBXBuildFile; fileRef = F6009AB81786C8670072BA42 /* cell-split-pressed-end.png */; };
 		F6009ABF1786C8680072BA42 /* cell-split-pressed-end@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F6009AB91786C8670072BA42 /* cell-split-pressed-end@2x.png */; };
@@ -1173,6 +1178,12 @@
 		D56795041801E03F00B10D52 /* AGSettingsPinController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGSettingsPinController.h; sourceTree = "<group>"; };
 		D56795051801E03F00B10D52 /* AGSettingsPinController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGSettingsPinController.m; sourceTree = "<group>"; };
 		D56795061801E04000B10D52 /* AGSettingsPinController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGSettingsPinController.xib; sourceTree = "<group>"; };
+		D5F641FB180A983F000DBCE0 /* kapital_graf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kapital_graf@2x.png"; sourceTree = "<group>"; };
+		D5F641FC180A983F000DBCE0 /* kapital_graf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kapital_graf.png; sourceTree = "<group>"; };
+		D5F641FD180A983F000DBCE0 /* income_expenses_graf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = income_expenses_graf.png; sourceTree = "<group>"; };
+		D5F641FE180A983F000DBCE0 /* income_expenses_graf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "income_expenses_graf@2x.png"; sourceTree = "<group>"; };
+		D5F64203180AAA33000DBCE0 /* AGPlotPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGPlotPopover.h; sourceTree = "<group>"; };
+		D5F64204180AAA33000DBCE0 /* AGPlotPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPlotPopover.m; sourceTree = "<group>"; };
 		F6009AB61786A9C00072BA42 /* MainMenuCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenuCellView.xib; sourceTree = "<group>"; };
 		F6009AB81786C8670072BA42 /* cell-split-pressed-end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-split-pressed-end.png"; sourceTree = "<group>"; };
 		F6009AB91786C8670072BA42 /* cell-split-pressed-end@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-split-pressed-end@2x.png"; sourceTree = "<group>"; };
@@ -1695,6 +1706,8 @@
 				BAED0BEB167AF74E0052C3D2 /* AGPlotTableViewController.m */,
 				BAED0BF0167AF7770052C3D2 /* AGPlotTableViewCell.h */,
 				BAED0BF1167AF7770052C3D2 /* AGPlotTableViewCell.m */,
+				D5F64203180AAA33000DBCE0 /* AGPlotPopover.h */,
+				D5F64204180AAA33000DBCE0 /* AGPlotPopover.m */,
 			);
 			name = plot;
 			sourceTree = "<group>";
@@ -2293,6 +2306,10 @@
 		F6A3D6A41784377200472CB8 /* plot */ = {
 			isa = PBXGroup;
 			children = (
+				D5F641FB180A983F000DBCE0 /* kapital_graf@2x.png */,
+				D5F641FC180A983F000DBCE0 /* kapital_graf.png */,
+				D5F641FD180A983F000DBCE0 /* income_expenses_graf.png */,
+				D5F641FE180A983F000DBCE0 /* income_expenses_graf@2x.png */,
 				F6A3D71717845A6A00472CB8 /* segment-plot-bottom-category-pressed.png */,
 				F6A3D71817845A6A00472CB8 /* segment-plot-bottom-category-pressed@2x.png */,
 				F6A3D71917845A6A00472CB8 /* segment-plot-bottom-time-pressed.png */,
@@ -2872,6 +2889,10 @@
 				F60959E318083CF100B71BE2 /* wallet@2x.png in Resources */,
 				F60959E618083DB400B71BE2 /* from_where.png in Resources */,
 				F60959E718083DB400B71BE2 /* from_where@2x.png in Resources */,
+				D5F641FF180A983F000DBCE0 /* kapital_graf@2x.png in Resources */,
+				D5F64200180A983F000DBCE0 /* kapital_graf.png in Resources */,
+				D5F64201180A983F000DBCE0 /* income_expenses_graf.png in Resources */,
+				D5F64202180A983F000DBCE0 /* income_expenses_graf@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2969,6 +2990,7 @@
 				08FCC0C217859D600000A5A2 /* NSArray+Additions.m in Sources */,
 				F684FF781786A21200AB89A6 /* MainMenuCellController.m in Sources */,
 				D56795071801E04100B10D52 /* AGSettingsPinController.m in Sources */,
+				D5F64205180AAA34000DBCE0 /* AGPlotPopover.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

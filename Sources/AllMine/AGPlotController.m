@@ -32,6 +32,8 @@
 
 #import "Currency.h"
 
+#import "AGPlotPopover.h"
+
 
 #define kPlotPos    @"plotPos"
 #define kPlotNeg    @"plotNeg"
@@ -62,6 +64,8 @@
 @end
 
 @interface AGPlotController ()
+
+@property(nonatomic, strong) CPTXYGraph* chart;
 
 @property(nonatomic, assign) ReportItem reportItem;
 @property(nonatomic, assign) ReportTypeX typeX;
@@ -126,6 +130,8 @@
 @property (assign, nonatomic) CGRect startLbTitleFrame;
 @property (assign, nonatomic) CGRect startLbPlotTitleFrame;
 @property (assign, nonatomic) CGRect startLbInfoSumFrame;
+
+@property (strong, nonatomic) AGPlotPopover *popoverView;
 
 @end
 
@@ -457,6 +463,8 @@ int varTemp = 0;
     _timeButton.enabled = NO;
     _categoryButton.enabled = YES;
     
+    [_popoverView removeFromSuperview];
+    
 }
 
 - (IBAction)categoryButtonPressed:(id)sender {
@@ -509,6 +517,8 @@ int varTemp = 0;
     
     _timeButton.enabled = YES;
     _categoryButton.enabled = NO;
+    
+    [_popoverView removeFromSuperview];
     
 }
 
@@ -946,6 +956,7 @@ int varTemp = 0;
     
     _index_BarSelected = -1;
     //[self sgBottomSelectionChanged];
+    [_popoverView removeFromSuperview];
     [self reloadData];
 }
 
@@ -1026,7 +1037,7 @@ int varTemp = 0;
         if(_typeY == ReportTypeYOut)
         {
             self.lbMaxVal.text = NSLocalizedString(@"PlotMaxValOut", nil);
-            self.lbMinVal.text = NSLocalizedString(@"PlotMinValOut", nil);            
+            self.lbMinVal.text = NSLocalizedString(@"PlotMinValOut", nil);
         }
         else if(_typeY == ReportTypeYIn)
         {
@@ -1110,19 +1121,19 @@ int varTemp = 0;
 #pragma mark - plot
 - (CPTXYGraph*) drawPlot{
     // Create chart
-	CPTXYGraph* chart = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
-    chart.fill = nil;
-    chart.plotAreaFrame.fill = nil;
+	self.chart = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
+    _chart.fill = nil;
+    _chart.plotAreaFrame.fill = nil;
     
 	// Border
-	chart.plotAreaFrame.borderLineStyle = nil;
-	chart.plotAreaFrame.cornerRadius    = 0.0f;
+	_chart.plotAreaFrame.borderLineStyle = nil;
+	_chart.plotAreaFrame.cornerRadius    = 0.0f;
     
 	// Paddings
-	chart.paddingLeft   = 0.0f;
-	chart.paddingRight  = 0.0f;
-	chart.paddingTop    = 0.0f;
-	chart.paddingBottom = 0.0f;
+	_chart.paddingLeft   = 0.0f;
+	_chart.paddingRight  = 0.0f;
+	_chart.paddingTop    = 0.0f;
+	_chart.paddingBottom = 0.0f;
     
     double yMax = [[_dataSource valueForKeyPath:[@"@max." stringByAppendingString:kReportFieldSum]] doubleValue];
     double yMin = [[_dataSource valueForKeyPath:[@"@min." stringByAppendingString:kReportFieldSum]] doubleValue];
@@ -1146,22 +1157,22 @@ int varTemp = 0;
     NSString* strMin = [[NSString numberFormatterInteger:YES] stringFromNumber:[NSNumber numberWithDouble:yMin]];
     CGSize strMinSize = [strMin sizeWithFont:[UIFont fontWithName:kFont1 size:20.0f]];
     
-    chart.plotAreaFrame.paddingLeft = MAX(strMaxSize.width, strMinSize.width) + ((CPTXYAxisSet*)chart.axisSet).yAxis.labelOffset;
+    _chart.plotAreaFrame.paddingLeft = MAX(strMaxSize.width, strMinSize.width) + ((CPTXYAxisSet*)_chart.axisSet).yAxis.labelOffset;
     if ((yMin == yMax) && (yMax == 0.0f)) {
-        chart.plotAreaFrame.paddingLeft = 0.0f;
+        _chart.plotAreaFrame.paddingLeft = 0.0f;
     }
     if(varTemp==-1){
-        chart.plotAreaFrame.paddingLeft = 50.0f;
+        _chart.plotAreaFrame.paddingLeft = 50.0f;
     }
-    chart.plotAreaFrame.paddingTop      = 20.0f;
-    chart.plotAreaFrame.paddingRight    = 5.0f;
-    chart.plotAreaFrame.paddingBottom   = 20.0f;
+    _chart.plotAreaFrame.paddingTop      = 20.0f;
+    _chart.plotAreaFrame.paddingRight    = 5.0f;
+    _chart.plotAreaFrame.paddingBottom   = 20.0f;
     
-    _plotPaddingLeft = chart.plotAreaFrame.paddingLeft;
-    _plotPaddingRight = chart.plotAreaFrame.paddingRight;
+    _plotPaddingLeft = _chart.plotAreaFrame.paddingLeft;
+    _plotPaddingRight = _chart.plotAreaFrame.paddingRight;
     // Add plot space for horizontal bar charts
     double yRange = abs(yMin) + abs(yMax + yMax/10);
-	CPTXYPlotSpace* space = (CPTXYPlotSpace*) chart.defaultPlotSpace;
+	CPTXYPlotSpace* space = (CPTXYPlotSpace*) _chart.defaultPlotSpace;
     if (varTemp == 1)
     {
         space.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(yMin*(-1))
@@ -1206,7 +1217,7 @@ int varTemp = 0;
     lbTxtStyle.fontName = kFont1;
     lbTxtStyle.color = [CPTColor colorWithCGColor:[UIColor colorWithHex:kColorHexPlotDarkGrey].CGColor];
     
-    CPTXYAxis* y = ((CPTXYAxisSet*)chart.axisSet).yAxis;
+    CPTXYAxis* y = ((CPTXYAxisSet*)_chart.axisSet).yAxis;
 	y.axisLineStyle = nil;
 	y.majorTickLineStyle = nil;
     y.minorTickLineStyle = nil;
@@ -1231,7 +1242,7 @@ int varTemp = 0;
     }
     y.majorIntervalLength = [[NSNumber numberWithInt:interval] decimalValue];
     
-	CPTXYAxis* x = ((CPTXYAxisSet*)chart.axisSet).xAxis;
+	CPTXYAxis* x = ((CPTXYAxisSet*)_chart.axisSet).xAxis;
     x.axisLineStyle = majorLineStyle;
     x.majorTickLineStyle = nil;
     x.minorTickLineStyle = nil;
@@ -1294,7 +1305,7 @@ int varTemp = 0;
     plot.barWidth = [[NSNumber numberWithFloat:_barWidth] decimalValue];
     plot.fill = [CPTFill fillWithColor:[CPTColor colorWithCGColor:[UIColor colorWithHex:kColorHexPlotGreen].CGColor]];
     plot.lineStyle = nil;
-	[chart addPlot:plot toPlotSpace:space];
+	[_chart addPlot:plot toPlotSpace:space];
     
     // bar plot negative
 	AGCPTBarPlot* plotNegative = [[AGCPTBarPlot alloc] init];
@@ -1308,10 +1319,10 @@ int varTemp = 0;
                 plotNegative.barOffset = CPTDecimalFromFloat(-8.0f);
                 break;
             case ReportItemWeek:
-                plotNegative.barOffset = CPTDecimalFromFloat(-19.5f);
+                plotNegative.barOffset = CPTDecimalFromFloat(-10.0f);
                 break;
             case ReportItemDay:
-                plotNegative.barOffset = CPTDecimalFromFloat(-14.0f);
+                plotNegative.barOffset = CPTDecimalFromFloat(-7.0f);
                 break;
             default:
                 plotNegative.barOffset  = CPTDecimalFromFloat(0.0f);
@@ -1321,9 +1332,9 @@ int varTemp = 0;
     plotNegative.barWidth = [[NSNumber numberWithFloat:_barWidth] decimalValue];
     plotNegative.fill = [CPTFill fillWithColor:[CPTColor colorWithCGColor:[UIColor colorWithHex:kColorHexPlotOrange].CGColor]];
     plotNegative.lineStyle = nil;
-	[chart addPlot:plotNegative toPlotSpace:space];
+	[_chart addPlot:plotNegative toPlotSpace:space];
     
-    return chart;
+    return _chart;
 }
 
 #pragma mark - CPTPlotDataSource
@@ -1342,9 +1353,13 @@ int varTemp = 0;
     switch (field) {
         case CPTBarPlotFieldBarLocation:
             num = [NSNumber numberWithDouble: (index+0.5)*_barWidth + (index+1)*_barDistance];
-            if(_typeY == ReportTypeYCapital)
+            if(_typeY == ReportTypeYCapital && _reportItem == ReportItemWeek)
             {
                 num = [NSNumber numberWithDouble:num.doubleValue / 1.75];
+            }
+            else if(_typeY == ReportTypeYCapital && _reportItem == ReportItemDay)
+            {
+                num = [NSNumber numberWithDouble:num.doubleValue / 1.6];
             }
             break;
         case CPTBarPlotFieldBarTip:
@@ -1460,45 +1475,41 @@ int varTemp = 0;
 {
     CPTFill* fill;
     
-    if (_index_BarSelected==index)
-    {
-        /*fill=[CPTFill fillWithColor:[CPTColor colorWithCGColor:[UIColor colorWithHex:kColorHexPlotSelectGreen].CGColor]];*/
-        if (varTemp == 0)
-        {
-            if([barPlot.identifier isEqual: kPlotNeg]){
-                fill = [CPTFill fillWithImage:[CPTImage imageForPNGFile:[[NSBundle mainBundle] pathForResource:@"Column-plot-kapital-Less-month-press" ofType:@"png"]]];
-            }else{
-                fill = [CPTFill fillWithImage:[CPTImage imageForPNGFile:[[NSBundle mainBundle] pathForResource:@"Column-plot-profit-month-pressed" ofType:@"png"]]];
-            }
-            
-        }
-        else
-        {
-            
-            fill = [CPTFill fillWithImage:[CPTImage imageForPNGFile:[[NSBundle mainBundle] pathForResource:@"Column-plot-Less-month-pressed" ofType:@"png"]]];
+    if(varTemp == 0){
+        
+        if([barPlot.identifier isEqual: kPlotNeg]){
+            fill = [CPTFill fillWithImage:[CPTImage imageForPNGFile:[[NSBundle mainBundle] pathForResource:@"Column-plot-kapital-Less-month" ofType:@"png"]]];
+        }else{
+            fill = [CPTFill fillWithImage:[CPTImage imageForPNGFile:[[NSBundle mainBundle] pathForResource:@"Column-plot-profit-month" ofType:@"png"]]];
         }
         
-        return  fill;
+    }else{
+        fill = [CPTFill fillWithImage:[CPTImage imageForPNGFile:[[NSBundle mainBundle] pathForResource:@"Column-plot-Less-month" ofType:@"png"]]];
     }
-    else
-    {
-        /*fill=[CPTFill fillWithColor:[CPTColor colorWithCGColor:[UIColor colorWithHex:kColorHexPlotGreen].CGColor]];*/
-        if(varTemp == 0){
-            
-            if([barPlot.identifier isEqual: kPlotNeg]){
-                fill = [CPTFill fillWithImage:[CPTImage imageForPNGFile:[[NSBundle mainBundle] pathForResource:@"Column-plot-kapital-Less-month" ofType:@"png"]]];
-            }else{
-                fill = [CPTFill fillWithImage:[CPTImage imageForPNGFile:[[NSBundle mainBundle] pathForResource:@"Column-plot-profit-month" ofType:@"png"]]];
-            }
-            
-        }else{
-            fill = [CPTFill fillWithImage:[CPTImage imageForPNGFile:[[NSBundle mainBundle] pathForResource:@"Column-plot-Less-month" ofType:@"png"]]];
-        }
-        return  fill;
-    }
+    return  fill;
     
 }
 - (void) barPlot:(AGCPTBarPlot *)plot barShortPressedAtRecordIndex:(NSUInteger)index{
+    if(_typeY == ReportTypeYCapital && (_reportItem == ReportItemWeek || _reportItem == ReportItemDay))
+    {
+        index -= 2;
+    }
+    else if(_typeY == ReportTypeYCapital && _reportItem == ReportItemMonth)
+    {
+        index -= 1;
+    }
+    if(_typeY == ReportTypeYCapital)
+    {
+        if(index % 2 == 1)
+        {
+            index += 1;
+        }
+    }
+    
+    if(index >= [_dataSource count])
+    {
+        return;
+    }
     
     NSNumber* num = [[_dataSource objectAtIndex:index] objectForKey:kReportFieldSum];
     if (num.doubleValue == 0) {
@@ -1515,25 +1526,36 @@ int varTemp = 0;
     _lbCurrentPeriodInfo.hidden = NO;
     _lbCurrentPeriodInfo.textAlignment = NSTextAlignmentLeft;
     
+    NSString *dateString;
+    
     switch (_reportItem) {
         case ReportItemDay:{
             NSString *year = dt.dateTitleMonthYear;
             year = [year substringFromIndex:[year length]-2];
-            NSMutableAttributedString* string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", dt.dateTitleDayMonthShort, year]];
+            
+            dateString = [NSString stringWithFormat:@"%@ %@", dt.dateTitleDayMonthShort, year];
+            
+            NSMutableAttributedString* string = [[NSMutableAttributedString alloc] initWithString:dateString];
             [string addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHex:kColorHexPlotDarkGrey] range:NSMakeRange(0, [dt.dateTitleDayMonthShort length])];
             
             _lbCurrentPeriodInfo.attributedText = string;
             break;
         }
         case ReportItemWeek:{
-            NSMutableAttributedString* string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", dt.weekMonthTitle, dt.monthTitleShort]];
+            
+            dateString = [NSString stringWithFormat:@"%@ %@", dt.weekMonthTitle, dt.monthTitleShort];
+            
+            NSMutableAttributedString* string = [[NSMutableAttributedString alloc] initWithString:dateString];
             [string addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHex:kColorHexPlotDarkGrey] range:NSMakeRange(0, [dt.weekMonthTitle length])];
             
             _lbCurrentPeriodInfo.attributedText = string;
             break;
         }
         default:{
-            NSMutableAttributedString* string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", dt.dateTitleMonthYear]];
+            
+            dateString = [NSString stringWithFormat:@"%@", dt.dateTitleMonthYear];
+            
+            NSMutableAttributedString* string = [[NSMutableAttributedString alloc] initWithString:dateString];
             [string addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHex:kColorHexPlotDarkGrey] range:NSMakeRange(0, [dt.dateTitleMonthYear length]-3)];
             
             _lbCurrentPeriodInfo.attributedText = string;
@@ -1542,7 +1564,9 @@ int varTemp = 0;
         }
     }
     
-    _lbInfoSum.text = [NSString stringWithFormat:@"%i",i_sum ];
+    NSString *sumString = [[NSString numberFormatterInteger:YES] stringFromNumber:[NSNumber numberWithInt:i_sum]];
+    
+    _lbInfoSum.text = sumString;
     
     Currency* mainCurrency = (kUser).currencyMain;
     NSMutableAttributedString* string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"0 %@", mainCurrency.title]];
@@ -1550,12 +1574,108 @@ int varTemp = 0;
     [string addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont1 size:12.0f] range:NSMakeRange(1, 1+[mainCurrency.title length])];
     
     _lbAverageSum.attributedText = string;
+    
+    
+    if(_typeY != ReportTypeYCapital)
+    {
+        [self showSmallPopoverWithPlot:plot index:index date:dateString sum:sumString];
+    }
+    else
+    {
+        int sum2 = 0;
+        if(index + 1 < _dataSource.count)
+        {
+            sum2 = [[[_dataSource objectAtIndex:index + 1] objectForKey:kReportFieldSum] intValue];
+        }
+        
+        NSString *sum2String = [[NSString numberFormatterInteger:YES] stringFromNumber:[NSNumber numberWithInt:sum2]];
+        NSString *totalString = [[NSString numberFormatterInteger:YES] stringFromNumber:[NSNumber numberWithInt:sum2 + i_sum]];
+        
+        [self showLargePopoverWithPlot:plot index:index date:dateString sum1:sumString sum2:sum2String total:totalString];
+    }
+    
     [self reloadData];
+}
+
+- (void)showSmallPopoverWithPlot:(AGCPTBarPlot *)plot index:(NSUInteger)index date:(NSString *)dateString sum:(NSString *)sumString
+{
+    NSDecimal plotPoint[2];
+    NSNumber *plotXvalue = [self numberForPlot:plot
+                                         field:CPTScatterPlotFieldX
+                                   recordIndex:index];
+    plotPoint[CPTCoordinateX] = plotXvalue.decimalValue;
+
+    NSNumber *plotYvalue = [[_dataSource objectAtIndex:index] objectForKey:kReportFieldSum];
+    plotPoint[CPTCoordinateY] = plotYvalue.decimalValue;
     
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)_chart.defaultPlotSpace;
     
+    CGPoint dataPoint = [plotSpace plotAreaViewPointForPlotPoint:plotPoint];
+    
+    dataPoint = [_chart convertPoint:dataPoint fromLayer:_chart.plotAreaFrame.plotArea];
+    
+    dataPoint = [_scrollView convertPoint:dataPoint fromView:_graphHostingView];
+    
+    CPTXYPlotSpace* space = (CPTXYPlotSpace*) _chart.defaultPlotSpace;
+    double yRange = space.yRange.lengthDouble;
+    
+    double diffRange = ABS(plotYvalue.doubleValue / yRange);
+    
+    double offset = (_graphHostingView.frame.size.height - 45) * diffRange;
+    
+    CGRect popoverFrame = CGRectMake(dataPoint.x, _graphHostingView.frame.size.height + _graphHostingView.frame.origin.y - 45 - offset, 0, 0);
+    
+    [_popoverView removeFromSuperview];
+    
+    self.popoverView = [[AGPlotPopover alloc] initWithFrame:popoverFrame date:dateString sum:sumString];
+    
+    popoverFrame = _popoverView.frame;
+    popoverFrame.origin.x -= popoverFrame.size.width / 2 - 3;
+    popoverFrame.origin.y -= popoverFrame.size.height / 2 + 3;
+    
+    _popoverView.frame = popoverFrame;
+    
+    [_scrollView addSubview:_popoverView];
+}
+
+- (void)showLargePopoverWithPlot:(AGCPTBarPlot *)plot index:(NSUInteger)index date:(NSString *)dateString sum1:(NSString *)sum1String sum2:(NSString *)sum2String total:(NSString *)totalString
+{
+    NSDecimal plotPoint[2];
+    NSNumber *plotXvalue = [self numberForPlot:plot
+                                         field:CPTScatterPlotFieldX
+                                   recordIndex:index];
+    plotPoint[CPTCoordinateX] = plotXvalue.decimalValue;
+    
+    NSNumber *plotYvalue = [self numberForPlot:plot
+                                         field:CPTScatterPlotFieldY
+                                   recordIndex:index];
+    plotPoint[CPTCoordinateY] = plotYvalue.decimalValue;
+    
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)_chart.defaultPlotSpace;
+    
+    CGPoint dataPoint = [plotSpace plotAreaViewPointForPlotPoint:plotPoint];
+    
+    dataPoint = [_chart convertPoint:dataPoint fromLayer:_chart.plotAreaFrame.plotArea];
+    
+    dataPoint = [_scrollView convertPoint:dataPoint fromView:_graphHostingView];
+    
+    CGRect popoverFrame = CGRectMake(dataPoint.x, _graphHostingView.frame.size.height + _graphHostingView.frame.origin.y + 35, 0, 0);
+    
+    [_popoverView removeFromSuperview];
+    
+    self.popoverView = [[AGPlotPopover alloc] initWithFrame:popoverFrame date:dateString sum1:sum1String sum2:sum2String total:totalString];
+    
+    popoverFrame = _popoverView.frame;
+    popoverFrame.origin.x -= popoverFrame.size.width / 2 - 5;
+    popoverFrame.origin.y -= popoverFrame.size.height / 2;
+    
+    _popoverView.frame = popoverFrame;
+    
+    [_scrollView addSubview:_popoverView];
 }
 
 - (void) notBarPressed{
+    [_popoverView removeFromSuperview];
     _index_BarSelected = -1;
     _lbPlotTitle.hidden = NO;
     _lbCurrentPeriodInfo.hidden = YES;

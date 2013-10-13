@@ -89,8 +89,6 @@
 -(BOOL) pointingDeviceDownEvent:(UIEvent *)event atPoint:(CGPoint)interactionPoint
 {
     [self reloadData];
-    NSUInteger idx   = [self dataIndexFromInteractionPoint:interactionPoint];
-    NSLog(@"IDX %d",idx);
     startTimeEvent=event.timestamp;
     return YES;
 }
