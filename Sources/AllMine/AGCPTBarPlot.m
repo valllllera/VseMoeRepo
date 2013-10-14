@@ -9,6 +9,8 @@
 #import "AGCPTBarPlot.h"
 #import "UIColor+AGExtensions.h"
 
+#import "AGAllMineDefines.h"
+
 #import "CPTGraph.h"
 #import "CPTPlotArea.h"
 #import "CPTLayer.h"
@@ -31,35 +33,48 @@
 
 -(NSUInteger)dataIndexFromInteractionPoint:(CGPoint)point
 {
-    NSUInteger idx      = NSNotFound;
     NSUInteger barCount = self.cachedDataCount;
-    NSUInteger ii       = 0;    
- 
-    while ( (ii < barCount) && (idx == NSNotFound) ) {
+    NSUInteger ii       = 0;
+    
+    while (ii < barCount) {
         CGPathRef path = [self newBarPathWithContext:NULL recordIndex:ii];
-     CGRect r =   CGPathGetBoundingBox(path);
-        r.size.height=self.bounds.size.height;
-        if (CGRectContainsPoint(r, point)) {
-            idx=ii;
+        CGRect r =   CGPathGetBoundingBox(path);
+        if(r.size.height != 0)
+        {
+            r.origin.y = 0;
+            r.size.height = self.frame.size.height;
         }
-
+        if (CGRectContainsPoint(r, point))
+        {
+            return ii;
+        }
+        
         CGPathRelease(path);
         ii++;
     }
-    return idx;
+    return NSNotFound;
 }
 
 -(BOOL) pointingDeviceUpEvent:(UIEvent *)event atPoint:(CGPoint)interactionPoint
 {
+    if([self.identifier isEqual:kPlotNeg] && self.cachedDataCount > 5)
+    {
+        return NO;
+    }
     NSTimeInterval eventTime;
-
+    
     CPTGraph *theGraph       = self.graph;
     CPTPlotArea *thePlotArea = self.plotArea;
     
     CGPoint plotAreaPoint = [theGraph convertPoint:interactionPoint toLayer:thePlotArea];
     NSUInteger idx   = [self dataIndexFromInteractionPoint:plotAreaPoint];
     
-    if ( !theGraph || !thePlotArea || self.hidden || idx==NSNotFound) {
+    if ( !theGraph || !thePlotArea || self.hidden || idx == NSNotFound) {
+        if([self.delegate respondsToSelector:@selector(barPlot:barShortPressedAtRecordIndex:)])
+        {
+            
+            [self.delegate barPlot:self barShortPressedAtRecordIndex:NSNotFound];
+        }
         return NO;
     }
     
@@ -68,18 +83,18 @@
     if (eventTime>0.2) {
         if ([self.delegate respondsToSelector:@selector(barPlot:barLongPressedAtRecordIndex:)])
         {
-         
+            
             [self.delegate barPlot:self barLongPressedAtRecordIndex:idx];
         }
-      
+        
     }
     else
     {
-       if([self.delegate respondsToSelector:@selector(barPlot:barShortPressedAtRecordIndex:)])
-       {
-          
-           [self.delegate barPlot:self barShortPressedAtRecordIndex:idx];
-       }
+        if([self.delegate respondsToSelector:@selector(barPlot:barShortPressedAtRecordIndex:)])
+        {
+            
+            [self.delegate barPlot:self barShortPressedAtRecordIndex:idx];
+        }
     }
     return YES;
 }
@@ -88,6 +103,10 @@
 
 -(BOOL) pointingDeviceDownEvent:(UIEvent *)event atPoint:(CGPoint)interactionPoint
 {
+    if([self.identifier isEqual:kPlotNeg] && self.cachedDataCount > 5)
+    {
+        return NO;
+    }
     [self reloadData];
     startTimeEvent=event.timestamp;
     return YES;
@@ -96,13 +115,13 @@
 
 
 /*- (void) barPlot:(AGCPTBarPlot *)plot barLongPressedAtRecordIndex:(NSUInteger)index
-{
-    NSLog(@"LONG pres");
-}
-- (void) barPlot:(AGCPTBarPlot *)plot barShortPressedAtRecordIndex:(NSUInteger)index
-{
-     NSLog(@"SHORT pres");
-}
+ {
+ NSLog(@"LONG pres");
+ }
+ - (void) barPlot:(AGCPTBarPlot *)plot barShortPressedAtRecordIndex:(NSUInteger)index
+ {
+ NSLog(@"SHORT pres");
+ }
  */
 
 @end

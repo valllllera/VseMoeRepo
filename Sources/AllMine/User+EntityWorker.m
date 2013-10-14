@@ -25,21 +25,21 @@ static NSString *entityName = @"User";
 + (User*) insertUserWithLogin:(NSString *)login
                      password:(NSString *)password{
     AGDBWorker* dbw = [AGDBWorker sharedWorker];
-
+    
     User* user = (User*)[NSEntityDescription insertNewObjectForEntityForName:entityName
-                                                inManagedObjectContext:dbw.managedObjectContext];
+                                                      inManagedObjectContext:dbw.managedObjectContext];
     user.login = login;
     user.password = password;
     user.dateIn = [NSDate today];
     user.hidden = [NSNumber numberWithBool:NO];
     user.syncAuto = [NSNumber numberWithBool:YES];
     user.syncViaWiFiOnly = [NSNumber numberWithBool:YES];
-
+    
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user == nil"];
     user.currencyMain = [[dbw fetchManagedObjectsWithEntityName:[Currency entityName]
-                                                     predicate:predicate
-                                               sortDescriptors:nil
-                                                         first:1] objectAtIndex:0];
+                                                      predicate:predicate
+                                                sortDescriptors:nil
+                                                          first:1] objectAtIndex:0];
     [dbw saveManagedContext];
     return user;
 }
@@ -166,7 +166,7 @@ static NSString *entityName = @"User";
         }
         return res;
     }];
-
+    
     NSMutableArray* templatesExpense = [NSMutableArray array];
     NSMutableArray* templatesTransfer = [NSMutableArray array];
     NSMutableArray* templatesIncome = [NSMutableArray array];
@@ -268,14 +268,14 @@ static NSString *entityName = @"User";
     
     AGDBWorker* dbw = [AGDBWorker sharedWorker];
     NSArray* payments = [dbw fetchManagedObjectsWithEntityName:[Payment entityName]
-                                                predicate:predicate
-                                          sortDescriptors:sortDescriptors
-                                                    first:first];
-        
+                                                     predicate:predicate
+                                               sortDescriptors:sortDescriptors
+                                                         first:first];
+    
     payments = [payments sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
         NSDate *first = [((Payment*)a).date dateWithoutTime];
         NSDate *second = [((Payment*)b).date dateWithoutTime];
-//        AGLog(@"%@ = %@", [first dateTitleFull], [second dateTitleFull]);
+        //        AGLog(@"%@ = %@", [first dateTitleFull], [second dateTitleFull]);
         NSComparisonResult res = [first compare:second];
         if (res == NSOrderedAscending) {
             res = NSOrderedDescending;
@@ -284,7 +284,7 @@ static NSString *entityName = @"User";
         }
         return res;
     }];
-
+    
     if ([payments count] == 0) {
         return [NSArray array];
     }
@@ -329,11 +329,11 @@ static NSString *entityName = @"User";
     return [num doubleValue];
 }
 -(double) balanceWithAccountGroup:(int)group{
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"finished == YES AND account.group == %d AND account.removed == NO", group];
-//    double sum = [[[self.payments filteredSetUsingPredicate:predicate] valueForKeyPath:@"@sum.sumMain"] doubleValue];
-//    predicate = [NSPredicate predicateWithFormat:@"group == %d AND removed == NO", group];
-//    sum += [[[self.accounts filteredSetUsingPredicate:predicate] valueForKeyPath:@"@sum.sumMain"] doubleValue];
-//    return sum;
+    //    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"finished == YES AND account.group == %d AND account.removed == NO", group];
+    //    double sum = [[[self.payments filteredSetUsingPredicate:predicate] valueForKeyPath:@"@sum.sumMain"] doubleValue];
+    //    predicate = [NSPredicate predicateWithFormat:@"group == %d AND removed == NO", group];
+    //    sum += [[[self.accounts filteredSetUsingPredicate:predicate] valueForKeyPath:@"@sum.sumMain"] doubleValue];
+    //    return sum;
     double sum = 0;
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"group == %d", group];
     for (Account* acc in [self.accounts filteredSetUsingPredicate:predicate]) {
@@ -537,14 +537,14 @@ static NSString *entityName = @"User";
                                   to:(NSDate*)dtTo{
     
     NSArray* sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"category" ascending:YES]];
-
+    
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"superpayment == nil AND removed == NO AND finished == YES AND user == %@ AND date >= %@ AND date < %@ AND category != nil AND category.type == %d", self, dtFrom, dtTo, typeY==ReportTypeYIn?CatTypeIncome:CatTypeExpense];
     
     AGDBWorker* dbw = [AGDBWorker sharedWorker];
     reportCategoriesPayments = [dbw fetchManagedObjectsWithEntityName:[Payment entityName]
-                                                predicate:predicate
-                                          sortDescriptors:sortDescriptors
-                                                    first:0];
+                                                            predicate:predicate
+                                                      sortDescriptors:sortDescriptors
+                                                                first:0];
     
     reportCategoriesSupercat = supercat;
     reportCategoriesResult = [NSMutableArray array];
@@ -621,13 +621,13 @@ Category* reportCategoriesSupercat;
         predicate = [NSPredicate predicateWithFormat:@"superpayment == nil AND removed == NO AND finished == YES AND user == %@ AND date >= %@ AND date < %@ AND (account == %@ OR accountAsCategory == %@)", self, dtFrom, dtTo, account, account];
     }
     
-
+    
     AGDBWorker* dbw = [AGDBWorker sharedWorker];
     NSArray* arr = [dbw fetchManagedObjectsWithEntityName:[Payment entityName]
                                                 predicate:predicate
                                           sortDescriptors:sortDescriptors
                                                     first:0];
-
+    
     NSMutableArray* result = [NSMutableArray array];
     
     if ((item == ReportItemWeek)&&(dtTo.dateComponents.weekday != 2)) {
@@ -637,26 +637,27 @@ Category* reportCategoriesSupercat;
     NSDate* from = [self reportTimeInitDate:dtFrom reportItem:item];
     NSDate* to = [self reportTimeIncrementDate:from reportItem:item];
     BOOL flag = NO;
+    double buff;
     
     for(NSDate* dtLast = [self reportTimeInitDate:dtFrom reportItem:item];
-            [self sameDate1:dtLast date2:dtTo reportItem:item] == NO;
-            dtLast = [self reportTimeIncrementDate:dtLast reportItem:item]){
+        [self sameDate1:dtLast date2:dtTo reportItem:item] == NO;
+        dtLast = [self reportTimeIncrementDate:dtLast reportItem:item]){
         if(flag)
             to = dtLast;
         double sum = 0;
         double loan = 0;
         if (typeY != ReportTypeYCapital) {
-        for(int i = 0; i < [arr count]; i++){
-            Payment* p = (Payment*)[arr objectAtIndex:i];
-            NSDate* dtPayment = [p.date dateWithoutTime];
-            if ([self sameDate1:dtLast date2:dtPayment reportItem:item]) {
-                if (account) {
-                    if (p.account == account) {
-                        sum += [p.sumMain doubleValue];
-                    }else if (p.accountAsCategory == account) {
-                        sum -= [p.sumMain doubleValue];
-                    }
-                }else{
+            for(int i = 0; i < [arr count]; i++){
+                Payment* p = (Payment*)[arr objectAtIndex:i];
+                NSDate* dtPayment = [p.date dateWithoutTime];
+                if ([self sameDate1:dtLast date2:dtPayment reportItem:item]) {
+                    if (account) {
+                        if (p.account == account) {
+                            sum += [p.sumMain doubleValue];
+                        }else if (p.accountAsCategory == account) {
+                            sum -= [p.sumMain doubleValue];
+                        }
+                    }else{
                         sum += [p.sumMain doubleValue];
                     }
                 }
@@ -671,20 +672,20 @@ Category* reportCategoriesSupercat;
                 accountDate = [dtLast monthNext];
             
             for(Account * acc in accountSet){
-                if(acc.type != [NSNumber numberWithInt:AccTypeCardCredit] && acc.group != [NSNumber numberWithInt:AccGroupDebts]){
+                if(acc.type != [NSNumber numberWithInt:AccTypeCardCredit] && acc.type != [NSNumber numberWithInt:AccTypeLoan] && acc.group != [NSNumber numberWithInt:AccGroupDebts]){
                     sum+=[acc balanceToDate:accountDate forItem:item];
                 }else{
-                    loan-= [acc balanceToDate:accountDate forItem:item];
+                    loan-=[acc balanceToDate:accountDate forItem:item];
                 }
             }
         }
         
-         if(typeY == ReportTypeYCapital){
-             [result addObject:[self dictForReportTimeDate:dtLast sum:sum reportItem:item]];
+        if(typeY == ReportTypeYCapital){
+            [result addObject:[self dictForReportTimeDate:dtLast sum:sum reportItem:item]];
             [result addObject:[self dictForReportTimeDate:dtLast sum:loan reportItem:item]];
-         }else{
-             [result addObject:[self dictForReportTimeDate:dtLast sum:sum reportItem:item]];
-         }
+        }else{
+            [result addObject:[self dictForReportTimeDate:dtLast sum:sum reportItem:item]];
+        }
         from = to;
         flag = YES;
     }
@@ -693,12 +694,12 @@ Category* reportCategoriesSupercat;
 
 -(NSDate*) reportTimeInitDate:(NSDate*)dt reportItem:(ReportItem)item{
     switch (item) {
-//        case ReportItemMonth:
-//            return dt.monthCurrent;
-//            break;
-//        case ReportItemWeek:
-//            return dt.weekCurrent;
-//            break;
+            //        case ReportItemMonth:
+            //            return dt.monthCurrent;
+            //            break;
+            //        case ReportItemWeek:
+            //            return dt.weekCurrent;
+            //            break;
         default:
             return dt;
             break;
@@ -754,13 +755,13 @@ Category* reportCategoriesSupercat;
 #warning HARDCODED STRINGS
     ////////////// ACCOUNT
     Account* acc = [Account insertAccountWithUser:self
-                                 title:@"Бумажник"
-                              currency:self.currencyMain
-                                  date:[NSDate date]
-                                 group:AccGroupAllMine
-                                  type:AccTypeCash
-                               comment:@""
-                                  save:YES
+                                            title:@"Бумажник"
+                                         currency:self.currencyMain
+                                             date:[NSDate date]
+                                            group:AccGroupAllMine
+                                             type:AccTypeCash
+                                          comment:@""
+                                             save:YES
                     ];
     
     //////////// CATEGORY INCOME
@@ -894,8 +895,8 @@ Category* reportCategoriesSupercat;
                                 type:CatTypeExpense
                             supercat:super2
                                 save:YES];
-
-
+    
+    
     
     
     // Развлечения
@@ -992,7 +993,7 @@ Category* reportCategoriesSupercat;
                                 type:CatTypeExpense
                             supercat:super5
                                 save:YES];
-       // Дети
+    // Дети
     Category* super6 = [Category insertCategoryWithUser:self
                                                   title:@"Домашние Животные"
                                                    type:CatTypeExpense
@@ -1121,7 +1122,7 @@ Category* reportCategoriesSupercat;
                                 type:CatTypeExpense
                             supercat:super9
                                 save:YES];
-
+    
     // Дом
     Category* super10 = [Category insertCategoryWithUser:self
                                                    title:@"Дети"

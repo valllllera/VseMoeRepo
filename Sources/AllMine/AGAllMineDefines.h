@@ -94,6 +94,9 @@
 #define kReportFieldTitle   @"title"
 #define kReportFieldObject  @"object"
 
+#define kPlotPos    @"plotPos"
+#define kPlotNeg    @"plotNeg"
+
 #define kTableHeaderStandardHeight 30.0f
 #define kTableCellStandardHeight 60.0f
 

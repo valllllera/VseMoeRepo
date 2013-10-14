@@ -34,9 +34,8 @@
 
 #import "AGPlotPopover.h"
 
+#import "AGAllMineDefines.h"
 
-#define kPlotPos    @"plotPos"
-#define kPlotNeg    @"plotNeg"
 
 #define kDoorAnimationTime  kSlideAnimationTime
 
@@ -363,7 +362,7 @@ int varTemp = 0;
     _startLbInfoSumFrame = _lbInfoSum.frame;
 }
 
--(void)viewWillAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated{    
     _supercat = nil;
     [_tableLastZoomedIn clear];
     [self reloadData];
@@ -937,6 +936,7 @@ int varTemp = 0;
 -(void)sgTopSelectionChanged{
     _supercat = nil;
     _typeY = [self segmentIndex];
+    
     _lbCurrentPeriodInfo.hidden = YES;
     if (!_timeButton.enabled) {
         _graphHostingView.hidden = NO;
@@ -1359,7 +1359,7 @@ int varTemp = 0;
             }
             else if(_typeY == ReportTypeYCapital && _reportItem == ReportItemDay)
             {
-                num = [NSNumber numberWithDouble:num.doubleValue / 1.6];
+                num = [NSNumber numberWithDouble:num.doubleValue / 1.75];
             }
             break;
         case CPTBarPlotFieldBarTip:
@@ -1386,6 +1386,11 @@ int varTemp = 0;
 
 - (void) barPlot:(AGCPTBarPlot *)plot barLongPressedAtRecordIndex:(NSUInteger)index
 {
+    if(index >= [_dataSource count])
+    {
+        [self notBarPressed];
+        return;
+    }
     _index_BarSelected=-1;
     _lbPlotTitle.hidden=NO;
     _lbCurrentPeriodInfo.hidden = YES;
@@ -1490,24 +1495,10 @@ int varTemp = 0;
     
 }
 - (void) barPlot:(AGCPTBarPlot *)plot barShortPressedAtRecordIndex:(NSUInteger)index{
-    if(_typeY == ReportTypeYCapital && (_reportItem == ReportItemWeek || _reportItem == ReportItemDay))
-    {
-        index -= 2;
-    }
-    else if(_typeY == ReportTypeYCapital && _reportItem == ReportItemMonth)
-    {
-        index -= 1;
-    }
-    if(_typeY == ReportTypeYCapital)
-    {
-        if(index % 2 == 1)
-        {
-            index += 1;
-        }
-    }
     
     if(index >= [_dataSource count])
     {
+        [self notBarPressed];
         return;
     }
     
