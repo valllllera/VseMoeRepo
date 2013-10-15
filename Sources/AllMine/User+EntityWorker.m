@@ -637,7 +637,6 @@ Category* reportCategoriesSupercat;
     NSDate* from = [self reportTimeInitDate:dtFrom reportItem:item];
     NSDate* to = [self reportTimeIncrementDate:from reportItem:item];
     BOOL flag = NO;
-    double buff;
     
     for(NSDate* dtLast = [self reportTimeInitDate:dtFrom reportItem:item];
         [self sameDate1:dtLast date2:dtTo reportItem:item] == NO;

@@ -106,10 +106,6 @@
 		1AAF14F6176F4122000510EC /* button-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAF14F2176F4122000510EC /* button-info@2x.png */; };
 		1AAF14F917703787000510EC /* heading.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAF14F717703787000510EC /* heading.png */; };
 		1AAF14FA17703787000510EC /* heading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAF14F817703787000510EC /* heading@2x.png */; };
-		1AAFA1781709D23E006C9D22 /* Flurry.h in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFA1761709D23E006C9D22 /* Flurry.h */; };
-		1AAFA1791709D23E006C9D22 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AAFA1771709D23E006C9D22 /* libFlurry.a */; };
-		1AAFA1831709D861006C9D22 /* FlurryAds.h in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFA1821709D861006C9D22 /* FlurryAds.h */; };
-		1AAFA1851709D996006C9D22 /* FlurryAdDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFA1841709D996006C9D22 /* FlurryAdDelegate.h */; };
 		1AF0A87317708E0B001F819F /* Checkboxes-norm.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF0A86F17708E0B001F819F /* Checkboxes-norm.png */; };
 		1AF0A87417708E0B001F819F /* Checkboxes-norm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF0A87017708E0B001F819F /* Checkboxes-norm@2x.png */; };
 		1AF0A87517708E0B001F819F /* Checkboxes-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF0A87117708E0B001F819F /* Checkboxes-pressed.png */; };
@@ -462,6 +458,10 @@
 		D5F64201180A983F000DBCE0 /* income_expenses_graf.png in Resources */ = {isa = PBXBuildFile; fileRef = D5F641FD180A983F000DBCE0 /* income_expenses_graf.png */; };
 		D5F64202180A983F000DBCE0 /* income_expenses_graf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5F641FE180A983F000DBCE0 /* income_expenses_graf@2x.png */; };
 		D5F64205180AAA34000DBCE0 /* AGPlotPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = D5F64204180AAA33000DBCE0 /* AGPlotPopover.m */; };
+		D5F64208180D98D8000DBCE0 /* libFlurry_4.2.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5F64207180D98D8000DBCE0 /* libFlurry_4.2.4.a */; };
+		D5F64210180D9B10000DBCE0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5F6420F180D9B10000DBCE0 /* Security.framework */; };
+		D5F64214180DA981000DBCE0 /* AGSettingsSubscribeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5F64212180DA981000DBCE0 /* AGSettingsSubscribeController.m */; };
+		D5F64215180DA981000DBCE0 /* AGSettingsSubscribeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F64213180DA981000DBCE0 /* AGSettingsSubscribeController.xib */; };
 		F6009AB71786A9C00072BA42 /* MainMenuCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6009AB61786A9C00072BA42 /* MainMenuCellView.xib */; };
 		F6009ABE1786C8680072BA42 /* cell-split-pressed-end.png in Resources */ = {isa = PBXBuildFile; fileRef = F6009AB81786C8670072BA42 /* cell-split-pressed-end.png */; };
 		F6009ABF1786C8680072BA42 /* cell-split-pressed-end@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F6009AB91786C8670072BA42 /* cell-split-pressed-end@2x.png */; };
@@ -683,10 +683,6 @@
 		1AAF14F2176F4122000510EC /* button-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-info@2x.png"; sourceTree = "<group>"; };
 		1AAF14F717703787000510EC /* heading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heading.png; sourceTree = "<group>"; };
 		1AAF14F817703787000510EC /* heading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heading@2x.png"; sourceTree = "<group>"; };
-		1AAFA1761709D23E006C9D22 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = Flurry.h; sourceTree = "<group>"; };
-		1AAFA1771709D23E006C9D22 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
-		1AAFA1821709D861006C9D22 /* FlurryAds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlurryAds.h; path = AllMine/FlurryAds.h; sourceTree = SOURCE_ROOT; };
-		1AAFA1841709D996006C9D22 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlurryAdDelegate.h; path = ../../FlurryAdDelegate.h; sourceTree = "<group>"; };
 		1AF0A86F17708E0B001F819F /* Checkboxes-norm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkboxes-norm.png"; sourceTree = "<group>"; };
 		1AF0A87017708E0B001F819F /* Checkboxes-norm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkboxes-norm@2x.png"; sourceTree = "<group>"; };
 		1AF0A87117708E0B001F819F /* Checkboxes-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkboxes-pressed.png"; sourceTree = "<group>"; };
@@ -1184,6 +1180,12 @@
 		D5F641FE180A983F000DBCE0 /* income_expenses_graf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "income_expenses_graf@2x.png"; sourceTree = "<group>"; };
 		D5F64203180AAA33000DBCE0 /* AGPlotPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGPlotPopover.h; sourceTree = "<group>"; };
 		D5F64204180AAA33000DBCE0 /* AGPlotPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPlotPopover.m; sourceTree = "<group>"; };
+		D5F64206180D98D8000DBCE0 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		D5F64207180D98D8000DBCE0 /* libFlurry_4.2.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.2.4.a; sourceTree = "<group>"; };
+		D5F6420F180D9B10000DBCE0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		D5F64211180DA981000DBCE0 /* AGSettingsSubscribeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGSettingsSubscribeController.h; sourceTree = "<group>"; };
+		D5F64212180DA981000DBCE0 /* AGSettingsSubscribeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGSettingsSubscribeController.m; sourceTree = "<group>"; };
+		D5F64213180DA981000DBCE0 /* AGSettingsSubscribeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGSettingsSubscribeController.xib; sourceTree = "<group>"; };
 		F6009AB61786A9C00072BA42 /* MainMenuCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenuCellView.xib; sourceTree = "<group>"; };
 		F6009AB81786C8670072BA42 /* cell-split-pressed-end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-split-pressed-end.png"; sourceTree = "<group>"; };
 		F6009AB91786C8670072BA42 /* cell-split-pressed-end@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-split-pressed-end@2x.png"; sourceTree = "<group>"; };
@@ -1298,6 +1300,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5F64210180D9B10000DBCE0 /* Security.framework in Frameworks */,
 				316A07571663A6AF001641F7 /* SystemConfiguration.framework in Frameworks */,
 				BAEC316A1648F42C007846B6 /* QuartzCore.framework in Frameworks */,
 				BA33D13916413947005582CA /* CoreData.framework in Frameworks */,
@@ -1305,7 +1308,7 @@
 				3178445B16402D4A00B62593 /* Foundation.framework in Frameworks */,
 				3178445D16402D4A00B62593 /* CoreGraphics.framework in Frameworks */,
 				BA32FEA9167609C70044AE68 /* libCorePlot-CocoaTouch.a in Frameworks */,
-				1AAFA1791709D23E006C9D22 /* libFlurry.a in Frameworks */,
+				D5F64208180D98D8000DBCE0 /* libFlurry_4.2.4.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1368,10 +1371,8 @@
 		1AAFA1751709D23E006C9D22 /* Flurry */ = {
 			isa = PBXGroup;
 			children = (
-				1AAFA1841709D996006C9D22 /* FlurryAdDelegate.h */,
-				1AAFA1821709D861006C9D22 /* FlurryAds.h */,
-				1AAFA1761709D23E006C9D22 /* Flurry.h */,
-				1AAFA1771709D23E006C9D22 /* libFlurry.a */,
+				D5F64206180D98D8000DBCE0 /* Flurry.h */,
+				D5F64207180D98D8000DBCE0 /* libFlurry_4.2.4.a */,
 			);
 			name = Flurry;
 			path = ../AllMine/Flurry;
@@ -1407,6 +1408,7 @@
 		3178445716402D4A00B62593 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D5F6420F180D9B10000DBCE0 /* Security.framework */,
 				316A07501663A671001641F7 /* CFNetwork.framework */,
 				316A07561663A6AF001641F7 /* SystemConfiguration.framework */,
 				BA33D13816413947005582CA /* CoreData.framework */,
@@ -1536,6 +1538,8 @@
 				BA5DDB0316DDFBAF00178616 /* AGSettingsCategoryParentSelectController.m */,
 				D56795041801E03F00B10D52 /* AGSettingsPinController.h */,
 				D56795051801E03F00B10D52 /* AGSettingsPinController.m */,
+				D5F64211180DA981000DBCE0 /* AGSettingsSubscribeController.h */,
+				D5F64212180DA981000DBCE0 /* AGSettingsSubscribeController.m */,
 			);
 			name = settings;
 			sourceTree = "<group>";
@@ -2265,6 +2269,7 @@
 				BA00FFAC164B90F000CD3966 /* AGSettingsCategoriesView.xib */,
 				BA829B6F164BC63300CA763A /* AGSettingsCategoryEditView.xib */,
 				D56795061801E04000B10D52 /* AGSettingsPinController.xib */,
+				D5F64213180DA981000DBCE0 /* AGSettingsSubscribeController.xib */,
 			);
 			name = settings;
 			sourceTree = "<group>";
@@ -2893,6 +2898,7 @@
 				D5F64200180A983F000DBCE0 /* kapital_graf.png in Resources */,
 				D5F64201180A983F000DBCE0 /* income_expenses_graf.png in Resources */,
 				D5F64202180A983F000DBCE0 /* income_expenses_graf@2x.png in Resources */,
+				D5F64215180DA981000DBCE0 /* AGSettingsSubscribeController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2971,9 +2977,6 @@
 				BACE8B1C16E8A8F300DC1C83 /* AGPaymentSplitCell.m in Sources */,
 				1A5134CC1701673D0003DF7E /* AGCPTBarPlot.h in Sources */,
 				1A5134CD1701673D0003DF7E /* AGCPTBarPlot.m in Sources */,
-				1AAFA1781709D23E006C9D22 /* Flurry.h in Sources */,
-				1AAFA1831709D861006C9D22 /* FlurryAds.h in Sources */,
-				1AAFA1851709D996006C9D22 /* FlurryAdDelegate.h in Sources */,
 				08DE09871772EE7F00885428 /* NSString+ReplacePointWithComma.m in Sources */,
 				0863B958177C275E0056578D /* RequestManager.m in Sources */,
 				0863B96D177C27AB0056578D /* AFHTTPClient.m in Sources */,
@@ -2991,6 +2994,7 @@
 				F684FF781786A21200AB89A6 /* MainMenuCellController.m in Sources */,
 				D56795071801E04100B10D52 /* AGSettingsPinController.m in Sources */,
 				D5F64205180AAA34000DBCE0 /* AGPlotPopover.m in Sources */,
+				D5F64214180DA981000DBCE0 /* AGSettingsSubscribeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

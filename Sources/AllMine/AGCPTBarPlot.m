@@ -16,13 +16,13 @@
 #import "CPTLayer.h"
 #import "CPTPlot.h"
 
+static NSTimeInterval startTimeEvent = 0;
+
 @interface AGCPTBarPlot ()
 -(CGMutablePathRef) newBarPathWithContext:(id) ctx recordIndex:(NSUInteger) i;
 @end
 
 @implementation AGCPTBarPlot
-
-@synthesize startTimeEvent;
 
 +(AGCPTBarPlot *)tubularBarPlotWithColor:(CPTColor *)color horizontalBars:(BOOL)horizontal {
     AGCPTBarPlot *barPlot =[[AGCPTBarPlot alloc] init];
@@ -57,7 +57,7 @@
 
 -(BOOL) pointingDeviceUpEvent:(UIEvent *)event atPoint:(CGPoint)interactionPoint
 {
-    if([self.identifier isEqual:kPlotNeg] && self.cachedDataCount > 5)
+    if([self.identifier isEqual:kPlotNeg] && self.cachedDataCount > 7)
     {
         return NO;
     }
@@ -72,12 +72,10 @@
     if ( !theGraph || !thePlotArea || self.hidden || idx == NSNotFound) {
         if([self.delegate respondsToSelector:@selector(barPlot:barShortPressedAtRecordIndex:)])
         {
-            
             [self.delegate barPlot:self barShortPressedAtRecordIndex:NSNotFound];
         }
         return NO;
     }
-    
     
     eventTime=event.timestamp-startTimeEvent;
     if (eventTime>0.2) {
@@ -103,7 +101,7 @@
 
 -(BOOL) pointingDeviceDownEvent:(UIEvent *)event atPoint:(CGPoint)interactionPoint
 {
-    if([self.identifier isEqual:kPlotNeg] && self.cachedDataCount > 5)
+    if([self.identifier isEqual:kPlotNeg] && self.cachedDataCount > 7)
     {
         return NO;
     }

@@ -25,7 +25,6 @@
 
 @property(nonatomic, strong) id<AGCPTBarPlotDelegate> delegate;
 
-@property (nonatomic,assign) NSTimeInterval startTimeEvent;
 @property (nonatomic,assign) CGPoint bufPoint;
 
 
