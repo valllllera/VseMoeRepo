@@ -132,6 +132,8 @@
 
 @property (strong, nonatomic) AGPlotPopover *popoverView;
 
+@property (strong, nonatomic) NSTimer *timer;
+
 @end
 
 
@@ -152,6 +154,10 @@ int varTemp = 0;
         _index_BarSelected=-1;
     }
     return self;
+}
+- (void)dealloc
+{
+    [_timer invalidate];
 }
 - (void)viewDidLoad
 {
@@ -462,7 +468,7 @@ int varTemp = 0;
     _timeButton.enabled = NO;
     _categoryButton.enabled = YES;
     
-    [_popoverView removeFromSuperview];
+    [self hidePopover];
     
 }
 
@@ -517,7 +523,7 @@ int varTemp = 0;
     _timeButton.enabled = YES;
     _categoryButton.enabled = NO;
     
-    [_popoverView removeFromSuperview];
+    [self hidePopover];
     
 }
 
@@ -956,7 +962,7 @@ int varTemp = 0;
     
     _index_BarSelected = -1;
     //[self sgBottomSelectionChanged];
-    [_popoverView removeFromSuperview];
+    [self hidePopover];
     [self reloadData];
 }
 
@@ -1495,7 +1501,6 @@ int varTemp = 0;
     
 }
 - (void) barPlot:(AGCPTBarPlot *)plot barShortPressedAtRecordIndex:(NSUInteger)index{
-    
     if(index >= [_dataSource count])
     {
         [self notBarPressed];
@@ -1596,7 +1601,9 @@ int varTemp = 0;
                                    recordIndex:index];
     plotPoint[CPTCoordinateX] = plotXvalue.decimalValue;
 
-    NSNumber *plotYvalue = [[_dataSource objectAtIndex:index] objectForKey:kReportFieldSum];
+    NSNumber *plotYvalue = [self numberForPlot:plot
+                                         field:CPTScatterPlotFieldY
+                                   recordIndex:index];
     plotPoint[CPTCoordinateY] = plotYvalue.decimalValue;
     
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)_chart.defaultPlotSpace;
@@ -1607,16 +1614,29 @@ int varTemp = 0;
     
     dataPoint = [_scrollView convertPoint:dataPoint fromView:_graphHostingView];
     
-    CPTXYPlotSpace* space = (CPTXYPlotSpace*) _chart.defaultPlotSpace;
-    double yRange = space.yRange.lengthDouble;
+    double yRange = plotSpace.yRange.lengthDouble;
     
     double diffRange = ABS(plotYvalue.doubleValue / yRange);
     
     double offset = (_graphHostingView.frame.size.height - 45) * diffRange;
     
-    CGRect popoverFrame = CGRectMake(dataPoint.x, _graphHostingView.frame.size.height + _graphHostingView.frame.origin.y - 45 - offset, 0, 0);
+    CGRect popoverFrame;
     
-    [_popoverView removeFromSuperview];
+    if(_typeY != ReportTypeYIn)
+    {
+        popoverFrame = CGRectMake(dataPoint.x, _graphHostingView.frame.size.height + _graphHostingView.frame.origin.y - 45 - offset, 0, 0);
+    }
+    else
+    {
+        double xRange = plotSpace.xRange.lengthDouble;
+        diffRange = ABS(plotXvalue.doubleValue / xRange);
+        
+        double xOffset = (_graphHostingView.frame.size.width - 100) * diffRange + 95;
+        
+        popoverFrame = CGRectMake(xOffset, _graphHostingView.frame.size.height + _graphHostingView.frame.origin.y - 45 - offset, 0, 0);
+    }
+    
+    [self hidePopover];
     
     self.popoverView = [[AGPlotPopover alloc] initWithFrame:popoverFrame date:dateString sum:sumString];
     
@@ -1627,6 +1647,9 @@ int varTemp = 0;
     _popoverView.frame = popoverFrame;
     
     [_scrollView addSubview:_popoverView];
+    
+    [_timer invalidate];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(hidePopover) userInfo:nil repeats:NO];
 }
 
 - (void)showLargePopoverWithPlot:(AGCPTBarPlot *)plot index:(NSUInteger)index date:(NSString *)dateString sum1:(NSString *)sum1String sum2:(NSString *)sum2String total:(NSString *)totalString
@@ -1652,7 +1675,7 @@ int varTemp = 0;
     
     CGRect popoverFrame = CGRectMake(dataPoint.x, _graphHostingView.frame.size.height + _graphHostingView.frame.origin.y + 35, 0, 0);
     
-    [_popoverView removeFromSuperview];
+    [self hidePopover];
     
     self.popoverView = [[AGPlotPopover alloc] initWithFrame:popoverFrame date:dateString sum1:sum1String sum2:sum2String total:totalString];
     
@@ -1663,14 +1686,22 @@ int varTemp = 0;
     _popoverView.frame = popoverFrame;
     
     [_scrollView addSubview:_popoverView];
+    
+    [_timer invalidate];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(hidePopover) userInfo:nil repeats:NO];
 }
 
 - (void) notBarPressed{
-    [_popoverView removeFromSuperview];
+    [self hidePopover];
     _index_BarSelected = -1;
     _lbPlotTitle.hidden = NO;
     _lbCurrentPeriodInfo.hidden = YES;
     [self reloadData];
+}
+
+- (void)hidePopover
+{
+    [_popoverView removeFromSuperview];
 }
 
 #pragma mark - AGPlotTableViewCellDelegate

@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "AGKeyboardController.h"
 #import "Flurry.h"
-#import "FlurryAds.h"
-#import "FlurryAdDelegate.h"
 #import "Reachability.h"
 
 

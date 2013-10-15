@@ -46,10 +46,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
- 
+    
     // Uncomment the following line to preserve selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
- 
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.tableView.backgroundColor = [UIColor clearColor];
@@ -110,27 +110,38 @@
 {
     return [data sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *obj1, NSDictionary *obj2) {
         
-        if(ABS([[obj1 objectForKey:kReportFieldSum] doubleValue]) > ABS([[obj2 objectForKey:kReportFieldSum] doubleValue]))
+        if(self.cellStyle == AGPlotUnSigned)
         {
-            return NSOrderedAscending;
+            if(ABS([[obj1 objectForKey:kReportFieldSum] doubleValue]) > ABS([[obj2 objectForKey:kReportFieldSum] doubleValue]))
+            {
+                return NSOrderedAscending;
+            }
+            return NSOrderedDescending;
         }
-        return NSOrderedDescending;
+        else
+        {
+            if([[obj1 objectForKey:kReportFieldSum] doubleValue] > [[obj2 objectForKey:kReportFieldSum] doubleValue])
+            {
+                return NSOrderedAscending;
+            }
+            return NSOrderedDescending;
+        }
         
     }];
 }
 
 - (void) drawBackground{
-//    UIGraphicsBeginImageContext(self.tableView.frame.size);
+    //    UIGraphicsBeginImageContext(self.tableView.frame.size);
     CGRect frame = self.tableView.frame;
     double scale = [[UIScreen mainScreen] scale];
     UIGraphicsBeginImageContext(CGSizeMake(frame.size.width * scale, frame.size.height * scale));
-
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
-
+    
     double interval = 1;
     float tmp = _sumRange;
     while (((float)(tmp /= 10)) > 2.2) {
-            interval *= 10;
+        interval *= 10;
     }
     interval *= _dx;
     
@@ -141,14 +152,14 @@
         CGContextSetLineWidth(context, 0.5);
         
         CGRect rect = self.tableView.frame;
-//        double yTop = 10;
-//        double yBottom = rect.size.height - 10;
+        //        double yTop = 10;
+        //        double yBottom = rect.size.height - 10;
         double yTop = 0;
         double yBottom = rect.size.height;
         double xLeft = 0;
         double xRight=0;
         if (_cellStyle==AGPlotSigned) {
-             xRight= rect.size.width;
+            xRight= rect.size.width;
         }
         else
         {
@@ -170,7 +181,7 @@
             x -= interval;
         }
         CGContextStrokePath(context);
-
+        
         CGContextSetStrokeColorWithColor(context, [[UIColor colorWithHex:kColorHexGray] CGColor]);
         x = _pointZeroX + interval/2;
         while (x < xRight) {
@@ -191,7 +202,7 @@
     }
     
     UIGraphicsEndImageContext();
-
+    
 }
 
 #pragma mark - Table view data source
@@ -221,7 +232,7 @@
         cell.frame = frame;
         cell.delegate = _delegate;
     }
-
+    
     NSDictionary* dict = [_data objectAtIndex:indexPath.row];
     
     double heightForRow = [self tableView:tableView heightForRowAtIndexPath:indexPath];
@@ -260,11 +271,11 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     /*double height = tableView.frame.size.height;
-    int num = [self tableView:tableView numberOfRowsInSection:indexPath.section];
-    if (height > 44.0f*num) {
-        self.tableView.scrollEnabled = NO;
-        return height / num;
-    }*/
+     int num = [self tableView:tableView numberOfRowsInSection:indexPath.section];
+     if (height > 44.0f*num) {
+     self.tableView.scrollEnabled = NO;
+     return height / num;
+     }*/
     self.tableView.scrollEnabled = YES;
     return 40.0f;
 }
@@ -274,7 +285,7 @@
 //-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
 //    UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(6, 0, 300, 22)];
 //    footerView.backgroundColor = [UIColor clearColor];
-//    
+//
 //    UILabel* lbTotal = [[UILabel alloc] initWithFrame:footerView.frame];
 //    lbTotal.backgroundColor = [UIColor clearColor];
 //    lbTotal.textColor = [UIColor colorWithHex:kColorHexWhite];
@@ -282,7 +293,7 @@
 //    lbTotal.text = NSLocalizedString(@"Total", @"");
 //    lbTotal.textAlignment = NSTextAlignmentLeft;
 //    [footerView addSubview:lbTotal];
-//    
+//
 //    UILabel* lbSum = [[UILabel alloc] initWithFrame:footerView.frame];
 //    lbSum.backgroundColor = [UIColor clearColor];
 //    lbSum.textColor = [UIColor colorWithHex:kColorHexWhite];
@@ -290,7 +301,7 @@
 //    lbSum.text = [NSString stringWithFormat:@"%.2f", self.sumTotal];
 //    lbSum.textAlignment = NSTextAlignmentRight;
 //    [footerView addSubview:lbSum];
-//    
+//
 //    UIView* finalView = [[UIView alloc] initWithFrame:CGRectZero];
 //    [finalView addSubview:footerView];
 //    return finalView;
