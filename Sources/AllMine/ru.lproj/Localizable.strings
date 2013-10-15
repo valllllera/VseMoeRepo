@@ -151,7 +151,7 @@
 
 //  settings categories
 "SettingsCategoriesRemoveDialog" = "Вы действительно хотите удалить";
-"SettingsCategoriesCategories" = "Категории";
+"SettingsCategoriesCategories" = "Выбрать";
 "SettingsCategoriesTransfer" = "Переместить";
 
 //  account edit

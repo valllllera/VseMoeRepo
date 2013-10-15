@@ -284,6 +284,7 @@
                         cell.textLabel.textColor = [UIColor colorWithHex:kColorHexGray];
                         cell.textLabel.backgroundColor=[UIColor clearColor];
                         cell.textLabel.text = NSLocalizedString(@"PaymentEditFrom", @"");
+                        
                     }else{
                         cell.textLabel.text = _account.title;
                         cell.textLabel.backgroundColor=[UIColor clearColor];
