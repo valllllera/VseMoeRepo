@@ -16,6 +16,7 @@
 #import "AGSettingsTemplatesController.h"
 #import "AGSettingsAboutController.h"
 #import "AGSettingsCategoriesController.h"
+#import "AGSettingsSubscribeController.h"
 
 @interface AGSettingsController ()
 @property(nonatomic, retain) IBOutlet UITableView* tvMenu;
@@ -98,7 +99,7 @@
 
 #pragma mark - UITableViewDatasource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 8;
+    return 9;
 }
 
 
@@ -137,6 +138,16 @@
     UIImage *img;
     switch (indexPath.row) {
         case 0:
+            lb.text = NSLocalizedString(@"SettingsGoSubscribe", @"");
+            img=[UIImage imageNamed:@"cloud_subs"];
+            CGSize imgSize = [[UIImage imageNamed:@"settings-main"] size];
+            float koef = imgSize.width / img.size.width;
+            imageView.frame=CGRectMake(22, 17, imgSize.width, img.size.height * koef);
+            imageView.image = img;
+            imageView.highlightedImage=[UIImage imageNamed:@"cloud_subs"];
+            [cell.contentView addSubview:imageView];
+            break;
+        case 1:
             lb.text = NSLocalizedString(@"SettingsMain", @"");
             img=[UIImage imageNamed:@"settings-main"];
             imageView.frame=CGRectMake(22, 14, img.size.width, img.size.height);
@@ -144,7 +155,7 @@
             imageView.highlightedImage=[UIImage imageNamed:@"settings-main-pressed"];
             [cell.contentView addSubview:imageView];
             break;
-        case 1:
+        case 2:
             lb.text = NSLocalizedString(@"SettingsMail", @"");
             img=[UIImage imageNamed:@"settings-mail"];
             imageView.frame=CGRectMake(19, 14, img.size.width, img.size.height);
@@ -152,7 +163,7 @@
             imageView.highlightedImage=[UIImage imageNamed:@"settings-mail-pressed"];
             [cell.contentView addSubview:imageView];
             break;
-        case 2:
+        case 3:
             lb.text = NSLocalizedString(@"SettingsCurrency", @"");
             img=[UIImage imageNamed:@"settings-currency"];
             imageView.frame=CGRectMake(21, 12, img.size.width, img.size.height);
@@ -160,7 +171,7 @@
             imageView.highlightedImage=[UIImage imageNamed:@"settings-currency-pressed"];
             [cell.contentView addSubview:imageView];
             break;
-        case 3:
+        case 4:
             lb.text = NSLocalizedString(@"SettingsSync", @"");
             img=[UIImage imageNamed:@"settings-sync"];
             imageView.frame=CGRectMake(21, 11, img.size.width, img.size.height);
@@ -168,7 +179,7 @@
             imageView.highlightedImage=[UIImage imageNamed:@"settings-sync-pressed"];
             [cell.contentView addSubview:imageView];
             break;
-        case 4:
+        case 5:
             lb.text = NSLocalizedString(@"SettingsCategories", @"");
             img=[UIImage imageNamed:@"settings-categories"];
             imageView.frame=CGRectMake(21, 12, img.size.width, img.size.height);
@@ -176,7 +187,7 @@
             imageView.highlightedImage=[UIImage imageNamed:@"settings-categories-pressed"];
             [cell.contentView addSubview:imageView];
             break;
-        case 5:
+        case 6:
             lb.text = NSLocalizedString(@"SettingsFavourites", @"");
             img=[UIImage imageNamed:@"settings-favourites"];
             imageView.frame=CGRectMake(21, 11, img.size.width, img.size.height);
@@ -184,7 +195,7 @@
             imageView.highlightedImage=[UIImage imageNamed:@"settings-favourites-pressed"];
             [cell.contentView addSubview:imageView];
             break;
-        case 6:
+        case 7:
             lb.text = NSLocalizedString(@"SettingsAbout", @"");
             img=[UIImage imageNamed:@"settings-about"];
             imageView.frame=CGRectMake(24, 10, img.size.width, img.size.height);
@@ -192,7 +203,7 @@
             imageView.highlightedImage=[UIImage imageNamed:@"settings-about-pressed"];
             [cell.contentView addSubview:imageView];
             break;
-        case 7:
+        case 8:
             lb.text = NSLocalizedString(@"SettingsExit", @"");
             img=[UIImage imageNamed:@"settings-exit"];
             imageView.frame=CGRectMake(24, 14, img.size.width, img.size.height);
@@ -235,42 +246,47 @@ changeAccessoryArrowForCell:cell];
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
         case 0:{
-            AGSettingsMainController* ctl = [[AGSettingsMainController alloc] initWithNibName:@"AGSettingsMainView" bundle:nil];
+            AGSettingsSubscribeController* ctl = [[AGSettingsSubscribeController alloc] initWithNibName:@"AGSettingsSubscribeController" bundle:nil];
             [self.navigationController pushViewController:ctl animated:YES];
             break;
         }
         case 1:{
-            AGSettingsMailController* ctl = [[AGSettingsMailController alloc] initWithNibName:@"AGSettingsMailView" bundle:nil];
+            AGSettingsMainController* ctl = [[AGSettingsMainController alloc] initWithNibName:@"AGSettingsMainView" bundle:nil];
             [self.navigationController pushViewController:ctl animated:YES];
             break;
         }
         case 2:{
-            AGSettingsCurrencyController* ctl = [[AGSettingsCurrencyController alloc]initWithNibName:@"AGSettingsCurrencyView" bundle:nil];
+            AGSettingsMailController* ctl = [[AGSettingsMailController alloc] initWithNibName:@"AGSettingsMailView" bundle:nil];
             [self.navigationController pushViewController:ctl animated:YES];
             break;
         }
         case 3:{
-            AGSettingsSyncController* ctl = [[AGSettingsSyncController alloc] initWithNibName:@"AGSettingsSyncView" bundle:nil];
+            AGSettingsCurrencyController* ctl = [[AGSettingsCurrencyController alloc]initWithNibName:@"AGSettingsCurrencyView" bundle:nil];
             [self.navigationController pushViewController:ctl animated:YES];
             break;
         }
         case 4:{
+            AGSettingsSyncController* ctl = [[AGSettingsSyncController alloc] initWithNibName:@"AGSettingsSyncView" bundle:nil];
+            [self.navigationController pushViewController:ctl animated:YES];
+            break;
+        }
+        case 5:{
             AGSettingsCategoriesController* ctl = [[AGSettingsCategoriesController alloc] initWithNibName:@"AGSettingsCategoriesView" bundle:nil];
             ctl.category = nil;
             [self.navigationController pushViewController:ctl animated:YES];
             break;
         }
-        case 5:{
+        case 6:{
             AGSettingsTemplatesController* ctl = [[AGSettingsTemplatesController alloc] initWithNibName:@"AGSettingsTemplatesView" bundle:nil];
             [self.navigationController pushViewController:ctl animated:YES];
             break;
         }
-        case 6:{
+        case 7:{
             AGSettingsAboutController* ctl = [[AGSettingsAboutController alloc] initWithNibName:@"AGSettingsAboutView" bundle:nil];
             [self.navigationController pushViewController:ctl animated:YES];
             break;
         }
-        case 7:{
+        case 8:{
             exit(0);
             break;
         }
@@ -281,9 +297,9 @@ changeAccessoryArrowForCell:cell];
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (isIphoneRetina4) {
-        return 72.0f;
+        return 64.0f;
     }else{
-        return 52.0f;
+        return 47.0f;
     }
 }
 

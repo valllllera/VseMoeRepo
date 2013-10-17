@@ -99,6 +99,9 @@
 
 //  settings menu
 "Settings" = "Настройки";
+"SettingsSubscribe" = "Подписка";
+"SettingsGoSubscribe" = "Перейти на подписку";
+"SettingsAgreement" = "Соглашение";
 "SettingsMain" = "Основные";
 "SettingsMail" = "Почта и Пароль";
 "SettingsCurrency" = "Валюты";

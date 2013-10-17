@@ -462,6 +462,8 @@
 		D5F64210180D9B10000DBCE0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5F6420F180D9B10000DBCE0 /* Security.framework */; };
 		D5F64214180DA981000DBCE0 /* AGSettingsSubscribeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5F64212180DA981000DBCE0 /* AGSettingsSubscribeController.m */; };
 		D5F64215180DA981000DBCE0 /* AGSettingsSubscribeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F64213180DA981000DBCE0 /* AGSettingsSubscribeController.xib */; };
+		D5F6421918104801000DBCE0 /* AGSettingsAgreementController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5F6421718104801000DBCE0 /* AGSettingsAgreementController.m */; };
+		D5F6421A18104801000DBCE0 /* AGSettingsAgreementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F6421818104801000DBCE0 /* AGSettingsAgreementController.xib */; };
 		F6009AB71786A9C00072BA42 /* MainMenuCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6009AB61786A9C00072BA42 /* MainMenuCellView.xib */; };
 		F6009ABE1786C8680072BA42 /* cell-split-pressed-end.png in Resources */ = {isa = PBXBuildFile; fileRef = F6009AB81786C8670072BA42 /* cell-split-pressed-end.png */; };
 		F6009ABF1786C8680072BA42 /* cell-split-pressed-end@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F6009AB91786C8670072BA42 /* cell-split-pressed-end@2x.png */; };
@@ -1196,6 +1198,9 @@
 		D5F64211180DA981000DBCE0 /* AGSettingsSubscribeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGSettingsSubscribeController.h; sourceTree = "<group>"; };
 		D5F64212180DA981000DBCE0 /* AGSettingsSubscribeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGSettingsSubscribeController.m; sourceTree = "<group>"; };
 		D5F64213180DA981000DBCE0 /* AGSettingsSubscribeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGSettingsSubscribeController.xib; sourceTree = "<group>"; };
+		D5F6421618104801000DBCE0 /* AGSettingsAgreementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGSettingsAgreementController.h; sourceTree = "<group>"; };
+		D5F6421718104801000DBCE0 /* AGSettingsAgreementController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGSettingsAgreementController.m; sourceTree = "<group>"; };
+		D5F6421818104801000DBCE0 /* AGSettingsAgreementController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGSettingsAgreementController.xib; sourceTree = "<group>"; };
 		F6009AB61786A9C00072BA42 /* MainMenuCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenuCellView.xib; sourceTree = "<group>"; };
 		F6009AB81786C8670072BA42 /* cell-split-pressed-end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-split-pressed-end.png"; sourceTree = "<group>"; };
 		F6009AB91786C8670072BA42 /* cell-split-pressed-end@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-split-pressed-end@2x.png"; sourceTree = "<group>"; };
@@ -1560,6 +1565,8 @@
 				D56795051801E03F00B10D52 /* AGSettingsPinController.m */,
 				D5F64211180DA981000DBCE0 /* AGSettingsSubscribeController.h */,
 				D5F64212180DA981000DBCE0 /* AGSettingsSubscribeController.m */,
+				D5F6421618104801000DBCE0 /* AGSettingsAgreementController.h */,
+				D5F6421718104801000DBCE0 /* AGSettingsAgreementController.m */,
 			);
 			name = settings;
 			sourceTree = "<group>";
@@ -2300,6 +2307,7 @@
 				BA829B6F164BC63300CA763A /* AGSettingsCategoryEditView.xib */,
 				D56795061801E04000B10D52 /* AGSettingsPinController.xib */,
 				D5F64213180DA981000DBCE0 /* AGSettingsSubscribeController.xib */,
+				D5F6421818104801000DBCE0 /* AGSettingsAgreementController.xib */,
 			);
 			name = settings;
 			sourceTree = "<group>";
@@ -2939,6 +2947,7 @@
 				F6BCE3F8180EEC1A006B4B4B /* secure_icon@2x.png in Resources */,
 				F6BCE3F9180EEC1A006B4B4B /* money_all_time_icon.png in Resources */,
 				F6BCE3FA180EEC1A006B4B4B /* money_all_time_icon@2x.png in Resources */,
+				D5F6421A18104801000DBCE0 /* AGSettingsAgreementController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3035,6 +3044,7 @@
 				D56795071801E04100B10D52 /* AGSettingsPinController.m in Sources */,
 				D5F64205180AAA34000DBCE0 /* AGPlotPopover.m in Sources */,
 				D5F64214180DA981000DBCE0 /* AGSettingsSubscribeController.m in Sources */,
+				D5F6421918104801000DBCE0 /* AGSettingsAgreementController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

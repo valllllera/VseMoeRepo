@@ -7,8 +7,13 @@
 //
 
 #import "AGSettingsSubscribeController.h"
+#import "AGTools.h"
+#import "AGSettingsAgreementController.h"
 
 @interface AGSettingsSubscribeController ()
+
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIButton *checkBox;
 
 @end
 
@@ -26,13 +31,33 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width, 925);
+    
+    self.title = NSLocalizedString(@"SettingsSubscribe", nil);
+    self.navigationItem.leftBarButtonItem = [AGTools navigationBarButtonItemWithImageNamed:@"button-back" target:self action:@selector(back)];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) back
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)checkboxPressed:(id)sender
+{
+    _checkBox.selected = !_checkBox.selected;
+}
+
+- (IBAction)agreementButtonPressed:(id)sender
+{
+    AGSettingsAgreementController* ctl = [[AGSettingsAgreementController alloc] initWithNibName:@"AGSettingsAgreementController" bundle:nil];
+    [self.navigationController pushViewController:ctl animated:YES];
 }
 
 @end
