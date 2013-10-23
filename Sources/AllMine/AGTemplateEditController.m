@@ -260,7 +260,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleGray;        
     }else{
         for (UIView* v in cell.contentView.subviews) {
-            if([v isKindOfClass:[UITextField class]] || [v isKindOfClass:[UITextView class]] || [v isKindOfClass:[UILabel class]]){
+            if([v isKindOfClass:[UITextField class]] || [v isKindOfClass:[UITextView class]] || [v isKindOfClass:[UILabel class]] || [v isKindOfClass:[UIImageView class]]){
                 [v removeFromSuperview];
             }
         }
@@ -277,36 +277,41 @@
             break;
         }
         case 1:{
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            
+            UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(45, 0, 265, [AGTools cellStandardHeight])];
+            lbl.backgroundColor=[UIColor clearColor];
+            lbl.font = [UIFont fontWithName:kFont1 size:18.0f];
+            
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(18, [AGTools cellStandardHeight] / 2 - 7, 14, 12)];
+            
             switch (indexPath.row) {
                 case 0:
-                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    imageView.image = [UIImage imageNamed:@"wallet.png"];
                     if(_account == nil){
-                        cell.textLabel.textColor = [UIColor colorWithHex:kColorHexGray];
-                        cell.textLabel.backgroundColor=[UIColor clearColor];
-                        cell.textLabel.text = NSLocalizedString(@"PaymentEditFrom", @"");
+                        lbl.textColor = [UIColor colorWithHex:kColorHexGray];
+                        lbl.text = NSLocalizedString(@"PaymentEditFrom", @"");
                         
                     }else{
-                        cell.textLabel.text = _account.title;
-                        cell.textLabel.backgroundColor=[UIColor clearColor];
+                        lbl.text = _account.title;
                     }
                     break;
                 default:
-                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    imageView.image = [UIImage imageNamed:@"from_where.png"];
                     if((_category == nil)&&(_accountAsCategory == nil)){
-                        cell.textLabel.textColor = [UIColor colorWithHex:kColorHexGray];
-                        cell.textLabel.backgroundColor=[UIColor clearColor];
-                        cell.textLabel.text = NSLocalizedString(@"PaymentEditTo", @"");
+                        lbl.textColor = [UIColor colorWithHex:kColorHexGray];
+                        lbl.text = NSLocalizedString(@"PaymentEditTo", @"");
                     }else{
                         if (_category != nil) {
-                            cell.textLabel.text = _category.title;
-                            cell.textLabel.backgroundColor=[UIColor clearColor];
+                            lbl.text = _category.title;
                         }else{
-                            cell.textLabel.text = _accountAsCategory.title;
-                            cell.textLabel.backgroundColor=[UIColor clearColor];
+                            lbl.text = _accountAsCategory.title;
                         }
                     }
                     break;
             }
+            [cell.contentView addSubview:lbl];
+            [cell.contentView addSubview:imageView];
             break;
         }
         default:{
@@ -349,7 +354,7 @@
     switch (section) {
         case 0:
             if (_vSum.hidden) {
-                height = 35.0f;
+                height = 40.0f;
             }
             break;
             
@@ -372,7 +377,7 @@
 }
 
 #pragma mark - UITableViewDelegate
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{    
     if(indexPath.section != 1) return;
     if(indexPath.row == 0){
         AGAccountListController* ctl = [[AGAccountListController alloc] initWithNibName:@"AGAccountListView" bundle:nil];

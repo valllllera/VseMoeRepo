@@ -395,14 +395,16 @@ int tappedArrayCount = 0;
                     lbColorForTime.tag = [_arrayForCell indexOfObject:indexPath];
                 }
                 
+                UIView *viewToSplit = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 140, [AGTools cellStandardHeight])];
+                viewToSplit.userInteractionEnabled = YES;
+                viewToSplit.backgroundColor = [UIColor clearColor];
+                
+                [cell.contentView addSubview:viewToSplit];
+                
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(infoImageTapped:)];
                 
                 [tap setNumberOfTapsRequired:1];
-                [cell.imageView setGestureRecognizers:[NSArray arrayWithObject:tap]];
-                [lbAcc setUserInteractionEnabled:YES];
-                [lbColorForTime setUserInteractionEnabled:YES];
-                [lbAcc setGestureRecognizers:[NSArray arrayWithObject:tap]];
-                [lbColorForTime setGestureRecognizers:[NSArray arrayWithObject:tap]];
+                [viewToSplit addGestureRecognizer:tap];
             }
             
             [cell.contentView addSubview:lbAcc];

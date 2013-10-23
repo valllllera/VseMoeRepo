@@ -215,7 +215,7 @@
         }
         User* usr = (kUser);
         double sumMain = _sum * [_currency rateValueWithDate:[NSDate today] mainCurrency:usr.currencyMain];
-        Payment* payment = [Payment insertPaymentWithUser:(kUser) account:tmpl.account category:tmpl.category accountAsCategory:tmpl.accountAsCategory currency:_currency sum:_sum sumMain:sumMain rateValue:_rateValue date:[NSDate today] comment:tmpl.comment ptemplate:tmpl finished:YES hidden:NO save:YES];
+        Payment* payment = [Payment insertPaymentWithUser:(kUser) account:tmpl.account category:tmpl.category accountAsCategory:tmpl.accountAsCategory currency:_currency sum:_sum sumMain:sumMain rateValue:_rateValue date:[NSDate date] comment:tmpl.comment ptemplate:tmpl finished:YES hidden:NO save:YES];
         for (NSDictionary* d in _subpayments) {
             [Payment insertSubPaymentWithCategory:[d objectForKey:kCategory] sum:[[d objectForKey:kSum] doubleValue] superpayment:payment save:YES];
         }

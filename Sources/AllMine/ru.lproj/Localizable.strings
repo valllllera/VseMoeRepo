@@ -215,7 +215,7 @@
 //"PaymentAddFavourite" = "Фаворитный платеж";
 "PaymentAddFavourite" = "Фаворит";
 "PaymentAddFavouriteNew" = "Новый";
-"PaymentAddFavouriteNewTitle" = "Новый Фаворитный Платеж";
+"PaymentAddFavouriteNewTitle" = "Название нового фаворита";
 "PaymentAddFavouriteCreate" = "Создание Фаворитного Платежа";
 "PaymentAddFavouriteNewFooter" = "В названии платежа лучше использовать одно, понятное слово.";
 "PaymentTemplateRemove" = "Удалить Фаворит";
