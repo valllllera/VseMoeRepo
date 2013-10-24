@@ -464,6 +464,9 @@
 		D5F64215180DA981000DBCE0 /* AGSettingsSubscribeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F64213180DA981000DBCE0 /* AGSettingsSubscribeController.xib */; };
 		D5F6421918104801000DBCE0 /* AGSettingsAgreementController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5F6421718104801000DBCE0 /* AGSettingsAgreementController.m */; };
 		D5F6421A18104801000DBCE0 /* AGSettingsAgreementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F6421818104801000DBCE0 /* AGSettingsAgreementController.xib */; };
+		D5F6423A18197127000DBCE0 /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = D5F6423918197126000DBCE0 /* UIView+Additions.m */; };
+		D5F6424218197E59000DBCE0 /* AGExtendSubscribeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5F6424118197E59000DBCE0 /* AGExtendSubscribeView.m */; };
+		D5F6424418197E6B000DBCE0 /* AGExtendSubscribeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F6424318197E6B000DBCE0 /* AGExtendSubscribeView.xib */; };
 		F6009AB71786A9C00072BA42 /* MainMenuCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6009AB61786A9C00072BA42 /* MainMenuCellView.xib */; };
 		F6009ABE1786C8680072BA42 /* cell-split-pressed-end.png in Resources */ = {isa = PBXBuildFile; fileRef = F6009AB81786C8670072BA42 /* cell-split-pressed-end.png */; };
 		F6009ABF1786C8680072BA42 /* cell-split-pressed-end@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F6009AB91786C8670072BA42 /* cell-split-pressed-end@2x.png */; };
@@ -1201,6 +1204,11 @@
 		D5F6421618104801000DBCE0 /* AGSettingsAgreementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGSettingsAgreementController.h; sourceTree = "<group>"; };
 		D5F6421718104801000DBCE0 /* AGSettingsAgreementController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGSettingsAgreementController.m; sourceTree = "<group>"; };
 		D5F6421818104801000DBCE0 /* AGSettingsAgreementController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGSettingsAgreementController.xib; sourceTree = "<group>"; };
+		D5F6423818197126000DBCE0 /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
+		D5F6423918197126000DBCE0 /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
+		D5F6424018197E59000DBCE0 /* AGExtendSubscribeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGExtendSubscribeView.h; sourceTree = "<group>"; };
+		D5F6424118197E59000DBCE0 /* AGExtendSubscribeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGExtendSubscribeView.m; sourceTree = "<group>"; };
+		D5F6424318197E6B000DBCE0 /* AGExtendSubscribeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGExtendSubscribeView.xib; sourceTree = "<group>"; };
 		F6009AB61786A9C00072BA42 /* MainMenuCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenuCellView.xib; sourceTree = "<group>"; };
 		F6009AB81786C8670072BA42 /* cell-split-pressed-end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-split-pressed-end.png"; sourceTree = "<group>"; };
 		F6009AB91786C8670072BA42 /* cell-split-pressed-end@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-split-pressed-end@2x.png"; sourceTree = "<group>"; };
@@ -1389,6 +1397,8 @@
 				08DE09861772EE7F00885428 /* NSString+ReplacePointWithComma.m */,
 				08FCC0C017859D600000A5A2 /* NSArray+Additions.h */,
 				08FCC0C117859D600000A5A2 /* NSArray+Additions.m */,
+				D5F6423818197126000DBCE0 /* UIView+Additions.h */,
+				D5F6423918197126000DBCE0 /* UIView+Additions.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -1863,6 +1873,7 @@
 		BA33D11216412F8F005582CA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D5F6423B18197261000DBCE0 /* views */,
 				F6A081581781645300400FEF /* cells */,
 				BAB70547165238B000813B7B /* login */,
 				BA00FFA9164B872D00CD3966 /* settings */,
@@ -1884,6 +1895,7 @@
 		BA33D11316412FA0005582CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D5F6423C18197B87000DBCE0 /* views */,
 				F6A081571781644D00400FEF /* cells */,
 				BAD1B2BC165CB5C40007A16F /* login */,
 				BAD1B2BD165CB5CF0007A16F /* settings */,
@@ -2321,6 +2333,23 @@
 				BAC97EA7164D08E800623672 /* AGAccountGroupView.xib */,
 			);
 			name = accounts;
+			sourceTree = "<group>";
+		};
+		D5F6423B18197261000DBCE0 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				D5F6424018197E59000DBCE0 /* AGExtendSubscribeView.h */,
+				D5F6424118197E59000DBCE0 /* AGExtendSubscribeView.m */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
+		D5F6423C18197B87000DBCE0 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				D5F6424318197E6B000DBCE0 /* AGExtendSubscribeView.xib */,
+			);
+			name = views;
 			sourceTree = "<group>";
 		};
 		F6A081571781644D00400FEF /* cells */ = {
@@ -2948,6 +2977,7 @@
 				F6BCE3F9180EEC1A006B4B4B /* money_all_time_icon.png in Resources */,
 				F6BCE3FA180EEC1A006B4B4B /* money_all_time_icon@2x.png in Resources */,
 				D5F6421A18104801000DBCE0 /* AGSettingsAgreementController.xib in Resources */,
+				D5F6424418197E6B000DBCE0 /* AGExtendSubscribeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3045,6 +3075,8 @@
 				D5F64205180AAA34000DBCE0 /* AGPlotPopover.m in Sources */,
 				D5F64214180DA981000DBCE0 /* AGSettingsSubscribeController.m in Sources */,
 				D5F6421918104801000DBCE0 /* AGSettingsAgreementController.m in Sources */,
+				D5F6423A18197127000DBCE0 /* UIView+Additions.m in Sources */,
+				D5F6424218197E59000DBCE0 /* AGExtendSubscribeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

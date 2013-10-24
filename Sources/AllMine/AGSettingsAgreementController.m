@@ -69,4 +69,9 @@
     
 }
 
+- (IBAction)checkboxPressed:(id)sender
+{
+    _checkBox.selected = !_checkBox.selected;
+}
+
 @end
