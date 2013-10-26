@@ -9,14 +9,22 @@
 #import "AGSettingsSubscribeController.h"
 #import "AGTools.h"
 #import "AGSettingsAgreementController.h"
-#import "AGExtendSubscribeView.h"
+#import "AGConfirmSubscribeView.h"
 #import "UIView+Additions.h"
 
 @interface AGSettingsSubscribeController ()
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIButton *checkBox;
-@property (strong, nonatomic) AGExtendSubscribeView *alertView;
+@property (strong, nonatomic) AGConfirmSubscribeView *alertView;
+
+@property (weak, nonatomic) IBOutlet UIButton *oneMonthButton;
+@property (weak, nonatomic) IBOutlet UIButton *twoMonthButton;
+@property (weak, nonatomic) IBOutlet UIButton *yearButton;
+
+@property (strong, nonatomic) NSNumber *oneMonthPrice;
+@property (strong, nonatomic) NSNumber *twoMonthPrice;
+@property (strong, nonatomic) NSNumber *yearPrice;
 
 @end
 
@@ -26,7 +34,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _oneMonthPrice = @(30);
+        _twoMonthPrice = @(50);
+        _yearPrice = @(150);
     }
     return self;
 }
@@ -34,6 +44,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [_oneMonthButton setTitle:[_oneMonthPrice stringValue] forState:UIControlStateNormal];
+    [_twoMonthButton setTitle:[_twoMonthPrice stringValue] forState:UIControlStateNormal];
+    [_yearButton setTitle:[_yearPrice stringValue] forState:UIControlStateNormal];
     
     _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width, 925);
     
@@ -55,10 +69,6 @@
 - (IBAction)checkboxPressed:(id)sender
 {
     _checkBox.selected = !_checkBox.selected;
-    
-    _scrollView.contentOffset = CGPointZero;
-    
-    [self showExtendSubscribeView];
 }
 
 - (IBAction)agreementButtonPressed:(id)sender
@@ -67,17 +77,34 @@
     [self.navigationController pushViewController:ctl animated:YES];
 }
 
-- (void)showExtendSubscribeView
+- (void)showExtendSubscribeViewWithPrice:(NSString *)price period:(NSString *)period success:(void (^)())success
 {
     [self hideExtendSubscribeView];
     
-    self.alertView = [[NSBundle mainBundle] loadNibNamed:@"AGExtendSubscribeView" owner:nil options:nil][0];
+    self.alertView = [[NSBundle mainBundle] loadNibNamed:@"AGConfirmSubscribeView" owner:nil options:nil][0];
     __weak AGSettingsSubscribeController *selfWeak = self;
+    
+    NSString *textTemplate = NSLocalizedString(@"SettingsSubscribeConfirm", nil);
+    
+    NSString *find = @"%@";
+    
+    int strCount = [textTemplate length] - [[textTemplate stringByReplacingOccurrencesOfString:find withString:@""] length];
+    strCount /= [find length];
+    
+    if(strCount == 2)
+    {
+        _alertView.textLabel.text = [NSString stringWithFormat:textTemplate, period, price];
+    }    
+    
     [_alertView setSuccessBlock:^(NSUInteger index) {
         
         if(index == 0)
         {
             [selfWeak hideExtendSubscribeView];
+        }
+        if(success && index == 1)
+        {
+            success();
         }
         
     }];
@@ -99,6 +126,30 @@
         _alertView = nil;
         
     }];
+}
+
+- (IBAction)oneMonthButtonPressed:(id)sender
+{
+    if(_checkBox.selected)
+    {
+        [self showExtendSubscribeViewWithPrice:[NSString stringWithFormat:@"%@ P", _oneMonthPrice] period:NSLocalizedString(@"SettingsSubscribeConfirm1month", nil) success:nil];
+    }
+}
+
+- (IBAction)twoMonthButtonPressed:(id)sender
+{
+    if(_checkBox.selected)
+    {
+        [self showExtendSubscribeViewWithPrice:[NSString stringWithFormat:@"%@ P", _twoMonthPrice] period:NSLocalizedString(@"SettingsSubscribeConfirm2month", nil) success:nil];
+    }
+}
+
+- (IBAction)yearButtonPressed:(id)sender
+{
+    if(_checkBox.selected)
+    {
+        [self showExtendSubscribeViewWithPrice:[NSString stringWithFormat:@"%@ P", _yearPrice] period:NSLocalizedString(@"SettingsSubscribeConfirm1year", nil) success:nil];
+    }
 }
 
 @end

@@ -467,6 +467,8 @@
 		D5F6423A18197127000DBCE0 /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = D5F6423918197126000DBCE0 /* UIView+Additions.m */; };
 		D5F6424218197E59000DBCE0 /* AGExtendSubscribeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5F6424118197E59000DBCE0 /* AGExtendSubscribeView.m */; };
 		D5F6424418197E6B000DBCE0 /* AGExtendSubscribeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F6424318197E6B000DBCE0 /* AGExtendSubscribeView.xib */; };
+		D5F64247181BCD19000DBCE0 /* AGConfirmSubscribeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5F64246181BCD19000DBCE0 /* AGConfirmSubscribeView.m */; };
+		D5F64249181BCD37000DBCE0 /* AGConfirmSubscribeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F64248181BCD37000DBCE0 /* AGConfirmSubscribeView.xib */; };
 		F6009AB71786A9C00072BA42 /* MainMenuCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6009AB61786A9C00072BA42 /* MainMenuCellView.xib */; };
 		F6009ABE1786C8680072BA42 /* cell-split-pressed-end.png in Resources */ = {isa = PBXBuildFile; fileRef = F6009AB81786C8670072BA42 /* cell-split-pressed-end.png */; };
 		F6009ABF1786C8680072BA42 /* cell-split-pressed-end@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F6009AB91786C8670072BA42 /* cell-split-pressed-end@2x.png */; };
@@ -1209,6 +1211,9 @@
 		D5F6424018197E59000DBCE0 /* AGExtendSubscribeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGExtendSubscribeView.h; sourceTree = "<group>"; };
 		D5F6424118197E59000DBCE0 /* AGExtendSubscribeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGExtendSubscribeView.m; sourceTree = "<group>"; };
 		D5F6424318197E6B000DBCE0 /* AGExtendSubscribeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGExtendSubscribeView.xib; sourceTree = "<group>"; };
+		D5F64245181BCD18000DBCE0 /* AGConfirmSubscribeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGConfirmSubscribeView.h; sourceTree = "<group>"; };
+		D5F64246181BCD19000DBCE0 /* AGConfirmSubscribeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGConfirmSubscribeView.m; sourceTree = "<group>"; };
+		D5F64248181BCD37000DBCE0 /* AGConfirmSubscribeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGConfirmSubscribeView.xib; sourceTree = "<group>"; };
 		F6009AB61786A9C00072BA42 /* MainMenuCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenuCellView.xib; sourceTree = "<group>"; };
 		F6009AB81786C8670072BA42 /* cell-split-pressed-end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-split-pressed-end.png"; sourceTree = "<group>"; };
 		F6009AB91786C8670072BA42 /* cell-split-pressed-end@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-split-pressed-end@2x.png"; sourceTree = "<group>"; };
@@ -2340,6 +2345,8 @@
 			children = (
 				D5F6424018197E59000DBCE0 /* AGExtendSubscribeView.h */,
 				D5F6424118197E59000DBCE0 /* AGExtendSubscribeView.m */,
+				D5F64245181BCD18000DBCE0 /* AGConfirmSubscribeView.h */,
+				D5F64246181BCD19000DBCE0 /* AGConfirmSubscribeView.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -2348,6 +2355,7 @@
 			isa = PBXGroup;
 			children = (
 				D5F6424318197E6B000DBCE0 /* AGExtendSubscribeView.xib */,
+				D5F64248181BCD37000DBCE0 /* AGConfirmSubscribeView.xib */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -2978,6 +2986,7 @@
 				F6BCE3FA180EEC1A006B4B4B /* money_all_time_icon@2x.png in Resources */,
 				D5F6421A18104801000DBCE0 /* AGSettingsAgreementController.xib in Resources */,
 				D5F6424418197E6B000DBCE0 /* AGExtendSubscribeView.xib in Resources */,
+				D5F64249181BCD37000DBCE0 /* AGConfirmSubscribeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3077,6 +3086,7 @@
 				D5F6421918104801000DBCE0 /* AGSettingsAgreementController.m in Sources */,
 				D5F6423A18197127000DBCE0 /* UIView+Additions.m in Sources */,
 				D5F6424218197E59000DBCE0 /* AGExtendSubscribeView.m in Sources */,
+				D5F64247181BCD19000DBCE0 /* AGConfirmSubscribeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

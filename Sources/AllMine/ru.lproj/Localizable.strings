@@ -146,6 +146,10 @@
 "SettingsProtectionPinEdit" = "Изменить пин-код";
 "SettingsProtectionHeader" = "Комбинация - 5 цифр";
 "SettingsProtectionEnterPin" = "Введите пин";
+"SettingsSubscribeConfirm" = "Хотите преобрести подписку на %@ по цене %@?";
+"SettingsSubscribeConfirm1month" = "1 месяц";
+"SettingsSubscribeConfirm2month" = "2 месяца";
+"SettingsSubscribeConfirm1year" = "1 год";
 
 //  category edit
 "CategoryEditTitle" = "Название Категории";
