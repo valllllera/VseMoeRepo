@@ -78,18 +78,21 @@
 }
 
 - (void)showExtendSubscribeViewWithPrice:(NSString *)price period:(NSString *)period success:(void (^)())success
-{
-    [self hideExtendSubscribeView];
-    
-    self.alertView = [[NSBundle mainBundle] loadNibNamed:@"AGConfirmSubscribeView" owner:nil options:nil][0];
-    __weak AGSettingsSubscribeController *selfWeak = self;
-    
+{    
     NSString *textTemplate = NSLocalizedString(@"SettingsSubscribeConfirm", nil);
     
     NSString *find = @"%@";
     
     int strCount = [textTemplate length] - [[textTemplate stringByReplacingOccurrencesOfString:find withString:@""] length];
     strCount /= [find length];
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Подтвердите подписку" message:[NSString stringWithFormat:textTemplate, period, price] delegate:nil cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:@"Согласиться", nil];
+    [alertView show];
+    
+    /*[self hideExtendSubscribeView];
+    
+    self.alertView = [[NSBundle mainBundle] loadNibNamed:@"AGConfirmSubscribeView" owner:nil options:nil][0];
+    __weak AGSettingsSubscribeController *selfWeak = self;
     
     if(strCount == 2)
     {
@@ -114,7 +117,7 @@
     [_alertView hide:NO];
     [self.view addSubview:_alertView];
     [_alertView show:YES];
-    _scrollView.userInteractionEnabled = NO;
+    _scrollView.userInteractionEnabled = NO;*/
 }
 
 - (void)hideExtendSubscribeView
