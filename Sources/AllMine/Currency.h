@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Account, Payment, Rate, User;
+@class Account, Payment, Rate, User, Tariff;
 
 @interface Currency : NSManagedObject
 
@@ -25,6 +25,7 @@
 @property (nonatomic, retain) NSSet *usersAdditional;
 @property (nonatomic, retain) NSSet *usersMain;
 @property (nonatomic, retain) User *user;
+@property (nonatomic, retain) Tariff *tariff;
 @end
 
 @interface Currency (CoreDataGeneratedAccessors)

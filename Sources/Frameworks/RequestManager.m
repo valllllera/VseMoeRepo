@@ -24,6 +24,8 @@
 #import "Template+EntityWorker.h"
 #import "AGTools.h"
 
+#import "LocationManager.h"
+
 #import "AGExceptionNetworkURLConnectionFailed.h"
 #import "AGExceptionSyncFailed.h"
 #import "AGExceptionServerResponseBadStatus.h"
@@ -158,14 +160,24 @@
               withSuccess:(void(^)(BOOL isLoged))success
               withFailure:(void (^)(NSError *error))failure
 {
+    CLLocationCoordinate2D coordinate = [LocationManager sharedInstance].location;
+    int accuracy = [LocationManager sharedInstance].accuracy;
     
     @try {
         if (user)
         {
-            [self sendRequestWithAction:@"/user/login" withParams:@{@"user":user.login, @"password":user.password} withSuccess:^(id json) {
+            [self sendRequestWithAction:@"/user/login" withParams:@{@"user":user.login, @"password":user.password, @"lat":@(coordinate.latitude), @"lon":@(coordinate.longitude), @"mis":@(accuracy)} withSuccess:^(id json) {
                 if ([json objectForKey:@"status"] == [NSNumber numberWithInt:1])
                 {
                     _token = [[json objectForKey:@"data"]objectForKey:@"token"];
+                    
+                    @try
+                    {
+                        user.payment = @([[json objectForKey:@"data"] integerForKey:@"payment"]);
+                        user.end = @([[json objectForKey:@"data"] integerForKey:@"end"]);
+                    }
+                    @catch (...) { }
+                    
                     success(YES);
                 }
             else
@@ -178,7 +190,14 @@
         {
             if (params)
             {
-                [self sendRequestWithAction:@"/user/login" withParams:params withSuccess:^(id json) {
+                NSMutableDictionary *paramsMutable = [NSMutableDictionary dictionaryWithDictionary:params];
+                if(!paramsMutable[@"lat"] || !paramsMutable[@"lon"])
+                {
+                    paramsMutable[@"lat"] = @(coordinate.latitude);
+                    paramsMutable[@"lon"] = @(coordinate.longitude);
+                    paramsMutable[@"mis"] = @(accuracy);
+                }
+                [self sendRequestWithAction:@"/user/login" withParams:paramsMutable withSuccess:^(id json) {
                     if ([json objectForKey:@"status"] == [NSNumber numberWithInt:1])
                     {
                         _token = [[json objectForKey:@"data"]objectForKey:@"token"];

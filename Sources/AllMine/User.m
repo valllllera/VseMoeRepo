@@ -29,5 +29,7 @@
 @dynamic currencyMain;
 @dynamic payments;
 @dynamic templates;
+@dynamic end;
+@dynamic payment;
 
 @end

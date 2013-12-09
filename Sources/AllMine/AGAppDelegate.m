@@ -20,6 +20,8 @@
 
 #import "Template+EntityWorker.h"
 
+#import "LocationManager.h"
+
 @implementation AGAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -41,6 +43,9 @@
     [self.rootController performSelector:@selector(showLogin)
                               withObject:nil
                               afterDelay:0.1f];
+    
+    [LocationManager sharedInstance];
+    
     return YES;
 }
 

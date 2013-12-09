@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Consumables</key>
+	<dict/>
+	<key>Non-Consumables</key>
+	<array/>
+	<key>Subscriptions</key>
+	<dict>
+		<key>org.multik.vsemoe.1month</key>
+		<integer>1</integer>
+		<key>org.multik.vsemoe.2month</key>
+		<integer>2</integer>
+		<key>org.multik.vsemoe.1year</key>
+		<integer>14</integer>
+	</dict>
+</dict>
+</plist>

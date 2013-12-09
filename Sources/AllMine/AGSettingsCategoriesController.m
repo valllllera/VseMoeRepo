@@ -74,7 +74,10 @@
         _tvSubCats.frame = frame;
     }
     
-    _sgCatType.tintColor = [UIColor colorWithHex:kColorHexMarine];
+    if(!IS_IOS7)
+    {
+        _sgCatType.tintColor = [UIColor colorWithHex:kColorHexMarine];
+    }
     [_sgCatType setTitle:NSLocalizedString(@"MenuExpense", @"") forSegmentAtIndex:0];
     [_sgCatType setTitle:NSLocalizedString(@"MenuIncome", @"") forSegmentAtIndex:1];
     [_sgCatType setTitle:NSLocalizedString(@"SettingsCategoriesTransfer", @"") forSegmentAtIndex:2];

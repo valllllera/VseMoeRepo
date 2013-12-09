@@ -16,9 +16,12 @@
 #import "Currency+EntityWorker.h"
 #import "Payment+EntityWorker.h"
 #import "Rate+EntityWorker.h"
+#import "Tariff+EntityWorker.h"
 #import "NSDate+AGExtensions.h"
 #import "Template+EntityWorker.h"
 #import "AGTools.h"
+
+#import "LocationManager.h"
 
 #import "AGExceptionNetworkURLConnectionFailed.h"
 #import "AGExceptionSyncFailed.h"
@@ -44,6 +47,10 @@
 #define kServLanguage   @"lang"
 #define kServLanguageEn @"en"
 #define kServLanguageRu @"ru"
+
+#define kServLatitude   @"lat"
+#define kServLongitude  @"lon"
+#define kServAccuracy   @"mis"
 
 #define kServUserLogin          @"user"
 #define kServUserPassword       @"password"
@@ -92,6 +99,13 @@
 #define kServSettingsData               @"data"
 #define kServSettingsSyncAuto           @"iphone_syncAuto"
 #define kServSettingsSyncViaWiFIOnly    @"iphone_syncViaWiFiOnly"
+
+#define kServTariffId           @"payment_id"
+#define kServTariffStart        @"start"
+#define kServTariffEnd          @"end"
+#define kServTariffDescription  @"description"
+#define kServTariffAmount       @"amount"
+#define kServTariffCurrencyId   @"currency_id"
 
 typedef enum{
     StatusErrorParamsMissing = 0,
@@ -1030,6 +1044,9 @@ typedef enum{
     NSString* title = (tmpl.title) ? tmpl.title : @"";
     NSNumber* isTemplate = [NSNumber numberWithInt:1];
     
+    CLLocationCoordinate2D coordinate = [LocationManager sharedInstance].location;
+    int accuracy = [LocationManager sharedInstance].accuracy;
+    
     int result = -1;
     @try {
         NSDictionary* dict = [self sendRequest:
@@ -1041,6 +1058,9 @@ typedef enum{
                                                      comment,   kServPaymentComment,
                                                      title, kServPaymentDescription,
                                                      isTemplate, kServPaymentIsTemplate,
+                                                     @(coordinate.latitude), kServLatitude,
+                                                     @(coordinate.longitude), kServLongitude,
+                                                     @(accuracy), kServAccuracy,
                                                      nil]]];        
         @try {
             result = [[[dict objectForKey:kServData] objectForKey:kServPaymentId] intValue];
@@ -1208,6 +1228,9 @@ typedef enum{
     NSNumber* hidden = payment.hidden;
     id descript = hidden.boolValue==YES ? sum : @"";
     
+    CLLocationCoordinate2D coordinate = [LocationManager sharedInstance].location;
+    int accuracy = [LocationManager sharedInstance].accuracy;
+    
     int result = -1;
     @try {
         NSDictionary* dict = [self sendRequest:
@@ -1224,6 +1247,9 @@ typedef enum{
                                                      finished,  kServPaymentFinished,
                                                      hidden,    kServPaymentHidden,
                                                      descript,  kServPaymentDescription,
+                                                     @(coordinate.latitude), kServLatitude,
+                                                     @(coordinate.longitude), kServLongitude,
+                                                     @(accuracy), kServAccuracy,
                                                      nil]]];
 
         @try {
@@ -1871,6 +1897,103 @@ typedef enum{
     }
 }
 
+#pragma mark - payment (in app purchase)
+
+- (void)paymentLegalTextWithSuccess:(void (^)(NSString *legal))success
+{
+    __block NSString *legalText = [[NSUserDefaults standardUserDefaults] objectForKey:@"legal_text"];
+    if(legalText)
+    {
+        if(success)
+        {
+            success(legalText);
+        }
+        return;
+    }
+    
+    NSString *apiString = kBaseURL;
+    
+    AFHTTPClient *client = [AFHTTPClient clientWithBaseURL:[NSURL URLWithString:apiString]];
+    
+    NSURLRequest *request = [client requestWithMethod:@"POST" path:@"payment/legal" parameters:nil];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        legalText = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        
+        if(success)
+        {
+            [[NSUserDefaults standardUserDefaults] setObject:legalText forKey:@"legal_text"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+                
+            success(legalText);
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        if(success)
+        {
+            success(@"");
+        }
+        
+    }];
+    
+    [operation start];
+}
+
+- (void)tariffUpdateWithSuccess:(void (^)())success
+{
+    [self sendRequestWithAction:@"payment/list" withParams:nil withSuccess:^(id json) {
+        
+        NSManagedObjectContext* context = [AGDBWorker sharedWorker].managedContextTemporary;
+        
+        NSArray *dataArray = [json objectForKey:@"data"];
+        
+        for(NSDictionary *tariffDict in dataArray)
+        {
+            int idTariff = [[tariffDict objectForKey:kServTariffId] intValue];
+            int start = [[tariffDict objectForKey:kServTariffStart] intValue];
+            int end = [[tariffDict objectForKey:kServTariffEnd] intValue];
+            NSString *descr = [tariffDict objectForKey:kServTariffDescription];
+            float amount = [[tariffDict objectForKey:kServTariffAmount] floatValue];
+            Currency *currency = [Currency currencyWithId:[[tariffDict objectForKey:kServTariffCurrencyId] intValue] context:context];
+            
+            Tariff *tariff = [Tariff tariffWithId:idTariff context:context];
+            if(!tariff)
+            {
+                tariff = [Tariff insertTariffWithId:idTariff start:start end:end descr:descr amount:amount currency:currency save:NO context:context];
+            }
+            else
+            {
+                tariff.start = @(start);
+                tariff.end = @(end);
+                tariff.descr = descr;
+                tariff.amount = @(amount);
+                if(currency != nil)
+                {
+                    tariff.currency = currency;
+                }
+            }
+        }
+        
+        [[AGDBWorker sharedWorker] saveContext:context];
+        
+        if(success)
+        {
+            success();
+        }
+        
+    } withFailure:^(NSError *error) {
+        
+        if(success)
+        {
+            success();
+        }
+        
+    }];
+}
+
 #pragma mark - json request
 - (NSString*) stringParamsFromDictionary:(NSDictionary*) params {
     NSMutableArray* pairs = [NSMutableArray array];
@@ -1997,6 +2120,34 @@ typedef enum{
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         
         //NSLog(@"JSON %@", JSON);
+        
+        Status st = [[JSON objectForKey:kServStatus] intValue];
+        if (st != StatusOK) {
+            NSString* statusError = @"";
+            switch (st) {
+                case StatusErrorParamsMissing:
+                    statusError = @"Ошибка. Функция не сделала ничего. Заявленных выходных данных нет.";
+                    break;
+                case StatusErrorParamEmpty:
+                    statusError = @"В функцию передано меньше параметров чем необходимо. Или переданы пустые параметры (которые не должны быть пустыми).";
+                    break;
+                case StatusErrorTokenDead:
+                    statusError = @"Передан протухший токен. Надо заново перелогиниться с сохраненной парой логин-пароль. В некоторых функциях означает что такого пользователя не существует";
+                    break;
+                case StatusErrorParamNotValid:
+                    statusError = @"Один из параметров неверный. То есть параметр существует и проходит первичную валидацию но не содержит валидного значения";
+                    break;
+                default:
+                    statusError = @"unknown";
+                    break;
+            }
+            AGLog(@"ServerAPI status error: %@", statusError);
+            if(failure)
+            {
+                failure(nil);
+            }
+            return;
+        }
         
         if(success)
         {

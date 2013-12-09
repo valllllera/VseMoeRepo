@@ -95,20 +95,20 @@
     frame.size.width -= 20;
     _tfLogin.frame = frame;
     
-    if(![[NSUserDefaults standardUserDefaults] objectForKey:@"autoAuth"]){
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"autoAuth"];
-    }
-    
     if (_state != LoginStateRegistration){
         if ([[NSUserDefaults standardUserDefaults] objectForKey:kUDLastLogin]) {
             _tfLogin.text = [[NSUserDefaults standardUserDefaults] objectForKey:kUDLastLogin];
-            if ([[NSUserDefaults standardUserDefaults] objectForKey:@"password"]&&[[NSUserDefaults standardUserDefaults] boolForKey:@"autoAuth"])
+            if ([[NSUserDefaults standardUserDefaults] objectForKey:@"password"] && [[NSUserDefaults standardUserDefaults] boolForKey:@"autoAuth"])
             {
                 _state  = LoginStateLogged;
                 _tfPassword.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
             }
             else
-                    _state= LoginStateLogin;
+                    _state = LoginStateLogin;
+        }
+        else
+        {
+            _state = LoginStateLogin;
         }
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"protPin"] && [[NSUserDefaults standardUserDefaults] objectForKey:@"pin"])
         {
@@ -550,6 +550,7 @@
                         
                         if (_rememberMeButton.selected == YES)
                         {
+                            [[NSUserDefaults standardUserDefaults] setObject:_tfLogin.text forKey:kUDLastLogin];
                             [[NSUserDefaults standardUserDefaults] setObject:_tfPassword.text forKey:@"password"];
                             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"autoAuth"];
                             
@@ -579,6 +580,16 @@
                 [[RequestManager sharedRequest] checkLoginWithUser:nil withParams:@{@"user":_tfLogin.text,@"password":_tfPassword.text} withSuccess:^(BOOL isLoged) {
                     if (isLoged)
                     {
+                        if (_rememberMeButton.selected == YES)
+                        {
+                            [[NSUserDefaults standardUserDefaults] setObject:_tfLogin.text forKey:kUDLastLogin];
+                            [[NSUserDefaults standardUserDefaults] setObject:_tfPassword.text forKey:@"password"];
+                            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"autoAuth"];
+                            
+                            
+                            [[NSUserDefaults standardUserDefaults] synchronize];
+                        }
+                        
                         [self userCreateWithStandardData:NO];
                         [self dismissModalViewControllerAnimated:YES];
                     }
@@ -815,6 +826,8 @@
     _rememberMeButton.hidden = noErr;
     _vLogin.hidden = NO;
     _vPassword.hidden = NO;
+    _vPin.hidden = YES;
+    _state = LoginStateLogin;
     
     [_bnPasswordHelp setImage:[UIImage imageNamed:@"button-help"] forState:UIControlStateNormal];
     

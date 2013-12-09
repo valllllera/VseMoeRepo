@@ -27,5 +27,6 @@
 @dynamic usersAdditional;
 @dynamic usersMain;
 @dynamic user;
+@dynamic tariff;
 
 @end

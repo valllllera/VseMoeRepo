@@ -60,6 +60,14 @@ static double totalSum =0;
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    if(IS_IOS7)
+    {
+        CGRect newFrame = _tvMenu.frame;
+        newFrame.origin.y -= 44;
+        _tvMenu.frame = newFrame;
+    }
+    
 	// Do any additional setup after loading the view.
     
     self.navigationItem.title = NSLocalizedString(@"MenuReview", @"");

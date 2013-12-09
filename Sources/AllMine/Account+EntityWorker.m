@@ -128,6 +128,8 @@ static NSString *entityName = @"Account";
 
 - (double) creditLimitWithCurrency:(Currency*)currency{
     double sum = self.creditLimit.doubleValue;
+    NSLog(@"crl %f", self.creditLimit.floatValue);
+    NSLog(@"sm %f", self.creditLimit.floatValue);
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"finished == YES"];
     NSSet* paymentsFinished = [self.payments filteredSetUsingPredicate:predicate];
     for (Payment* p in paymentsFinished) {

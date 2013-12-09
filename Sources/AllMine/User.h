@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+typedef enum
+{
+    UserPaymentFree = 0,
+    UserPaymentPaid = 1
+} UserPayment;
+
 @class Account, Category, Currency, Payment, Template;
 
 @interface User : NSManagedObject
@@ -26,6 +32,9 @@
 @property (nonatomic, retain) Currency *currencyMain;
 @property (nonatomic, retain) NSSet *payments;
 @property (nonatomic, retain) NSSet *templates;
+@property (nonatomic, retain) NSNumber * end;
+@property (nonatomic, retain) NSNumber * payment;
+
 @end
 
 @interface User (CoreDataGeneratedAccessors)

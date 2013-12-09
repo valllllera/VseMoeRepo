@@ -135,6 +135,8 @@
         _comment = @"";
     }
     
+    NSLog(@"balance: %f, creditlimit: %f", _balance, _creditLimit);
+    
     _tvItems.delegate = self;
     _tvItems.dataSource = self;
     _tvItems.separatorStyle = UITableViewCellSeparatorStyleNone;

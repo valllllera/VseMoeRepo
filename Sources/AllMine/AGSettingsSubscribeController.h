@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AGSettingsSubscribeController : UIViewController
+@interface AGSettingsSubscribeController : UIViewController <UIAlertViewDelegate>
 
 @end

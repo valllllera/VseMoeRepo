@@ -24,4 +24,8 @@
 
 - (void) synchronizeDataForUser:(User*)usr withToken:(NSString*)token;
 
+- (void)paymentLegalTextWithSuccess:(void (^)(NSString *legal))success;
+
+- (void)tariffUpdateWithSuccess:(void (^)())success;
+
 @end

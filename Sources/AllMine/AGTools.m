@@ -138,6 +138,7 @@ changeAccessoryArrowForCell:cell];
     cell.textLabel.highlightedTextColor=cell.textLabel.textColor;
     cell.detailTextLabel.highlightedTextColor=cell.detailTextLabel.textColor;
     [cell setSelectedBackgroundView:backgroundHighlighted];
+    [cell setBackgroundColor:[UIColor clearColor]];
     [AGTools tableView:tableView
 changeAccessoryArrowForCell:cell];
 }

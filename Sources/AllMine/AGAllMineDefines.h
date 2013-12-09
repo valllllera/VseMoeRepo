@@ -78,7 +78,7 @@
 #define kEventUIDatePickerWillHide  @"UIDatePickerWillHide"
 #define kEventSyncFinished          @"eventSyncFinished"
 
-#define kNavigationBarVerticalOffsetStandart 6
+#define kNavigationBarVerticalOffsetStandart (!IS_IOS7 ? 6 : 2)
 #define kNavigationBarVerticalOffsetZero 0
 
 #define kExceptionSyncFailed    @"SyncFailed"
@@ -105,5 +105,11 @@
 
 #define AGIphoneName(aName) \
             isIphoneRetina4 ? [NSString stringWithFormat:@"%@-568h", aName] : aName
+
+#define IS_IOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0f)
+
+#define kInAppPurchaseProductId1 @"org.multik.vsemoe.1month"
+#define kInAppPurchaseProductId2 @"org.multik.vsemoe.2month"
+#define kInAppPurchaseProductId3 @"org.multik.vsemoe.1year"
 
 #endif

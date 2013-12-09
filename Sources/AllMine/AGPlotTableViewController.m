@@ -167,7 +167,17 @@
         }
         
         CGContextMoveToPoint(context, _pointZeroX * scale, yTop * scale);
-        CGContextAddLineToPoint(context, _pointZeroX * scale, yBottom * scale);
+        if(IS_IOS7)
+        {
+            if(!isnan(_pointZeroX))
+            {
+                CGContextAddLineToPoint(context, _pointZeroX * scale, yBottom * scale);
+            }
+        }
+        else
+        {
+            CGContextAddLineToPoint(context, _pointZeroX * scale, yBottom * scale);
+        }
         double x = _pointZeroX + interval;
         while (x < xRight) {
             CGContextMoveToPoint(context, x * scale, yTop * scale);

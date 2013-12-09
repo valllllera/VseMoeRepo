@@ -210,7 +210,7 @@ int varTemp = 0;
             break;
     }
     
-    _scrollView.contentSize = CGSizeMake(320.0f, 600);
+    _scrollView.contentSize = CGSizeMake(320.0f, 640);
     _scrollView.scrollEnabled = YES;
     
     //gestures
@@ -237,7 +237,7 @@ int varTemp = 0;
     
     _supercat = nil;
     
-    _ptvcData = [[AGPlotTableViewController alloc] initWithFrame:CGRectMake(20, 100, 285, 260)];
+    _ptvcData = [[AGPlotTableViewController alloc] initWithFrame:CGRectMake(20, 100, 285, 240)];
     _ptvcData.parent = self;
     [_ptvcData.tableView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchGestureHandler:)]];
     _ptvcData.delegate = self;
@@ -337,12 +337,8 @@ int varTemp = 0;
     self.lbMaxDiffSum.text = @"0";
     
     [self sgTopSelectionChanged];
-    if (isIphoneRetina4) {
-        CGRect frame = self.graphHostingView.frame;
-        frame.size.height += 88;
-        self.graphHostingView.frame = frame;
-        
-        frame = self.ivPlot.frame;
+    if (isIphoneRetina4) {        
+        CGRect frame = self.ivPlot.frame;
         frame.size.height += 88;
         self.ivPlot.frame = frame;
         
@@ -1120,6 +1116,12 @@ int varTemp = 0;
     NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", val, currency]];
     [string addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont1 size:17.0f] range:NSMakeRange(0, [val length])];
     [string addAttribute:NSFontAttributeName value:[UIFont fontWithName:kFont1 size:11.0f] range:NSMakeRange([ val length] + 1, [currency length])];
+    
+    NSMutableParagraphStyle *paragrapStyle = [[NSMutableParagraphStyle alloc] init];
+    paragrapStyle.alignment = NSTextAlignmentLeft;
+    
+    [string addAttribute:NSParagraphStyleAttributeName value:paragrapStyle range:NSMakeRange(0, [string length])];
+    
     return string;
 }
 

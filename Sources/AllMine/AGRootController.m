@@ -19,7 +19,7 @@
 #import "AGDBWorker.h"
 #import "RequestManager.h"
 
-#define kSyncTimerDelay 20*60
+#define kSyncTimerDelay 5*60
 #define kLoginTimePasswordOnly 5*60
 #define kLoginTime  15*60
 
@@ -74,7 +74,6 @@
 }
 
 -(void)loadView{
-    
 //    _currentUser = [User userWithLogin:@"user"];
     [[UINavigationBar appearance] setTitleTextAttributes:
         [NSDictionary dictionaryWithObjectsAndKeys:
@@ -95,6 +94,15 @@
     
     _tabController = [[UITabBarController alloc] init];
     _tabController.delegate = self;
+    
+    if(IS_IOS7)
+    {
+        CGRect newFrame = _tabController.view.frame;
+        newFrame.origin.y += 20;
+        newFrame.size.height -= 20;
+        _tabController.view.frame = newFrame;
+    }
+    
     [self createTabViewControllers];
     
     self.view = [[UIView alloc] initWithFrame:((AGAppDelegate*)[[UIApplication sharedApplication] delegate]).window.bounds];
@@ -162,9 +170,14 @@
     UIViewController *menuCtl = [[AGMenuController alloc] initWithNibName:@"AGMenuView" bundle:nil];
     UINavigationController* navMenuCtl = [[UINavigationController alloc] initWithRootViewController:menuCtl];
     navMenuCtl.navigationBar.barStyle = UIBarStyleBlackOpaque;
-    navMenuCtl.toolbar.barStyle = UIBarStyleBlackOpaque;
-    navMenuCtl.toolbarHidden = YES;
     navMenuCtl.delegate = self;
+    
+    if(IS_IOS7)
+    {
+        CGRect newBounds = navMenuCtl.view.bounds;
+        newBounds.origin.y -= 44;
+        navMenuCtl.view.bounds = newBounds;
+    }
     
     AGPlotController* plotCtl = [[AGPlotController alloc] initWithNibName:@"AGPlotView" bundle:nil];
     
@@ -553,5 +566,11 @@
                     animated:(BOOL)animated{
     self.hideOnNavigate = YES;
 }
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 
 @end
