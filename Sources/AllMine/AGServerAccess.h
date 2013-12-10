@@ -22,10 +22,14 @@
 
 -(void) settingsSetFromServerForUser:(User*)usr;
 
-- (void) synchronizeDataForUser:(User*)usr withToken:(NSString*)token;
+- (void)synchronizeDataForUser:(User*)usr withToken:(NSString*)token;
 
 - (void)paymentLegalTextWithSuccess:(void (^)(NSString *legal))success;
 
 - (void)tariffUpdateWithSuccess:(void (^)())success;
+
+- (void)checkRecipeWithToken:(NSString *)token
+                     receipt:(NSData *)receipt
+                     success:(void (^)(BOOL isTrue))success;
 
 @end

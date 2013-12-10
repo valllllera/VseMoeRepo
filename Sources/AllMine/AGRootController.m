@@ -75,22 +75,6 @@
 
 -(void)loadView{
 //    _currentUser = [User userWithLogin:@"user"];
-    [[UINavigationBar appearance] setTitleTextAttributes:
-        [NSDictionary dictionaryWithObjectsAndKeys:
-         [UIFont fontWithName:kFont1 size:19.0],UITextAttributeFont,
-         [UIColor colorWithHex:kColorHexBlue],UITextAttributeTextColor,
-         [UIColor whiteColor], UITextAttributeTextShadowColor,
-         [NSValue valueWithUIOffset:UIOffsetMake(0, 1.0f)],UITextAttributeTextShadowOffset,
-         nil]];
-    
-   // [[UINavigationBar appearance] setTintColor:[UIColor colorWithHex:kColorHexNavigationBar]];
-    
-    UIImage *image = [UIImage imageNamed:@"heading.png"];
-    
-    if(image)
-        [[UINavigationBar appearance] setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:kNavigationBarVerticalOffsetStandart
-                                                       forBarMetrics:UIBarMetricsDefault];
     
     _tabController = [[UITabBarController alloc] init];
     _tabController.delegate = self;
@@ -189,7 +173,24 @@
 {
     [super viewDidLoad];
     _isSyncActive = NO;
-
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [UIFont fontWithName:kFont1 size:19.0],UITextAttributeFont,
+      [UIColor colorWithHex:kColorHexBlue],UITextAttributeTextColor,
+      [UIColor whiteColor], UITextAttributeTextShadowColor,
+      [NSValue valueWithUIOffset:UIOffsetMake(0, 1.0f)],UITextAttributeTextShadowOffset,
+      nil]];
+    
+    // [[UINavigationBar appearance] setTintColor:[UIColor colorWithHex:kColorHexNavigationBar]];
+    
+    UIImage *image = [UIImage imageNamed:@"heading.png"];
+    
+    if(image)
+        [[UINavigationBar appearance] setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:kNavigationBarVerticalOffsetStandart
+                                                       forBarMetrics:UIBarMetricsDefault];
+    
 	// Do any additional setup after loading the view.
 }
 

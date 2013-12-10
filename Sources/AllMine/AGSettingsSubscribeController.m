@@ -17,6 +17,8 @@
 #import "AGAppDelegate.h"
 #import "User.h"
 #import "MKStoreManager.h"
+#import "AGServerAccess.h"
+#import "RequestManager.h"
 
 @interface AGSettingsSubscribeController ()
 
@@ -37,6 +39,8 @@
 @property (strong, nonatomic) Tariff *tariff2;
 @property (strong, nonatomic) Tariff *tariff3;
 
+@property (strong, nonatomic) NSString *currentProductId;
+
 @end
 
 @implementation AGSettingsSubscribeController
@@ -53,6 +57,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [MKStoreManager sharedManager];
     
     _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width, 950);
     
@@ -117,6 +123,7 @@
     [self.navigationController pushViewController:ctl animated:YES];
 }
 
+/*
 - (void)showExtendSubscribeViewWithPrice:(NSString *)price period:(NSString *)period
 {    
     NSString *textTemplate = NSLocalizedString(@"SettingsSubscribeConfirm", nil);
@@ -133,7 +140,7 @@
         [alertView show];
     }
     
-    /*[self hideExtendSubscribeView];
+    [self hideExtendSubscribeView];
     
     self.alertView = [[NSBundle mainBundle] loadNibNamed:@"AGConfirmSubscribeView" owner:nil options:nil][0];
     __weak AGSettingsSubscribeController *selfWeak = self;
@@ -161,10 +168,10 @@
     [_alertView hide:NO];
     [self.view addSubview:_alertView];
     [_alertView show:YES];
-    _scrollView.userInteractionEnabled = NO;*/
+    _scrollView.userInteractionEnabled = NO;
 }
 
-/*
+
 - (void)hideExtendSubscribeView
 {
     [_alertView hide:YES completion:^{
@@ -176,44 +183,11 @@
     }];
 }*/
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    switch (buttonIndex)
-    {
-        case 0:
-            [[MKStoreManager sharedManager] buyFeature:kInAppPurchaseProductId1 onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt, NSArray *availableDownloads) {
-                
-                
-                
-            } onCancelled:nil];
-            break;
-            
-        case 1:
-            [[MKStoreManager sharedManager] buyFeature:kInAppPurchaseProductId2 onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt, NSArray *availableDownloads) {
-                
-                
-                
-            } onCancelled:nil];
-            break;
-            
-        case 2:
-            [[MKStoreManager sharedManager] buyFeature:kInAppPurchaseProductId3 onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt, NSArray *availableDownloads) {
-                
-                
-                
-            } onCancelled:nil];
-            break;
-            
-        default:
-            break;
-    }
-}
-
 - (IBAction)tariff1ButtonPressed:(id)sender
 {
     if(_checkBox.selected)
     {
-        [self showExtendSubscribeViewWithPrice:[NSString stringWithFormat:@"%@ P", _tariff1.amount] period:_tariff1.descr];
+        [self makePurchaseWithProductId:kInAppPurchaseProductId1];
     }
 }
 
@@ -221,7 +195,7 @@
 {
     if(_checkBox.selected)
     {
-        [self showExtendSubscribeViewWithPrice:[NSString stringWithFormat:@"%@ P", _tariff2.amount] period:_tariff2.descr];
+        [self makePurchaseWithProductId:kInAppPurchaseProductId2];
     }
 }
 
@@ -229,8 +203,27 @@
 {
     if(_checkBox.selected)
     {
-        [self showExtendSubscribeViewWithPrice:[NSString stringWithFormat:@"%@ P", _tariff3.amount] period:_tariff3.descr];
+        [self makePurchaseWithProductId:kInAppPurchaseProductId3];
     }
+}
+
+- (void)makePurchaseWithProductId:(NSString *)productId
+{
+    [[MKStoreManager sharedManager] buyFeature:productId onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt, NSArray *availableDownloads) {
+        
+        NSString *token = [[AGServerAccess sharedAccess] userToken:kUser];
+        
+        [[AGServerAccess sharedAccess] checkRecipeWithToken:token receipt:purchasedReceipt success:^(BOOL isTrue) {
+            
+            [[RequestManager sharedRequest] checkLoginWithUser:kUser withParams:nil withSuccess:^(BOOL isLoged) {
+                
+                [self.navigationController popViewControllerAnimated:YES];
+                
+            } withFailure:nil];
+        
+        }];
+        
+    } onCancelled:nil];
 }
 
 @end

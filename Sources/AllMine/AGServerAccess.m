@@ -107,6 +107,8 @@
 #define kServTariffAmount       @"amount"
 #define kServTariffCurrencyId   @"currency_id"
 
+#define kServReceipt   @"receipt"
+
 typedef enum{
     StatusErrorParamsMissing = 0,
     StatusOK = 1,
@@ -1989,6 +1991,27 @@ typedef enum{
         if(success)
         {
             success();
+        }
+        
+    }];
+}
+
+- (void)checkRecipeWithToken:(NSString *)token
+                     receipt:(NSData *)receipt
+                     success:(void (^)(BOOL isTrue))success
+{
+    [self sendRequestWithAction:@"payment/receipt" withParams:@{kServToken: token, kServReceipt: receipt} withSuccess:^(id json) {
+        
+        if(success)
+        {
+            success([json[@"status"] boolValue]);
+        }
+        
+    } withFailure:^(NSError *error) {
+        
+        if(success)
+        {
+            success(false);
         }
         
     }];

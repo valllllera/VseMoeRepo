@@ -66,6 +66,14 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    if(IS_IOS7)
+    {
+        CGRect newFrame = self.navigationController.view.frame;
+        newFrame.origin.y = 20;
+        newFrame.size.height = 548;
+        self.navigationController.view.frame = newFrame;
+    }
 
     self.passwordRememberLabel.text = NSLocalizedString(@"RememberMe", nil);
     _bnRegistration.titleLabel.font = [UIFont fontWithName:kFont1 size:14.0f];
@@ -890,4 +898,10 @@
 {
     self.rememberMeButton.selected = !self.rememberMeButton.selected;
 }
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 @end

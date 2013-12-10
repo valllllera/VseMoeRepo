@@ -471,6 +471,7 @@ static MKStoreManager* _sharedStoreManager;
     if(index == NSNotFound) return;
     
     SKProduct *thisProduct = [self.purchasableObjects objectAtIndex:index];
+        NSLog(@"%@ - %@", productId, thisProduct);
 		SKPayment *payment = [SKPayment paymentWithProduct:thisProduct];
 		[[SKPaymentQueue defaultQueue] addPayment:payment];
 	}
